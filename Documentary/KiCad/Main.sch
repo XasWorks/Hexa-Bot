@@ -34,7 +34,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "ZEPHYR "
+Title "ZEPHYR Main control board"
 Date "2016-02-20"
 Rev "v0.1"
 Comp "Xasin"
