@@ -90,4 +90,4 @@ module omniWheel(n, r, subwheels=false) {
 
 //subwheelBaseCenter(5, 25);
 //subwheelBaseEdge(5, 25);
-omniWheel(5, 25);
+//omniWheel(5, 25);
