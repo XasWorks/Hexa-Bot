@@ -17,7 +17,7 @@ module subwheelBase(n, r=20) {											//The base structure of a Subwheel, bas
 			translate([-wheelOffset(n,r),0]) circle(r=r,$fa=4);		//Base circle (Radius of the wheel)
 		}
 		
-		translate([0,0,-r]) cylinder(d=1.8, h=r*2,$fn=15);				//Slot for the Filament-Axis
+		translate([0,0,-r]) cylinder(d=2, h=r*2,$fn=15);				//Slot for the Filament-Axis
 	}
 }
 
@@ -55,7 +55,7 @@ module connectorBeam(n, r) {
 			cylinder(r= 2.5, h= 1.4, $fn=13);								//Outer cylinder for the axis connector
 			translate([0, -2.5, 0]) cube([wheelOffset(n, r), 5, 1.4]);	//Connector beam
 		}
-		cylinder(d= 2, h= 1.4, $fn=10);										//Slot for the filament axis
+		cylinder(d= 2.5, h= 1.4, $fn=10);										//Slot for the filament axis
 	}
 }
 			
@@ -83,10 +83,11 @@ module omniWheel(n, r, subwheels=false) {
 		sphere(d=5.1,$fn=20);
 	}
 	
-	for(i=[0:360/n:360]) {
+	if(subwheels) for(i=[0:360/n:360]) {
 		rotate([-90,0,i]) translate([wheelOffset(n, r), 0, 0]) subwheelSliced(n, r, 1.8);
 	}
 }
 
-
-omniWheel(5, 25, subwheels=true);
+//subwheelBaseCenter(5, 25);
+//subwheelBaseEdge(5, 25);
+//omniWheel(5, 25);
