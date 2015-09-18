@@ -7,7 +7,7 @@
 
 use <Transforms.scad>
 
-function wheelOffset(n, r) = cos(360/(2*n))*r + 0.1;
+function wheelOffset(n, r) = cos(360/(2*n))*r;
 function sliceSlitOffset(n, r) = (sin(360/(2*n))*r )/3;
 
 module subwheelBase(n, r=20) {											//The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
@@ -79,7 +79,7 @@ module omniWheel(n, r, subwheels=false) {
 		rotate([0,0,i]) subwheelConnector(n, r);
 	}
 	minkowski() {
-		cylinder(d=r,h=0.00001);
+		cylinder(r= -r + wheelOffset(n, r)*2 - 3.5, h=0.00001);
 		sphere(d=5.1,$fn=20);
 	}
 	
@@ -90,4 +90,4 @@ module omniWheel(n, r, subwheels=false) {
 
 //subwheelBaseCenter(5, 25);
 //subwheelBaseEdge(5, 25);
-//omniWheel(5, 25);
+omniWheel(4, 20, true);
