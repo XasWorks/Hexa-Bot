@@ -7,7 +7,7 @@
 
 use <Transforms.scad>
 
-function wheelOffset(n, r) = cos(360/(2*n))*r;
+function wheelOffset(n, r) = cos(360/(2*n))*r + 0.2;
 function sliceSlitOffset(n, r) = (sin(360/(2*n))*r )/3;
 
 module subwheelBase(n, r=20) {											//The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
@@ -17,7 +17,8 @@ module subwheelBase(n, r=20) {											//The base structure of a Subwheel, bas
 			translate([-wheelOffset(n,r),0]) circle(r=r,$fa=4);		//Base circle (Radius of the wheel)
 		}
 		
-		translate([0,0,-r]) cylinder(d=2.25, h=r*2,$fn=15);				//Slot for the Filament-Axis
+		translate([0,0,-(sin(360/(2*n))*r) + 3]) cylinder(d=2 + 0.4 + 0.3, h= 2* sin(360/(2*n))*r - 6,$fn=15);				//Slot for the Filament-Axis, loose
+		translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d=2 + 0.4, h= 2* sin(360/(2*n))*r);
 	}
 }
 
@@ -90,4 +91,4 @@ module omniWheel(n, r, subwheels=false) {
 
 //subwheelBaseCenter(5, 25);
 //subwheelBaseEdge(5, 25);
-omniWheel(4, 20, true);
+omniWheel(4, 25, true, $fn=50);
