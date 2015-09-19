@@ -12,13 +12,13 @@ function sliceSlitOffset(n, r) = (sin(360/(2*n))*r )/3;
 
 module subwheelBase(n, r=20) {											//The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
 		render(convexity=4) difference() {
-		rotate_extrude(convexity=5) intersection() {
+		rotate_extrude(convexity=5, $fs=0.1, $fa=7) intersection() {
 			translate([0,-r,0]) square([r,r*2]);								//Only use the wanted "outside" circle
 			translate([-wheelOffset(n,r),0]) circle(r=r,$fa=4);		//Base circle (Radius of the wheel)
 		}
 		
-		translate([0,0,-(sin(360/(2*n))*r) + 3]) cylinder(d=2 + 0.4 + 0.3, h= 2* sin(360/(2*n))*r - 6,$fn=15);				//Slot for the Filament-Axis, loose
-		translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d=2 + 0.4, h= 2* sin(360/(2*n))*r);
+		translate([0,0,-(sin(360/(2*n))*r) - 1.5]) cylinder(d=2 + 0.4 + 0.4, h= 2* sin(360/(2*n))*r - 3,$fn=15);				//Slot for the Filament-Axis, loose
+		translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d=2 + 0.4, h= 2* sin(360/(2*n))*r, $fn=15);
 	}
 }
 
@@ -53,10 +53,10 @@ module subwheelSliced(n, r, s=2) {
 module connectorBeam(n, r) {
 	render(convexity=3) difference() {
 		union() {
-			cylinder(r= 2.5, h= 1.4, $fn=13);								//Outer cylinder for the axis connector
-			translate([0, -2.5, 0]) cube([wheelOffset(n, r), 5, 1.4]);	//Connector beam
+			cylinder(r= 3, h= 1.4, $fn=13);								//Outer cylinder for the axis connector
+			translate([0, -3, 0]) cube([wheelOffset(n, r), 6, 1.4]);	//Connector beam
 		}
-		cylinder(d= 2.4, h= 1.4, $fn=10);										//Slot for the filament axis
+		cylinder(d= 2.9, h= 1.4, $fn=10);										//Slot for the filament axis
 	}
 }
 			
@@ -81,7 +81,7 @@ module omniWheel(n, r, subwheels=false) {
 	}
 	minkowski() {
 		cylinder(r= -r + wheelOffset(n, r)*2 - 3.5, h=0.00001);
-		sphere(d=5.1,$fn=20);
+		sphere(d=6.1,$fn=20);
 	}
 	
 	if(subwheels) for(i=[0:360/n:360]) {
@@ -89,6 +89,12 @@ module omniWheel(n, r, subwheels=false) {
 	}
 }
 
-//subwheelBaseCenter(5, 25);
-//subwheelBaseEdge(5, 25);
-omniWheel(4, 25, true, $fn=50);
+/*
+for(i=[0:3]) {
+	translate([12*i,0,0]) subwheelBaseCenter(5, 25);
+}
+translate([0, 15, 0]) for(i=[0:7]) {
+	translate([12*i,0,0]) subwheelBaseEdge(5, 25);
+}
+omniWheel(4, 25);
+*/
