@@ -17,74 +17,47 @@ module subwheelBase(n, r=20, p=0) {  //The base structure of a Subwheel, basical
 	//Rotate to the according outside position.
 	rotate([0, 0, (360/n) * p])
 	//Translate to the edge of the circle
-	translate([ wheelOffset(n, r) - 4, 0, 0])
+	translate([ wheelOffset(n, r) - 3, 0, 0])
 	//Rotate into horizontal position
 	rotate([-90, 0, 0]) 
 	//The main core of the subwheel
-	difference() {
-		render(convexity = 4) rotate_extrude() intersection() {
-			translate([ - wheelOffset(n, r) + 4, 0]) circle(r=r);
+	render(convexity=4) difference() {
+		rotate_extrude() intersection() {
+			translate([ - wheelOffset(n, r) + 3, 0]) circle(r=r);
 			translate([0, - sin(360/(2*n))*r]) square(sin(360/(2*n))*r *2);
 		}
 		
-		translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d=2 + 0.4 + 0.4, h= 2* sin(360/(2*n))*r,$fn=15);	//Slot for the Filament-Axis, loose
-	}
-}
-
-module inflatedSubwheel(n, r, p) {
-	render(convexity = 4) minkowski() {
-		subwheelBase(n, r, p);
-		sphere(r=2);
-	}
-}
-	
-module connectorBeam(n, r) {
-	render(convexity=3) difference() {
-		union() {
-			cylinder(r= 3, h= 1.4, $fn=13);								//Outer cylinder for the axis connector
-			translate([0, -3, 0]) cube([10, 6, 1.4]);	//Connector beam
-		}
-		cylinder(d= 2 + 0.4, h= 1.4, $fn=10);										//Slot for the filament axis
-	}
-}
-
-//Creates the two 5mm beams that connect the filament axis with the actual wheel for a omniwheel of N Subwheels with radius R.
-module subwheelConnector(n, r) {
-	translate([wheelOffset(n, r) -4 , 0, 0]) rotate([-90,180,0]) {					//Translate the outer connectors to the right position (wheel Offset) and rotate them around for fitting position.
-		translate([0, 0, sliceSlitOffset(n, r) + 0.2]) {							//Translate the upper slot and connector beam.
-			connectorBeam(n, r);
-		}
+		translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d=2 + 0.4 + 0.1, h= 2* sin(360/(2*n))*r,$fn=15);	//Slot for the Filament-Axis, semi-tight
 		
-		translate([0, 0, -sliceSlitOffset(n, r) - 1.4 - 0.2]) {						//Translate the lower slot and connector beam.
-			connectorBeam(n, r);
+		translate([0,0, -0.625]) cylinder(r= r - wheelOffset(n, r) + 0.1, h=1.3);
+	}
+}
+
+
+module subwheelSet(n, r, inflated=false) {
+	if(inflated) {
+		minkowski() {
+			subwheelSet(n, r);
+			sphere(r=3);
+		}
+	}
+	else {
+		for(i=[0:2:n]) { 	
+			subwheelBase(n, r, i);
+			translate([0, 0, 10]) subwheelBase(n, r, i+1);
 		}
 	}
 }
 
 //Create the center piece for the omni-wheel
-module omniWheel(n, r, subwheels=false, skip=2) {
-	for(i=[0:(360/n)*skip:360]) {									//Create the connector beams
-		rotate([0,0,i]) {
-			subwheelConnector(n, r);
-			
-			translate([wheelOffset(n, r) - 4, -sliceSlitOffset(n, r) -1, 13]) rotate([90,0, (360/n)]) {
-				translate([0,0, cylinder(d= 2 + 0.4, h=1);
-			}
-		}
+module omniWheel(n, r, subwheels=false) {
+	difference() {														
+		translate([0,0,-3]) cylinder(r= wheelOffset(n, r) - 4, h=16);	//Create the central cylinder.
+		subwheelSet(n, r, true);	//Create spaces for the wheels
 	}
 	
-	render(4) difference() {														//Create the central cylinder.
-		translate([0,0, -3]) cylinder(r= wheelOffset(n, r) - 4, h=6);
-		
-		for(i=[0:2:n]) { 		//Create spaces for the wheels
-			inflatedSubwheel(n, r, i);
-			translate([0, 0, 14]) inflatedSubwheel(n, r, i+1);
-		}
-	}
-	
-	if(subwheels) for(i=[0:skip:n]) {
-		subwheelBase(n, r, i);
-		translate([0,0, 14]) subwheelBase(n, r, i+1);
+	if(subwheels) {
+		subwheelSet(n, r);
 	}
 }
 
