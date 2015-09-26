@@ -1,4 +1,4 @@
-use </home/xasin/.SCADModules/Transforms.scad>
+use <Transforms.scad>
 
 module beam() {
 	beamSize = 0.8;
@@ -61,4 +61,4 @@ module hexGrid(x, y, leftEdge= true, rightEdge= true) {
 }
 
 
-hexGrid(1,1, false, false);
+hexGrid(5,5, false, false);
