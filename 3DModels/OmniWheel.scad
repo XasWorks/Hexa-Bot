@@ -18,7 +18,7 @@ axisDiameter = 1.75;
 axisPlay = 0.4;
 
 
-subwheelBaseSize = 2.75;
+subwheelBaseSize = 3.5;
 
 module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, positioned=true) {  //The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
 	
@@ -55,9 +55,9 @@ module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, position
 }
 
 //OMNIWHEEL BASE VARIABLES
-cRad = axisDiameter/2 + 0.8; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
-cThick = 1; 	//Thickness of the connectors.
-cPlay = 0.2; 	//Play room for the connector ports (distance to the subwheel)
+cRad = axisDiameter/2 + 1.5; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
+cThick = 0.8; 	//Thickness of the connectors.
+cPlay = 0.3; 	//Play room for the connector ports (distance to the subwheel)
 
 //Create a connecting beam for the subwheels
 module subwheelConnector(n, r, i) {
@@ -65,21 +65,21 @@ module subwheelConnector(n, r, i) {
 	difference() {
 		intersection() {
 			union() {
-				//translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + cPlay + cThick]) rotate([90, 0, 0]) cylinder(r= cRad, h= cThick, $fn = 13);
+				translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + cPlay + cThick]) rotate([90, 0, 0]) cylinder(r= cRad, h= cThick, $fn = 13);
 				
 				translate([0, connectorOffset(n, r) + cPlay, -cRad]) 
-					cube([wheelOffset(n, r) - subwheelBaseSize + cRad, cThick, cRad*2]);
+					cube([wheelOffset(n, r) - subwheelBaseSize, cThick, cRad*2]);
 				
-				//translate([wheelOffset(n, r) - subwheelBaseSize, -connectorOffset(n, r) - cPlay]) rotate([90, 0, 0]) cylinder(r= cRad, h= cThick, $fn = 13);
+				translate([wheelOffset(n, r) - subwheelBaseSize, -connectorOffset(n, r) - cPlay]) rotate([90, 0, 0]) cylinder(r= cRad, h= cThick, $fn = 13);
 						
 				translate([0, -connectorOffset(n, r) - cPlay - cThick, -cRad]) 
-					cube([wheelOffset(n, r) - subwheelBaseSize + cRad, cThick, cRad*2]);
+					cube([wheelOffset(n, r) - subwheelBaseSize, cThick, cRad*2]);
 			}
 			
 			translate([0,0, -cRad]) cylinder(r=r - 0.3, h= cRad*2);
 		}
 		
-		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.1, h= connectorOffset(n, r)*2 + 10, $fn=14);
+		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.3, h= connectorOffset(n, r)*2 + 10, $fn=14);
 	}
 }
 
@@ -148,7 +148,7 @@ module omniWheel(n, r, subwheels = false) {
 }
 
 rad = 30;
-num = 10;
+num = 8;
 
 !omniWheel(num, rad, true);
 
