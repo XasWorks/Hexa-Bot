@@ -1,7 +1,9 @@
 /*
-	.scad file created for the subwheel system of the 3D Printable Omni-Wheels used for the robot.
+	.scad file created for the subwheel system of the 3D Printable Omni-Wheels used for a robot.
+	
 	
 	Author 	= Xasin
+	Website = https://www.github.com/xasin/hexa-bot.git
 	Created	= 17.09.15
 */
 
@@ -14,12 +16,15 @@ function connectorOffset(n, r) = (sin(360/(2*n))*r);					//Calculate the offset 
 $fs = 1;
 
 //What to generate - 1 means base frame, 2 means subwheel piece
-generate = 2;
+generate = 1;
 
 //GENERATION VARIABLES 
-num = 6*2;
-radius = 20;
-subwheelBaseSize = 4;
+num = 8*2;	//Number of all subwheels to create. (Has to be a round number!!)
+radius = 20;	//Radius of the omni-wheel.
+
+//SUBWHEEL VARIABLES
+subwheelBaseSize = 4;	//Size of the subwheels at their smallest point (The edge)
+subwheelPlay = 1; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
 
 //AXIS HOLE VARIABLE
 axisDiameter = 1.75;
@@ -31,15 +36,20 @@ cThick = 0.8; 					//Thickness of the connectors.
 cPlay = 0.3; 					//Play room for the connector ports (distance to the subwheel)
 
 //FRAME VARIABLES
-frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
+//frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
+frameRadius = 10;
 frameHeight = cRad + subwheelRadius(num, radius);
 frameThickness = 0.8;		//Thickness of the main frame
+
+//STABILITY BEAM VARIABLES
 beamThickness = 2.5; 		//Thickness of the stability beams
+beamNum = 5;
 
 //CONNECTOR VARIABLES
 connectorThickness = 0.8;	//Thickness of the vertical connectors
-connectorInShift = 0.2;	//Inwards shift of the vertical connector beams (for smoother connection)
+connectorInShift = 0.2;		//Inwards shift of the vertical connector beams (for smoother connection)
 connectorHeight = 2.5;		//Height of the connector pieces above the main frame.
+connectorNum = 4;			//How many connectors should be created
 
 module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, positioned=true) {  //The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
 	
@@ -77,6 +87,7 @@ module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, position
 
 //Create a connecting beam for the subwheels
 module subwheelConnector(n, r, i) {
+	render(convexity = 3)
 	rotate([0,0, (360/n)*i]) 
 	difference() {
 		intersection() {
@@ -103,7 +114,7 @@ module subwheelConnector(n, r, i) {
 module subwheelSet(n, r, inflated=false) {
 	for(i=[0:2:n]) { 	
 		if(inflated) {		
-			subwheelBase(n, r, i, shift = subwheelBaseSize + 0.5, split=false);									//Create a /bigger/ subwheel in normal, ground position.
+			subwheelBase(n, r, i, shift = subwheelBaseSize + subwheelPlay, split=false);									//Create a /bigger/ subwheel in normal, ground position.
 		}
 		else {
 			subwheelBase(n, r, i);									//Do the same as above, however using default subwheels instead of bigger subwheels here.
@@ -120,39 +131,42 @@ module connectorSet(n, r) {
 
 //The Mainframe of the OmniWheel
 module omniWheel(n, r, subwheels = false) {
-	
-	//Central Cylinder 
-	translate([0,0, - cRad]) difference() {
-		cylinder(r= frameRadius, h= frameHeight);		//Create the central cylinder.
-		cylinder(r= frameRadius - frameThickness, h= frameHeight);	//Hollow it out
-		subwheelSet(n, r, true); 	//Make sure that there is enough space for the subwheels.
-	}
-	
-	//Cylinder Interconnections
-	translate([0,0, -cRad]) difference() {
-		for(i=[0:(360/n)*2:360]) 
-			rotate([0,0, i])
-			shine(height= frameHeight + 3, angle=(360/n) - 0.5, length= r)					//Create an "angle" for the connectors to create an alternating, tooth-like pattern.
-			union() {	//Create the actual cylinder pieces.
-				cylinder(r= frameRadius - 0.1, h= frameHeight);		//Inner cylinder (connecting to the frame)
-				cylinder(r= frameRadius - frameThickness - connectorInShift, h= frameHeight + connectorHeight);	//Upper cylinder part (made slightly smaller to allow smoother connecting)
+	difference() {  
+		union() {
+		
+			//Central Cylinder 
+			render(convexity = 4) translate([0,0, - cRad]) difference() {
+				cylinder(r= frameRadius, h= frameHeight);		//Create the central cylinder.
+				cylinder(r= frameRadius - frameThickness, h= frameHeight);	//Hollow it out
 			}
-		
-		cylinder(r= frameRadius  - frameThickness - connectorThickness - connectorInShift, h= frameHeight + connectorHeight);	//Cut the connectors down the appropriate size.
-	}
+			
+			//Cylinder Interconnections
+			render(convexity= 2) translate([0,0, -cRad]) difference() {
+				for(i=[0:(360/connectorNum):360]) 
+					rotate([0,0, i + 360/connectorNum])
+					shine(height= frameHeight + 3, angle=(360/connectorNum/2) - 0.5, length= r)					//Create an "angle" for the connectors to create an alternating, tooth-like pattern.
+					union() {	//Create the actual cylinder pieces.
+						cylinder(r= frameRadius - 0.1, h= frameHeight);		//Inner cylinder (connecting to the frame)
+						cylinder(r= frameRadius - frameThickness - connectorInShift, h= frameHeight + connectorHeight);	//Upper cylinder part (made slightly smaller to allow smoother connecting)
+					}
+				cylinder(r= frameRadius  - frameThickness - connectorThickness - connectorInShift, h= frameHeight + connectorHeight);	//Cut the connectors down the appropriate size.
+			}
 
-	//Structural beams
-	translate([0,0, -cRad]) intersection() {
-		cylinder(r= connectorOffset(n, r) + cPlay, h= cRad*2);
-		
-		for(i=[0:360/n*2:360]) 
-			rotate([0,0, i]) translate([0, -beamThickness/2, 0]) cube([r -  subwheelRadius(n, r) - 6, beamThickness, 1]);
-	}	
-	
-	//Connectors
-	difference() {
-		connectorSet(n, r);			//Create the connectors
-		translate([0,0, -cRad]) cylinder(r= connectorOffset(n, r) + cPlay - 0.001, h= frameHeight); //Make sure they don't enter the central cylinder
+			//Structural beams
+			render(convexity = 4) translate([0,0, -cRad]) intersection() {
+				cylinder(r= frameRadius, h= cRad*2);
+				
+				for(i=[0:360/beamNum:360]) 
+					rotate([0,0, i + 360/beamNum/2]) translate([0, -beamThickness/2, 0]) cube([frameRadius, beamThickness, 1]);
+			}	
+			
+			//Connectors
+			render(convexity = 5) difference() {
+				connectorSet(n, r);			//Create the connectors
+				translate([0,0, -cRad]) cylinder(r= frameRadius - 0.001, h= frameHeight); //Make sure they don't enter the central cylinder
+			}
+		}
+		subwheelSet(n, r, true); 	//Make sure that there is enough space for the subwheels.
 	}
 	
 	%subwheelSet(n, r);		//Create subwheels around the model for a better visual inspection.
