@@ -9,9 +9,9 @@
 
 use <Transforms.scad>
 
-function subwheelRadius(n, r) = r - cos(360/(2*n))*r + subwheelBaseSize;		//Calculate the radius of a standard subwheel at largest point (Center)
-function wheelOffset(n, r) = cos(360/(2*n))*r;						//Calculate the offset of a subwheel that is required to shift it so that it aligns with the main circle (CAUTION Does not implement subwheel size shift!!)
-function connectorOffset(n, r) = (sin(360/(2*n))*r);					//Calculate the offset for the cuts on the wheels. (Y axis on the 2D model of a subwheel before being rotated.
+function subwheelRadius(n, r) = r - cos(360/(2*n) + subwheelOverlap)*r + subwheelBaseSize;		//Calculate the radius of a standard subwheel at largest point (Center)
+function wheelOffset(n, r) = cos(360/(2*n) + subwheelOverlap)*r;						//Calculate the offset of a subwheel that is required to shift it so that it aligns with the main circle (CAUTION Does not implement subwheel size shift!!)
+function connectorOffset(n, r) = (sin(360/(2*n) + subwheelOverlap)*r);					//Calculate the offset for the cuts on the wheels. (Y axis on the 2D model of a subwheel before being rotated.
 	
 $fs = 1;
 
@@ -20,11 +20,12 @@ generate = 1;
 
 //GENERATION VARIABLES 
 num = 6*2;	//Number of all subwheels to create. (Has to be a round number!!)
-radius = 20;	//Radius of the omni-wheel.
+radius = 30;	//Radius of the omni-wheel.
 
 //SUBWHEEL VARIABLES
 subwheelBaseSize = 4;	//Size of the subwheels at their smallest point (The edge)
 subwheelPlay = 1; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
+subwheelOverlap = 2; 	//By what angle should the wheels overlap? This should result in smoother running, but at the same time might cause problems if this value is too big.
 
 //AXIS HOLE VARIABLE
 axisDiameter = 1.75;
@@ -71,15 +72,15 @@ module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, position
 				rotate_extrude() difference() {		//Generate the main subwheel
 					intersection() {					//2D Model for the basic subwheel
 						translate([ - wheelOffset(n, r) + shift, 0]) circle(r=r, $fn = 70);		//Main circle	
-						translate([0, - sin(360/(2*n))*r]) square(sin(360/(2*n))*r *2);			//Intersecting square to only have the desired part of the circle
+						translate([0, - sin(360/(2*n) + subwheelOverlap)*r]) square(sin(360/(2*n) + subwheelOverlap)*r *2);			//Intersecting square to only have the desired part of the circle
 					}	
 						
 				}
-				translate([0, 0, - sin(360/(2*n))*r]) cylinder(r=shift, h= sin(360/(2*n))*r *2);	//Central cylinder inside for the axis.
+				translate([0, 0, - sin(360/(2*n) + subwheelOverlap)*r]) cylinder(r=shift, h= sin(360/(2*n) + subwheelOverlap)*r *2);	//Central cylinder inside for the axis.
 			}
 			
 			if(split) {
-				translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d= axisDiameter + axisPlay, h= 2* sin(360/(2*n))*r,$fn=15);	//Slot for the Filament-Axis, rolling
+				translate([0,0,-(sin(360/(2*n) + subwheelOverlap)*r)]) cylinder(d= axisDiameter + axisPlay, h= 2* sin(360/(2*n) + subwheelOverlap)*r,$fn=15);	//Slot for the Filament-Axis, rolling
 			}
 		}
 	}
