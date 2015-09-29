@@ -9,22 +9,23 @@
 
 use <Transforms.scad>
 
-function subwheelRadius(n, r) = r - cos(360/(2*n))*r + subwheelBaseSize;		//Calculate the radius of a standard subwheel at largest point (Center)
-function wheelOffset(n, r) = cos(360/(2*n))*r;						//Calculate the offset of a subwheel that is required to shift it so that it aligns with the main circle (CAUTION Does not implement subwheel size shift!!)
-function connectorOffset(n, r) = (sin(360/(2*n))*r);					//Calculate the offset for the cuts on the wheels. (Y axis on the 2D model of a subwheel before being rotated.
+function subwheelRadius(n, r) = r - cos((360/(2*n) + subwheelOverlap))*r + subwheelBaseSize;		//Calculate the radius of a standard subwheel at largest point (Center)
+function wheelOffset(n, r) = cos((360/(2*n) + subwheelOverlap))*r;						//Calculate the offset of a subwheel that is required to shift it so that it aligns with the main circle (CAUTION Does not implement subwheel size shift!!)
+function connectorOffset(n, r) = (sin(360/(2*n) + subwheelOverlap)*r);					//Calculate the offset for the cuts on the wheels. (Y axis on the 2D model of a subwheel before being rotated.
 	
 $fs = 1;
 
 //What to generate - 1 means base frame, 2 means subwheel piece
-generate = 1;
+generate = 2;
 
 //GENERATION VARIABLES 
-num = 8*2;	//Number of all subwheels to create. (Has to be a round number!!)
+num = 4*2;	//Number of all subwheels to create. (Has to be a round number!!)
 radius = 20;	//Radius of the omni-wheel.
 
 //SUBWHEEL VARIABLES
-subwheelBaseSize = 4;	//Size of the subwheels at their smallest point (The edge)
-subwheelPlay = 1; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
+subwheelBaseSize = 3.5;	//Size of the subwheels at their smallest point (The edge)
+subwheelPlay = 0.5; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
+subwheelOverlap = 3;		//Angle in which the subwheel pieces will overlap. Causes smoother movement as there is no definite edge.
 
 //AXIS HOLE VARIABLE
 axisDiameter = 1.75;
@@ -33,13 +34,13 @@ axisPlay = 0.4;
 //SUBWHEEL CONNECTOR VARIABLES
 cRad = axisDiameter/2 + 1.5; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
 cThick = 0.8; 					//Thickness of the connectors.
-cPlay = 0.3; 					//Play room for the connector ports (distance to the subwheel)
+cPlay = 0.2; 					//Play room for the connector ports (distance to the subwheel)
 
 //FRAME VARIABLES
-//frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
-frameRadius = 10;
+frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
 frameHeight = cRad + subwheelRadius(num, radius);
 frameThickness = 0.8;		//Thickness of the main frame
+frameAxis = 5 + 0.5;
 
 //STABILITY BEAM VARIABLES
 beamThickness = 2.5; 		//Thickness of the stability beams
@@ -47,9 +48,8 @@ beamNum = 5;
 
 //CONNECTOR VARIABLES
 connectorThickness = 0.8;	//Thickness of the vertical connectors
-connectorInShift = 0.2;		//Inwards shift of the vertical connector beams (for smoother connection)
+connectorInShift = 0.3;		//Inwards shift of the vertical connector beams (for smoother connection)
 connectorHeight = 2.5;		//Height of the connector pieces above the main frame.
-connectorNum = 4;			//How many connectors should be created
 
 module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, positioned=true) {  //The base structure of a Subwheel, basically a slice of a circle of the radius of the wheel, cut down to be rotated into a proper subwheel for a wheel of Radius R with N Subwheels.
 	
@@ -58,7 +58,7 @@ module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, position
 		//Rotate to the according outside position.
 		rotate([0, 0, (360/n) * p])
 		//Translate to the edge of the circle
-		translate([ wheelOffset(n, r) - shift, 0, 0])
+		translate([ wheelOffset(n, r) - subwheelBaseSize, 0, 0])
 		//Rotate into horizontal position
 		rotate([-90, 0, 0]) 
 		//The main core of the subwheel
@@ -71,15 +71,15 @@ module subwheelBase(n, r=20, p=0, shift = subwheelBaseSize, split=true, position
 				rotate_extrude() difference() {		//Generate the main subwheel
 					intersection() {					//2D Model for the basic subwheel
 						translate([ - wheelOffset(n, r) + shift, 0]) circle(r=r, $fn = 70);		//Main circle	
-						translate([0, - sin(360/(2*n))*r]) square(sin(360/(2*n))*r *2);			//Intersecting square to only have the desired part of the circle
+						translate([0, - sin(360/(2*n) + subwheelOverlap)*r]) square(sin(360/(2*n) + subwheelOverlap)*r *2);			//Intersecting square to only have the desired part of the circle
 					}	
 						
 				}
-				translate([0, 0, - sin(360/(2*n))*r]) cylinder(r=shift, h= sin(360/(2*n))*r *2);	//Central cylinder inside for the axis.
+				translate([0, 0, - sin((360/(2*n) + subwheelOverlap))*r]) cylinder(r=shift, h= sin((360/(2*n) + subwheelOverlap))*r *2);	//Central cylinder inside for the axis.
 			}
 			
 			if(split) {
-				translate([0,0,-(sin(360/(2*n))*r)]) cylinder(d= axisDiameter + axisPlay, h= 2* sin(360/(2*n))*r,$fn=15);	//Slot for the Filament-Axis, rolling
+				translate([0,0,-(sin((360/(2*n) + subwheelOverlap))*r)]) cylinder(d= axisDiameter + axisPlay, h= 2* sin((360/(2*n) + subwheelOverlap))*r,$fn=15);	//Slot for the Filament-Axis, rolling
 			}
 		}
 	}
@@ -106,7 +106,7 @@ module subwheelConnector(n, r, i) {
 			translate([0,0, -cRad]) cylinder(r=r - 0.3, h= cRad*2);
 		}
 		
-		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.3, h= connectorOffset(n, r)*2 + 10, $fn=14);
+		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.2, h= connectorOffset(n, r)*2 + 10, $fn=14);
 	}
 }
 
@@ -131,9 +131,7 @@ module connectorSet(n, r) {
 
 //The Mainframe of the OmniWheel
 module omniWheel(n, r, subwheels = false) {
-	difference() {  
-		union() {
-		
+	difference() {  union() {
 			//Central Cylinder 
 			render(convexity = 4) translate([0,0, - cRad]) difference() {
 				cylinder(r= frameRadius, h= frameHeight);		//Create the central cylinder.
@@ -142,9 +140,9 @@ module omniWheel(n, r, subwheels = false) {
 			
 			//Cylinder Interconnections
 			render(convexity= 2) translate([0,0, -cRad]) difference() {
-				for(i=[0:(360/connectorNum):360]) 
-					rotate([0,0, i + 360/connectorNum])
-					shine(height= frameHeight + 3, angle=(360/connectorNum/2) - 0.5, length= r)					//Create an "angle" for the connectors to create an alternating, tooth-like pattern.
+				for(i=[0:(360/(n/2)):360]) 
+					rotate([0,0, i + 360/(n/2)])
+					shine(height= frameHeight + 3, angle=(360/n) - 0.5, length= r)					//Create an "angle" for the connectors to create an alternating, tooth-like pattern.
 					union() {	//Create the actual cylinder pieces.
 						cylinder(r= frameRadius - 0.1, h= frameHeight);		//Inner cylinder (connecting to the frame)
 						cylinder(r= frameRadius - frameThickness - connectorInShift, h= frameHeight + connectorHeight);	//Upper cylinder part (made slightly smaller to allow smoother connecting)
@@ -165,7 +163,11 @@ module omniWheel(n, r, subwheels = false) {
 				connectorSet(n, r);			//Create the connectors
 				translate([0,0, -cRad]) cylinder(r= frameRadius - 0.001, h= frameHeight); //Make sure they don't enter the central cylinder
 			}
+			
+			translate([0,0,-cRad]) cylinder(d= frameAxis + 1.7, h= frameHeight);
 		}
+		
+		translate([0,0,-cRad]) cylinder(d= frameAxis, h= frameHeight);
 		subwheelSet(n, r, true); 	//Make sure that there is enough space for the subwheels.
 	}
 	
