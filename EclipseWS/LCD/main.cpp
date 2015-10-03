@@ -10,6 +10,12 @@
 int main() {
 
 	LCD disp (&PORTA);
+	disp.cursorMode(CURSOR_ON_BLINK);
+	disp.writeString("Test!",0);
+	disp.setCursor(16);
 
+	for(uint8_t i=0; i<32; i++) {
+		disp.updateDisplay();
+	}
 	return 0;
 }
