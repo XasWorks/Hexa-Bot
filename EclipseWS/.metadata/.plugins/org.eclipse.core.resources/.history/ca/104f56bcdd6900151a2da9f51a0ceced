@@ -5,7 +5,6 @@
  *      Author: xasin
  */
 
-#define NOP asm volatile ("nop")
 
 #define RS 0
 #define RW 1
@@ -37,47 +36,37 @@
 
 class LCD {
 private:
-	volatile uint8_t dispData[32];
-	volatile uint8_t dispUpdate[4];
-
 	volatile uint8_t *PORT;
-	volatile uint8_t *PINP;
-	volatile uint8_t *DDRP;
 
 	//Push data, either a character or a command, to the LCD.
 	void pushData(uint8_t msg, uint8_t controlBit) {
-		//Write the first 4 bits of data to the display, the control bit, and enable.
-		NOP;
-		*PORT |= ((msg & 0b11110000)>>4 <<DATA | controlBit<<RS | 1<< EN);
-		NOP;
+		*PORT |= (controlBit<<RS);					//Set the control bit properly. (0 for commands, 1 for data).
+
+		*PORT |= ((msg & 0b11110000)>>4 <<DATA);	//Write the first 4 bits of data to the display, enable, and reset.
+		*PORT |= (1<< EN);
 		*PORT &= ~(1<< EN | 0b1111<< DATA);
 
-		//Do the same with the last 4 bits.
-		NOP;
-		*PORT |= (1<< EN | (msg & 0b00001111) << DATA);
-		NOP;
-		*PORT &= ~(1<< EN | 0b1111<< DATA | 1<< RS);	//Reset the outputs.
+		*PORT |= ((msg & 0b00001111) << DATA);		//Do the same with the last 4 bits.
+		*PORT |= (1<< EN);
+		*PORT &= ~(1<< EN | 0b1111<< DATA);
+
+		*PORT &= ~(1 << RS);						//Reset the control bit.
 	}
 
 	//Read out if the LCD is busy. True for yes, false for not busy.
 	uint8_t readBusy() {
-		uint8_t temp = 0;
-		*DDRP &= ~(0b1111 << DATA); 			//Set the data pins as inputs (for reading in the data.)
 
-		*PORT |= (1<< RW);						//Enable read mode
-		NOP;
-		*PORT |= (1<< EN);						//Enable
-		NOP;
-		temp = (*PINP & (0b1000<< DATA));		//Read out the busy flag bit.
-		*PORT &= ~(1<<EN);
+		*(PORT -1) &= ~(0b1111 << DATA); 				//Set the data pins as inputs (for reading in the data.)
+		*PORT |= (1<<RW);								//Enable read mode.
 
-		NOP;
+		*PORT |= (1<< EN);
+		uint8_t temp = (*(PORT -2) & 0b1000<< DATA);	//Read out the busy flag bit.
+		*PORT &= ~(1<< EN);
 
-		*PORT |= (1<<EN);						//Second enable (4 bit operation)
-		NOP;
-		*PORT &= ~(1<<EN | 1<< RW);
+		*PORT |= (1<< EN);								//Second enable (4 bit operation)
+		*PORT &= ~(1<< EN);
 
-		*DDRP |= (0b1111 << DATA); 				//Set the pins back to output.
+		*(PORT -1) |= (0b1111 << DATA); 				//Set the pins back to output.
 		if(temp == 0)
 			return false;
 		else
@@ -85,29 +74,28 @@ private:
 	}
 
 	void waitWhileBusy() {
-		while(readBusy() == true) {
+		while(readBusy()) {
 		}
 	}
 
 public:
 	LCD(volatile uint8_t *P) {
 		PORT = P;					//Define the pointer for the display port.
-		DDRP = P -1;				//Get the Direction Register (port address -1)
-		PINP = P -2;				//Get the Pin Register (port address -2)
 
+		volatile uint8_t *DDRP;
+		DDRP = PORT -1;				//Get the Direction Register (port address -1)
 		*DDRP |= (0b01111111);		//Set all those pins to outputs.
+		_delay_ms(10);				//Wait for the display to load up.
 
-		*PORT |= (0b0010<< DATA | 1<< EN);	//Enable 4-Bit mode! (Has to be enabled only once.)
-		NOP;
-		*PORT &= ~(1<< EN | 0b1111<< DATA);	//Reset the inputs again.
+		*PORT |= (0b0010<< DATA);	//Start 4-bit operation.
 
-		//General Display Setup
+		pushData(SETUP(1,0,0),0);
+		pushData(DISPMODE(1,1,0),0);
+
 		waitWhileBusy();
-		pushData(SETUP(0,1,0),0);		//4-Bit mode, 2 Lines, 5x8
-		waitWhileBusy();
-		pushData(DISPMODE(1,1,0),0);	//Enable Display, Cursor and Blink
-		waitWhileBusy();
-		pushData(CURSHOME,0);			//Set the cursor back to home pos.
+		pushData(CLEARDISP,0);
+		this->waitWhileBusy();
+		pushData('A',1);
 	}
 
 };

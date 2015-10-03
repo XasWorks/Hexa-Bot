@@ -37,9 +37,6 @@
 
 class LCD {
 private:
-	volatile uint8_t dispData[32];
-	volatile uint8_t dispUpdate[4];
-
 	volatile uint8_t *PORT;
 	volatile uint8_t *PINP;
 	volatile uint8_t *DDRP;
@@ -97,17 +94,30 @@ public:
 
 		*DDRP |= (0b01111111);		//Set all those pins to outputs.
 
-		*PORT |= (0b0010<< DATA | 1<< EN);	//Enable 4-Bit mode! (Has to be enabled only once.)
-		NOP;
-		*PORT &= ~(1<< EN | 0b1111<< DATA);	//Reset the inputs again.
+		/**PORT |= (0b0011<< DATA);	//Reset the display!
 
-		//General Display Setup
+		for(uint8_t i=3; i != 0; i--) {
+			*PORT |= (1<< EN);
+			NOP;
+			*PORT &= ~(1<< EN);
+			_delay_us(200);
+		}*/
+
+		*PORT &= ~(0b0001<< DATA);
+
+		*PORT |= (1<< EN);
+		NOP;
+		*PORT &= ~(1<< EN | 0b1111<< DATA);
+
 		waitWhileBusy();
-		pushData(SETUP(0,1,0),0);		//4-Bit mode, 2 Lines, 5x8
+		pushData(SETUP(0,1,0),0);
 		waitWhileBusy();
-		pushData(DISPMODE(1,1,0),0);	//Enable Display, Cursor and Blink
+		pushData(DISPMODE(1,1,1),0);
 		waitWhileBusy();
-		pushData(CURSHOME,0);			//Set the cursor back to home pos.
+		pushData(CURSHOME,0);
+
+		waitWhileBusy();
+		pushData('a',1);
 	}
 
 };

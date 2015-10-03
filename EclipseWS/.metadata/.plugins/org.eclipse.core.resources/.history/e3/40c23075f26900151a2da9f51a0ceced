@@ -37,9 +37,6 @@
 
 class LCD {
 private:
-	volatile uint8_t dispData[32];
-	volatile uint8_t dispUpdate[4];
-
 	volatile uint8_t *PORT;
 	volatile uint8_t *PINP;
 	volatile uint8_t *DDRP;
@@ -101,13 +98,15 @@ public:
 		NOP;
 		*PORT &= ~(1<< EN | 0b1111<< DATA);	//Reset the inputs again.
 
-		//General Display Setup
 		waitWhileBusy();
-		pushData(SETUP(0,1,0),0);		//4-Bit mode, 2 Lines, 5x8
+		pushData(SETUP(0,1,0),0);
 		waitWhileBusy();
-		pushData(DISPMODE(1,1,0),0);	//Enable Display, Cursor and Blink
+		pushData(DISPMODE(1,1,1),0);
 		waitWhileBusy();
-		pushData(CURSHOME,0);			//Set the cursor back to home pos.
+		pushData(CURSHOME,0);
+
+		waitWhileBusy();
+		pushData('a',1);
 	}
 
 };

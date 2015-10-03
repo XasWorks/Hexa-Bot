@@ -37,9 +37,6 @@
 
 class LCD {
 private:
-	volatile uint8_t dispData[32];
-	volatile uint8_t dispUpdate[4];
-
 	volatile uint8_t *PORT;
 	volatile uint8_t *PINP;
 	volatile uint8_t *DDRP;
@@ -107,7 +104,10 @@ public:
 		waitWhileBusy();
 		pushData(DISPMODE(1,1,0),0);	//Enable Display, Cursor and Blink
 		waitWhileBusy();
-		pushData(CURSHOME,0);			//Set the cursor back to home pos.
+		pushData(CURSHOME,0);
+
+		waitWhileBusy();
+		pushData('a',1);
 	}
 
 };

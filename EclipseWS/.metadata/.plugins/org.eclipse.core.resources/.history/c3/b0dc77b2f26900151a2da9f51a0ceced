@@ -37,9 +37,6 @@
 
 class LCD {
 private:
-	volatile uint8_t dispData[32];
-	volatile uint8_t dispUpdate[4];
-
 	volatile uint8_t *PORT;
 	volatile uint8_t *PINP;
 	volatile uint8_t *DDRP;

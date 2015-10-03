@@ -1,0 +1,1337 @@
+17:34:13 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     500 bytes (0.8% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:34:16 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     500 bytes (0.8% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:34:38 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     590 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:36:24 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     618 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:38:58 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     618 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:39:47 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     610 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:48:05 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     586 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:48:20 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     504 bytes (0.8% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:06:15 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     450 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:10:28 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     450 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:21:18 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     450 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:24:35 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     564 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:25:23 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     564 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:26:22 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     450 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:27:21 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     568 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:27:41 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     470 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:28:03 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     482 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:40:11 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     482 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:40:47 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     566 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:40 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     568 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:55:47 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     568 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:56:49 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     570 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:57:04 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     576 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:57:20 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     576 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:57:37 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     576 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:59:28 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     560 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+19:09:01 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     568 bytes (0.9% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+19:09:53 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     552 bytes (0.8% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+19:12:54 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     534 bytes (0.8% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+19:13:32 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     484 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+19:14:39 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: /home/xasin/RoboNet/Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
+Finished building: /home/xasin/RoboNet/Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:     474 bytes (0.7% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
