@@ -1,11 +1,13 @@
 use <Transforms.scad>
 
 beamSize = 0.8;			//Thickness of the beam
-beamHeight = 3;			//The height of either one of the upper or lower beams.
-beamOuterShift = 0.3;		//How far should the outer edge point of the transition from either lower or upper section to middle section be shifted inwards?
-beamShift = 1.5;			//How far should the two sections be spread apart?
+beamHeight = 2.5;			//The height of either one of the upper or lower beams.
+beamOuterShift = 1.4;		//How far should the outer edge point of the transition from either lower or upper section to middle section be shifted inwards?
+beamShift = 1.6;			//How far should the two sections be spread apart?
 
-beamPlay = 0.3; 			//How much room should be left between 
+beamPlay = 0.08; 			//How much room should be left between 
+
+
 module beam() {
 	translate([- (beamSize*2 + beamPlay),0]) 
 	polygon([ 	[0,0],
@@ -61,5 +63,4 @@ module hexGrid(x, y, leftEdge= true, rightEdge= true) {
 	}
 }
 
-!beam();
-hexGrid(5,5, false, false);
+hexGrid(1,1, false, false);
