@@ -1,19 +1,19 @@
-23:05:06 **** Incremental Build of configuration Release for project LCD ****
+16:46:23 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
 avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
 In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:44:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispData[32] = {0};
                                     ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispUpdate[4]= {0};
                                     ^
-/home/xasin/RoboNet/Code/LCD.cpp:44:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispData[32] = {0};
                                     ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispUpdate[4]= {0};
                                     ^
 Finished building: ../main.cpp
@@ -41,15 +41,15 @@ AVR Memory Usage
 ----------------
 Device: atmega644p
 
-Program:     914 bytes (1.4% Full)
+Program:    1218 bytes (1.9% Full)
 (.text + .data + .bootloader)
 
-Data:          6 bytes (0.1% Full)
+Data:         50 bytes (1.2% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-23:05:06 Build Finished (took 113ms)
+16:46:23 Build Finished (took 162ms)
 

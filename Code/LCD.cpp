@@ -38,6 +38,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <util/atomic.h>
 
 class LCD {
 private:
@@ -87,22 +88,24 @@ private:
 	//Read out if the LCD is busy. True for yes, false for not busy.
 	uint8_t readBusy() {
 		uint8_t temp = 0;
-		*DDRP &= ~(0b1111 << DATA); 			//Set the data pins as inputs (for reading in the data.)
+		ATOMIC_BLOCK(ATOMIC_FORCEON) {
+			*DDRP &= ~(0b1111 << DATA); 			//Set the data pins as inputs (for reading in the data.)
 
-		*PORT |= (1<< RW);						//Enable read mode
-		NOP;
-		*PORT |= (1<< EN);						//Enable
-		NOP;
-		temp = (*PINP & (0b1000<< DATA));		//Read out the busy flag bit.
-		*PORT &= ~(1<<EN);
+			*PORT |= (1<< RW);						//Enable read mode
+			NOP;
+			*PORT |= (1<< EN);						//Enable
+			NOP;
+			temp = (*PINP & (0b1000<< DATA));		//Read out the busy flag bit.
+			*PORT &= ~(1<<EN);
 
-		NOP;
+			NOP;
 
-		*PORT |= (1<<EN);						//Second enable (4 bit operation)
-		NOP;
-		*PORT &= ~(1<<EN | 1<< RW);
+			*PORT |= (1<<EN);						//Second enable (4 bit operation)
+			NOP;
+			*PORT &= ~(1<<EN | 1<< RW);
 
-		*DDRP |= (0b1111 << DATA); 				//Set the pins back to output.
+			*DDRP |= (0b1111 << DATA); 				//Set the pins back to output.
+		}
 		if(temp == 0)
 			return false;
 		else
@@ -117,17 +120,19 @@ private:
 
 	//Push data, either a character or a command, to the LCD.
 	void pushData(uint8_t msg, uint8_t controlBit) {
-		//Write the first 4 bits of data to the display, the control bit, and enable.
-		NOP;
-		*PORT |= ((msg & 0b11110000)>>4 <<DATA | controlBit<<RS | 1<< EN);
-		NOP;
-		*PORT &= ~(1<< EN | 0b1111<< DATA);
+		ATOMIC_BLOCK(ATOMIC_FORCEON) {
+			//Write the first 4 bits of data to the display, the control bit, and enable.
+			NOP;
+			*PORT |= ((msg & 0b11110000)>>4 <<DATA | controlBit<<RS | 1<< EN);
+			NOP;
+			*PORT &= ~(1<< EN | 0b1111<< DATA);
 
-		//Do the same with the last 4 bits.
-		NOP;
-		*PORT |= (1<< EN | (msg & 0b00001111) << DATA);
-		NOP;
-		*PORT &= ~(1<< EN | 0b1111<< DATA | 1<< RS);	//Reset the outputs.
+			//Do the same with the last 4 bits.
+			NOP;
+			*PORT |= (1<< EN | (msg & 0b00001111) << DATA);
+			NOP;
+			*PORT &= ~(1<< EN | 0b1111<< DATA | 1<< RS);	//Reset the outputs.
+		}
 	}
 
 	void placeCursor(uint8_t n) {
@@ -166,7 +171,6 @@ public:
 		pushData(DISPMODE(1,0,0),0);	//Enable Display, currentCursor and Blink
 		waitWhileBusy();
 		pushData(CLEARDISP,0);			//Set the currentCursor back to home pos.
-		waitWhileBusy();
 	}
 
 	//Update the display /one at a time/.
@@ -195,11 +199,35 @@ public:
 			if(input[i - start] == '\0')
 				break;
 			else {
-				dispData[i] = input[i - start];
-				mark(i,1);
+				ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+					dispData[i] = input[i - start];
+					mark(i,1);
+				}
 			}
 		}
+
 	}
+
+	void writeNum(uint16_t n, uint8_t start, uint8_t len) {
+		uint16_t x=1;
+		uint16_t oN=0;
+		for(uint8_t i=1; i < len; i++) {
+			x *= 10;
+		}
+		for(int8_t i=0; i < len; i++) {
+			if(start+i < 32) {
+				ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+					dispData[start + i] = (n/ x) - oN + 48;
+					mark(start + i, 1);
+				}
+				oN = (n/x)*10;
+				x /= 10;
+			}
+			else
+				break;
+		}
+	}
+
 
 	//Set the currentCursor to position "n"
 	void setCursor(uint8_t n) {
