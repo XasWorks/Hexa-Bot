@@ -1,4 +1,4 @@
-16:46:23 **** Incremental Build of configuration Release for project LCD ****
+21:43:35 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
@@ -16,11 +16,15 @@ In file included from ../main.cpp:8:0:
 /home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispUpdate[4]= {0};
                                     ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
 Finished building target: LCD.elf
  
 Invoking: AVR Create Extended Listing
@@ -41,15 +45,15 @@ AVR Memory Usage
 ----------------
 Device: atmega644p
 
-Program:    1218 bytes (1.9% Full)
+Program:    1430 bytes (2.2% Full)
 (.text + .data + .bootloader)
 
-Data:         50 bytes (1.2% Full)
+Data:         68 bytes (1.7% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-16:46:23 Build Finished (took 162ms)
+21:43:36 Build Finished (took 160ms)
 

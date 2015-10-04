@@ -54,7 +54,7 @@ private:
 	//Mark the according bit for the character n so that it will be updated
 	void mark(uint8_t n, uint8_t y) {
 		if(n < 32) {
-			if(y == 0)
+			if(y == 0)	//Should the bit be set or unset?
 				dispUpdate[n/8] &= ~(1<< n%8);
 			else
 				dispUpdate[n/8] |= (1<< n%8);
@@ -64,7 +64,7 @@ private:
 	//Scan for the next marked bit that shall be updated
 	uint8_t nextMark() {
 		for(uint8_t i=0; i < 4; i++) {
-			if(dispUpdate[i] != 0) {
+			if(dispUpdate[i] != 0) {	//Only check that part of the array if there actually is something in there.
 				for(uint8_t j=0; j < 8; j++) {
 					if((dispUpdate[i] & (1<<j)) != 0) {
 						return i*8 + j;
@@ -72,7 +72,7 @@ private:
 				}
 			}
 		}
-		return 255;
+		return 255;		//If nothing was found, return 255.
 	}
 
 	//Return the length of a character array (String), ending with new line.
@@ -135,11 +135,12 @@ private:
 		}
 	}
 
+	//place the cursor at the specified position. This is differnt from setCursor, as it directly sends the value to the LCD.
 	void placeCursor(uint8_t n) {
-		if(n != currentCursor) {
+		if(n != currentCursor) {	//Only proceed if the current cursor isn't already there.
 			currentCursor = n;
 			if(n >= 16) {
-				n += LCD_LINE_2 - 16;
+				n += LCD_LINE_2 - 16;	//If n is above 15, it means that it is on the second line and not the first.
 			}
 			pushData(SETDDRAM(n),0);
 		}
@@ -194,13 +195,14 @@ public:
 		}
 	}
 
+	//write out a String to the display, starting at "start" and going until the end signal was found.
 	void writeString(const char* input, uint8_t start) {
 		for(uint8_t i=start; i<32; i++) {
-			if(input[i - start] == '\0')
+			if(input[i - start] == '\0')			//Break out of the loop at the end signal.
 				break;
 			else {
 				ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
-					dispData[i] = input[i - start];
+					dispData[i] = input[i - start];	//Write the according string char to the display buffer and mark.
 					mark(i,1);
 				}
 			}
@@ -208,6 +210,7 @@ public:
 
 	}
 
+	//Write out a number onto the screen, starting at "start" and displaying "len" characters (in base 10)
 	void writeNum(uint16_t n, uint8_t start, uint8_t len) {
 		uint16_t x=1;
 		uint16_t oN=0;

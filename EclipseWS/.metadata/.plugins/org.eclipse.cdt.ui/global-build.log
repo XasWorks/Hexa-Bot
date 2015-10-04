@@ -1,1410 +1,4 @@
-13:49:25 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:     656 bytes (1.0% Full)
-(.text + .data + .bootloader)
-
-Data:         44 bytes (1.1% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-13:49:27 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:     656 bytes (1.0% Full)
-(.text + .data + .bootloader)
-
-Data:         44 bytes (1.1% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-13:52:24 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:     928 bytes (1.4% Full)
-(.text + .data + .bootloader)
-
-Data:         44 bytes (1.1% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-13:59:43 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:     924 bytes (1.4% Full)
-(.text + .data + .bootloader)
-
-Data:         44 bytes (1.1% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-14:00:16 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1046 bytes (1.6% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:15:39 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1040 bytes (1.6% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:32:15 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1042 bytes (1.6% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:33:08 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp: In function ‘int main()’:
-/home/xasin/RoboNet/Code/LCD.cpp:220:40: warning: ‘oN’ may be used uninitialized in this function [-Wmaybe-uninitialized]
-      dispData[start + i] = (n / x) - oN;
-                                        ^
-/home/xasin/RoboNet/Code/LCD.cpp:213:12: note: ‘oN’ was declared here
-   uint32_t oN;
-            ^
-../main.cpp:36:25: warning: ‘i’ may be used uninitialized in this function [-Wmaybe-uninitialized]
-   disp.writeNum(i++,16,3);
-                         ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1250 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:36:07 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp: In function ‘int main()’:
-/home/xasin/RoboNet/Code/LCD.cpp:220:45: warning: ‘oN’ may be used uninitialized in this function [-Wmaybe-uninitialized]
-      dispData[start + i] = (n / x) - oN + 48;
-                                             ^
-/home/xasin/RoboNet/Code/LCD.cpp:213:12: note: ‘oN’ was declared here
-   uint32_t oN;
-            ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1228 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:36:20 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1228 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:48:08 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1258 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:51:05 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1256 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:55:12 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1368 bytes (2.1% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:55:28 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1256 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-15:55:43 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1368 bytes (2.1% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:08:16 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1218 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:13:29 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1204 bytes (1.8% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:14:07 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1218 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:16:44 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1206 bytes (1.8% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:20:09 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1214 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:24:33 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp: In member function ‘void LCD::writeNum(uint16_t, uint8_t, uint8_t)’:
-/home/xasin/RoboNet/Code/LCD.cpp:213:12: warning: variable ‘oN’ set but not used [-Wunused-but-set-variable]
-   uint16_t oN=0;
-            ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp: In member function ‘void LCD::writeNum(uint16_t, uint8_t, uint8_t)’:
-/home/xasin/RoboNet/Code/LCD.cpp:213:12: warning: variable ‘oN’ set but not used [-Wunused-but-set-variable]
-   uint16_t oN=0;
-            ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1194 bytes (1.8% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:25:04 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: /home/xasin/RoboNet/Code/LCD.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"LCD.d" -MT"LCD.d" -c -o "LCD.o" "/home/xasin/RoboNet/Code/LCD.cpp"
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: /home/xasin/RoboNet/Code/LCD.cpp
- 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1218 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         50 bytes (1.2% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-16:30:22 **** Incremental Build of configuration Release for project LCD ****
+21:37:07 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
@@ -1423,14 +17,14 @@ In file included from ../main.cpp:8:0:
   volatile uint8_t dispUpdate[4]= {0};
                                     ^
 ../main.cpp: In function ‘int main()’:
-../main.cpp:33:10: warning: unused variable ‘i’ [-Wunused-variable]
+../main.cpp:53:10: warning: unused variable ‘i’ [-Wunused-variable]
   uint8_t i=0;
           ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
 Finished building target: LCD.elf
  
 Invoking: AVR Create Extended Listing
@@ -1451,16 +45,33 @@ AVR Memory Usage
 ----------------
 Device: atmega644p
 
-Program:    1060 bytes (1.6% Full)
+Program:    1460 bytes (2.2% Full)
 (.text + .data + .bootloader)
 
-Data:         50 bytes (1.2% Full)
+Data:         68 bytes (1.7% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-16:46:23 **** Incremental Build of configuration Release for project LCD ****
+21:37:09 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1460 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:38:00 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
@@ -1478,11 +89,15 @@ In file included from ../main.cpp:8:0:
 /home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
   volatile uint8_t dispUpdate[4]= {0};
                                     ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:54:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./main.o   
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
 Finished building target: LCD.elf
  
 Invoking: AVR Create Extended Listing
@@ -1503,10 +118,290 @@ AVR Memory Usage
 ----------------
 Device: atmega644p
 
-Program:    1218 bytes (1.9% Full)
+Program:    1430 bytes (2.2% Full)
 (.text + .data + .bootloader)
 
-Data:         50 bytes (1.2% Full)
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:40:26 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:8:0:
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:54:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:41:12 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:8:0:
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:41:54 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:8:0:
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:42:56 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:8:0:
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+21:43:35 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:8:0:
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘int main()’:
+../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
+  uint8_t i=0;
+          ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         68 bytes (1.7% Full)
 (.data + .bss + .noinit)
 
 
