@@ -25,13 +25,6 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>de.innot.avreclipse.core.avrnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>LCD.cpp</name>
-			<type>1</type>
-			<locationURI>LIB_LOC/LCD.cpp</locationURI>
-		</link>
-	</linkedResources>
 	<variableList>
 		<variable>
 			<name>LIB_LOC</name>

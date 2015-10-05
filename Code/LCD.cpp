@@ -5,10 +5,6 @@
  *      Author: xasin
  */
 
-#define CURSOR_OFF 0
-#define CURSOR_ON 1
-#define CURSOR_ON_BLINK 2
-
 #define NOP asm volatile ("nop")
 
 #define RS 0
@@ -39,6 +35,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <util/atomic.h>
+
 
 class LCD {
 private:
@@ -147,10 +144,10 @@ private:
 	}
 
 public:
-	LCD(volatile uint8_t *P) {
+	LCD(volatile uint8_t *P, volatile uint8_t *ddrp, volatile uint8_t *pp) {
 		PORT = P;					//Define the pointer for the display port.
-		DDRP = P -1;				//Get the Direction Register (port address -1)
-		PINP = P -2;				//Get the Pin Register (port address -2)
+		DDRP = ddrp;				//Get the Direction Register (port address -1)
+		PINP = pp;				//Get the Pin Register (port address -2)
 		currentCursor = 0;
 		cursor = 0;
 

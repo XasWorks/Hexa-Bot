@@ -5,15 +5,16 @@
  *      Author: xasin
  */
 
-#include "/home/xasin/RoboNet/Code/LCD.cpp"
-#include "PWMLed.cpp"
-
+#include <util/delay.h>
 #include <avr/interrupt.h>
 #include <math.h>
 
-LCD disp(&PORTA);			//Create a new display object for the system.
-PWMLed ligh(&PORTD, 0, 5);
-PWMLed light(&PORTD, 2, 100);
+#include "Code/LCD.h"
+#include "PWMLed.h"
+
+LCD disp(&PORTA,&DDRA,&PINA);			//Create a new display object for the system.
+PWMLed ligh(&PORTD, 0, 20);
+PWMLed light(&PORTD, 2, 80);
 
 
 volatile uint32_t ms=0;		//Millisecond-Counter variable.
@@ -32,14 +33,10 @@ ISR(TIMER1_COMPA_vect) {
 	light.updatePWM();
 }
 
-void setPWM(uint8_t n) {
-	trg1 = n;
-}
-
 int main() {
 	DDRB |= (1<<4);
 
-	DDRD |= (1<<0 | 1<<2);
+	DDRD |= (1<<2);
 
 	TCCR1B |= ((1<< CS11) | (1<< CS10) | (1<< WGM12));
 	OCR1A =	F_CPU/64/1000 -1;
@@ -49,16 +46,13 @@ int main() {
 	sei();
 
 	disp.cursorMode(CURSOR_OFF);
-	disp.writeString("Test!",0);
-	disp.setCursor(16);
 
-	uint8_t i=0;
 	while(true) {
 		light.setPWM(10);
 		ligh.setPWM(0);
 		_delay_ms(2000);
 		light.setPWM(0);
-		ligh.setPWM(10);
-		_delay_ms(2000);
+		ligh.setPWM(8);
+		_delay_ms(800);
 	}
 }

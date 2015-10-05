@@ -1,409 +1,99 @@
-21:37:07 **** Incremental Build of configuration Release for project LCD ****
+21:39:12 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
 avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:53:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1460 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:37:09 **** Incremental Build of configuration Release for project LCD ****
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+./main.o: In function `__vector_13':
+main.cpp:(.text.__vector_13+0x26): undefined reference to `LCD::updateDisplay()'
+main.cpp:(.text.__vector_13+0x6c): undefined reference to `PWMLed::updatePWM()'
+main.cpp:(.text.__vector_13+0x74): undefined reference to `PWMLed::updatePWM()'
+./main.o: In function `main':
+main.cpp:(.text.startup.main+0x2c): undefined reference to `LCD::cursorMode(unsigned char)'
+main.cpp:(.text.startup.main+0x36): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x40): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x5c): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x66): undefined reference to `PWMLed::setPWM(unsigned char)'
+./main.o: In function `_GLOBAL__sub_I_disp':
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x10): undefined reference to `LCD::LCD(unsigned char volatile*, unsigned char volatile*, unsigned char volatile*)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+collect2: error: ld returned 1 exit status
+make: *** [LCD.elf] Error 1
+21:39:13 **** Incremental Build of configuration Release for project LCD ****
 make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1460 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:38:00 **** Incremental Build of configuration Release for project LCD ****
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+./main.o: In function `__vector_13':
+main.cpp:(.text.__vector_13+0x26): undefined reference to `LCD::updateDisplay()'
+main.cpp:(.text.__vector_13+0x6c): undefined reference to `PWMLed::updatePWM()'
+main.cpp:(.text.__vector_13+0x74): undefined reference to `PWMLed::updatePWM()'
+./main.o: In function `main':
+main.cpp:(.text.startup.main+0x2c): undefined reference to `LCD::cursorMode(unsigned char)'
+main.cpp:(.text.startup.main+0x36): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x40): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x5c): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x66): undefined reference to `PWMLed::setPWM(unsigned char)'
+./main.o: In function `_GLOBAL__sub_I_disp':
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x10): undefined reference to `LCD::LCD(unsigned char volatile*, unsigned char volatile*, unsigned char volatile*)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+collect2: error: ld returned 1 exit status
+make: *** [LCD.elf] Error 1
+21:40:20 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
 avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:54:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:40:26 **** Incremental Build of configuration Release for project LCD ****
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+./main.o: In function `__vector_13':
+main.cpp:(.text.__vector_13+0x26): undefined reference to `LCD::updateDisplay()'
+main.cpp:(.text.__vector_13+0x6c): undefined reference to `PWMLed::updatePWM()'
+main.cpp:(.text.__vector_13+0x74): undefined reference to `PWMLed::updatePWM()'
+./main.o: In function `main':
+main.cpp:(.text.startup.main+0x2c): undefined reference to `LCD::cursorMode(unsigned char)'
+main.cpp:(.text.startup.main+0x36): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x40): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x5c): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x66): undefined reference to `PWMLed::setPWM(unsigned char)'
+./main.o: In function `_GLOBAL__sub_I_disp':
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x10): undefined reference to `LCD::LCD(unsigned char volatile*, unsigned char volatile*, unsigned char volatile*)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+collect2: error: ld returned 1 exit status
+make: *** [LCD.elf] Error 1
+21:40:33 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
 avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:54:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:41:12 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:41:54 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:42:56 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:43:35 **** Incremental Build of configuration Release for project LCD ****
-make all 
-Building file: ../main.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
-In file included from ../main.cpp:8:0:
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:45:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispData[32] = {0};
-                                    ^
-/home/xasin/RoboNet/Code/LCD.cpp:46:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
-  volatile uint8_t dispUpdate[4]= {0};
-                                    ^
-../main.cpp: In function ‘int main()’:
-../main.cpp:55:10: warning: unused variable ‘i’ [-Wunused-variable]
-  uint8_t i=0;
-          ^
-Finished building: ../main.cpp
- 
-Building target: LCD.elf
-Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./LCD.o ./PWMLed.o ./main.o   
-Finished building target: LCD.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S LCD.elf  >"LCD.lss"
-Finished building: LCD.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
-Finished building: LCD.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
-Finished building: LCD.eep
- 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega644p LCD.elf
-AVR Memory Usage
-----------------
-Device: atmega644p
-
-Program:    1430 bytes (2.2% Full)
-(.text + .data + .bootloader)
-
-Data:         68 bytes (1.7% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+./main.o: In function `__vector_13':
+main.cpp:(.text.__vector_13+0x26): undefined reference to `LCD::updateDisplay()'
+main.cpp:(.text.__vector_13+0x6c): undefined reference to `PWMLed::updatePWM()'
+main.cpp:(.text.__vector_13+0x74): undefined reference to `PWMLed::updatePWM()'
+./main.o: In function `main':
+main.cpp:(.text.startup.main+0x2c): undefined reference to `LCD::cursorMode(unsigned char)'
+main.cpp:(.text.startup.main+0x36): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x40): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x5c): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x66): undefined reference to `PWMLed::setPWM(unsigned char)'
+./main.o: In function `_GLOBAL__sub_I_disp':
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x10): undefined reference to `LCD::LCD(unsigned char volatile*, unsigned char volatile*, unsigned char volatile*)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+collect2: error: ld returned 1 exit status
+make: *** [LCD.elf] Error 1
