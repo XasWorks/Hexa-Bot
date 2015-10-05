@@ -97,3 +97,1506 @@ main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLe
 main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
 collect2: error: ld returned 1 exit status
 make: *** [LCD.elf] Error 1
+21:51:40 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"Code/LCD.d" -MT"Code/LCD.d" -c -o "Code/LCD.o" "../Code/LCD.cpp"
+In file included from ../Code/LCD.cpp:15:0:
+../Code/LCD.h:11:15: error: ‘uint8_t’ does not name a type
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+               ^
+../Code/LCD.h:11:24: error: ISO C++ forbids declaration of ‘PORT’ with no type [-fpermissive]
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+                        ^
+../Code/LCD.h:11:39: error: ‘uint8_t’ does not name a type
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+                                       ^
+../Code/LCD.h:11:48: error: ISO C++ forbids declaration of ‘DDRP’ with no type [-fpermissive]
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+                                                ^
+../Code/LCD.h:11:63: error: ‘uint8_t’ does not name a type
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+                                                               ^
+../Code/LCD.h:11:72: error: ISO C++ forbids declaration of ‘PINP’ with no type [-fpermissive]
+  LCD(volatile uint8_t *PORT, volatile uint8_t *DDRP, volatile uint8_t *PINP);
+                                                                        ^
+../Code/LCD.h:13:38: error: ‘uint8_t’ has not been declared
+  void writeString(const char* input, uint8_t start);
+                                      ^
+../Code/LCD.h:14:16: error: ‘uint16_t’ has not been declared
+  void writeNum(uint16_t n, uint8_t start, uint8_t length);
+                ^
+../Code/LCD.h:14:28: error: ‘uint8_t’ has not been declared
+  void writeNum(uint16_t n, uint8_t start, uint8_t length);
+                            ^
+../Code/LCD.h:14:43: error: ‘uint8_t’ has not been declared
+  void writeNum(uint16_t n, uint8_t start, uint8_t length);
+                                           ^
+../Code/LCD.h:15:17: error: ‘uint8_t’ has not been declared
+  void setCursor(uint8_t position);
+                 ^
+../Code/LCD.h:16:18: error: ‘uint8_t’ has not been declared
+  void cursorMode(uint8_t mode);
+                  ^
+../Code/LCD.cpp:42:7: error: redefinition of ‘class LCD’
+ class LCD {
+       ^
+In file included from ../Code/LCD.cpp:15:0:
+../Code/LCD.h:9:7: error: previous definition of ‘class LCD’
+ class LCD {
+       ^
+make: *** [Code/LCD.o] Error 1
+22:12:00 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"Code/LCD.d" -MT"Code/LCD.d" -c -o "Code/LCD.o" "../Code/LCD.cpp"
+In file included from ../Code/LCD.cpp:15:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+./main.o: In function `__vector_13':
+main.cpp:(.text.__vector_13+0x6a): undefined reference to `PWMLed::updatePWM()'
+main.cpp:(.text.__vector_13+0x72): undefined reference to `PWMLed::updatePWM()'
+./main.o: In function `main':
+main.cpp:(.text.startup.main+0x34): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x3e): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x5a): undefined reference to `PWMLed::setPWM(unsigned char)'
+main.cpp:(.text.startup.main+0x64): undefined reference to `PWMLed::setPWM(unsigned char)'
+./main.o: In function `_GLOBAL__sub_I_disp':
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x1e): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x2e): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
+collect2: error: ld returned 1 exit status
+make: *** [LCD.elf] Error 1
+22:23:22 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../PWMLed.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"PWMLed.d" -MT"PWMLed.d" -c -o "PWMLed.o" "../PWMLed.cpp"
+In file included from ../PWMLed.cpp:8:0:
+../PWMLed.h:13:11: error: ‘uint8_t’ does not name a type
+  volatile uint8_t pwm;
+           ^
+../PWMLed.h:14:11: error: ‘uint8_t’ does not name a type
+  volatile uint8_t pwmTrgt;
+           ^
+../PWMLed.h:15:11: error: ‘uint8_t’ does not name a type
+  volatile uint8_t *PORT;
+           ^
+../PWMLed.h:16:11: error: ‘uint8_t’ does not name a type
+  volatile uint8_t pin;
+           ^
+../PWMLed.h:17:11: error: ‘uint8_t’ does not name a type
+  volatile uint8_t prscPWM, cPrscPWM;
+           ^
+../PWMLed.h:20:18: error: ‘uint8_t’ does not name a type
+  PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler);
+                  ^
+../PWMLed.h:20:27: error: ISO C++ forbids declaration of ‘P’ with no type [-fpermissive]
+  PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler);
+                           ^
+../PWMLed.h:20:30: error: ‘uint8_t’ has not been declared
+  PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler);
+                              ^
+../PWMLed.h:20:46: error: ‘uint8_t’ has not been declared
+  PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler);
+                                              ^
+../PWMLed.h:21:14: error: ‘uint8_t’ has not been declared
+  void setPWM(uint8_t n);
+              ^
+../PWMLed.cpp:10:26: error: ‘uint8_t’ does not name a type
+  PWMLed::PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler) {
+                          ^
+../PWMLed.cpp:10:35: error: ISO C++ forbids declaration of ‘P’ with no type [-fpermissive]
+  PWMLed::PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler) {
+                                   ^
+../PWMLed.cpp:10:38: error: ‘uint8_t’ has not been declared
+  PWMLed::PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler) {
+                                      ^
+../PWMLed.cpp:10:54: error: ‘uint8_t’ has not been declared
+  PWMLed::PWMLed(volatile uint8_t *P, uint8_t ledPin, uint8_t shiftingPrescaler) {
+                                                      ^
+../PWMLed.cpp: In constructor ‘PWMLed::PWMLed(volatile int*, int, int)’:
+../PWMLed.cpp:11:3: error: ‘PORT’ was not declared in this scope
+   PORT = P;
+   ^
+../PWMLed.cpp:12:22: error: ‘pin’ was not declared in this scope
+   *(PORT -1) |= (1<< pin);
+                      ^
+../PWMLed.cpp:14:3: error: ‘pwm’ was not declared in this scope
+   pwm = 0;
+   ^
+../PWMLed.cpp:15:3: error: ‘pwmTrgt’ was not declared in this scope
+   pwmTrgt = 0;
+   ^
+../PWMLed.cpp:16:3: error: ‘prscPWM’ was not declared in this scope
+   prscPWM = shiftingPrescaler;
+   ^
+../PWMLed.cpp:17:3: error: ‘cPrscPWM’ was not declared in this scope
+   cPrscPWM = 0;
+   ^
+../PWMLed.cpp: At global scope:
+../PWMLed.cpp:20:22: error: variable or field ‘setPWM’ declared void
+  void PWMLed::setPWM(uint8_t n) {
+                      ^
+../PWMLed.cpp:20:22: error: ‘uint8_t’ was not declared in this scope
+../PWMLed.cpp: In member function ‘void PWMLed::updatePWM()’:
+../PWMLed.cpp:25:3: error: ‘pwm’ was not declared in this scope
+   pwm = ((pwm +1) & 0x0f) | (pwm & 0xf0);
+   ^
+../PWMLed.cpp:28:5: error: ‘PORT’ was not declared in this scope
+    *PORT |= (1<<pin);
+     ^
+../PWMLed.cpp:28:17: error: ‘pin’ was not declared in this scope
+    *PORT |= (1<<pin);
+                 ^
+../PWMLed.cpp:31:5: error: ‘PORT’ was not declared in this scope
+    *PORT &= ~(1<<pin);
+     ^
+../PWMLed.cpp:31:18: error: ‘pin’ was not declared in this scope
+    *PORT &= ~(1<<pin);
+                  ^
+../PWMLed.cpp:34:3: error: ‘cPrscPWM’ was not declared in this scope
+   cPrscPWM++;
+   ^
+../PWMLed.cpp:35:18: error: ‘prscPWM’ was not declared in this scope
+   if(cPrscPWM == prscPWM) {
+                  ^
+../PWMLed.cpp:37:8: error: ‘pwmTrgt’ was not declared in this scope
+    if((pwmTrgt & (0x0f)) > ((pwm & (0xf0)) >> 4))
+        ^
+../PWMLed.cpp:39:8: error: ‘pwmTrgt’ was not declared in this scope
+    if((pwmTrgt & (0x0f)) < ((pwm & (0xf0)) >> 4))
+        ^
+../PWMLed.cpp: At global scope:
+../PWMLed.cpp:43:1: error: expected declaration before ‘}’ token
+ };
+ ^
+make: *** [PWMLed.o] Error 1
+22:23:45 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../PWMLed.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"PWMLed.d" -MT"PWMLed.d" -c -o "PWMLed.o" "../PWMLed.cpp"
+Finished building: ../PWMLed.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1426 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:23:59 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:27:45 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:28:45 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1426 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:30:11 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:31:30 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../PWMLed.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"PWMLed.d" -MT"PWMLed.d" -c -o "PWMLed.o" "../PWMLed.cpp"
+Finished building: ../PWMLed.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1426 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:33:51 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../PWMLed.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"PWMLed.d" -MT"PWMLed.d" -c -o "PWMLed.o" "../PWMLed.cpp"
+Finished building: ../PWMLed.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../main.cpp: In function ‘void __vector_13()’:
+../main.cpp:32:2: error: ‘ligh’ was not declared in this scope
+  ligh.updatePWM();
+  ^
+../main.cpp:33:2: error: ‘light’ was not declared in this scope
+  light.updatePWM();
+  ^
+make: *** [main.o] Error 1
+22:34:05 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:34:56 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:36:40 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1426 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:42:10 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1424 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:45:51 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1430 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:47:21 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1394 bytes (2.1% Full)
+(.text + .data + .bootloader)
+
+Data:         59 bytes (1.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:51:48 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../PWMLed.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"PWMLed.d" -MT"PWMLed.d" -c -o "PWMLed.o" "../PWMLed.cpp"
+Finished building: ../PWMLed.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1394 bytes (2.1% Full)
+(.text + .data + .bootloader)
+
+Data:         59 bytes (1.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:52:15 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1388 bytes (2.1% Full)
+(.text + .data + .bootloader)
+
+Data:         59 bytes (1.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:54:57 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1388 bytes (2.1% Full)
+(.text + .data + .bootloader)
+
+Data:         59 bytes (1.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+22:59:06 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../Code/LCD.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"Code/LCD.d" -MT"Code/LCD.d" -c -o "Code/LCD.o" "../Code/LCD.cpp"
+In file included from ../Code/LCD.cpp:15:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../Code/LCD.cpp
+ 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1380 bytes (2.1% Full)
+(.text + .data + .bootloader)
+
+Data:         59 bytes (1.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:00:27 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1416 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:04:29 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1416 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:08:14 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1416 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:08:35 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1434 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:09:19 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1434 bytes (2.2% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:16:54 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1476 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:18:02 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1476 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+23:22:31 **** Incremental Build of configuration Release for project LCD ****
+make all 
+Building file: ../main.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+Finished building: ../main.cpp
+ 
+Building target: LCD.elf
+Invoking: AVR C++ Linker
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
+
+Program:    1500 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

@@ -12,9 +12,10 @@
 #include "Code/LCD.h"
 #include "PWMLed.h"
 
-LCD disp(&PORTA,&DDRA,&PINA);			//Create a new display object for the system.
-PWMLed ligh(&PORTD, 0, 20);
-PWMLed light(&PORTD, 2, 80);
+LCD disp(&PORTA);			//Create a new display object for the system.
+
+PWMLed light1(&PORTD, 3, 20);
+PWMLed light2(&PORTD, 0, 200);
 
 
 volatile uint32_t ms=0;		//Millisecond-Counter variable.
@@ -29,14 +30,13 @@ ISR(TIMER1_COMPA_vect) {
 	if(ms != 0)
 		ms++;
 
-	ligh.updatePWM();
-	light.updatePWM();
+	light1.updatePWM();
+	light2.updatePWM();
 }
 
-int main() {
-	DDRB |= (1<<4);
 
-	DDRD |= (1<<2);
+int main() {
+	PORTB |= (1<<0 | 1<<1);
 
 	TCCR1B |= ((1<< CS11) | (1<< CS10) | (1<< WGM12));
 	OCR1A =	F_CPU/64/1000 -1;
@@ -47,12 +47,43 @@ int main() {
 
 	disp.cursorMode(CURSOR_OFF);
 
+	//State of the light. 0 means completely off, 1 means awake, 2 means asleep
+	uint8_t lightState = 0;
+	uint8_t oldPinState = PINB & (0b00000011);
 	while(true) {
-		light.setPWM(10);
-		ligh.setPWM(0);
-		_delay_ms(2000);
-		light.setPWM(0);
-		ligh.setPWM(8);
-		_delay_ms(800);
+		if(oldPinState != (PINB & 0b00000011)) {
+			oldPinState = PINB & 0b00000011;
+			switch(lightState) {
+			case 0:
+				if((PINB & (1<<1)) == 0)
+					lightState = 1;
+			break;
+			case 1:
+				if((PINB & (1)) == 0) {
+					light2.setPWM(10);
+					light1.setPWM(0);
+
+					if((PINB & (1<<1)) == 0) {
+						lightState = 2;
+						light2.setPWM(0);
+					}
+				}
+				else {
+					light2.setPWM(0);
+					light1.setPWM(13);
+
+					if((PINB & (1<<1)) == 0) {
+						light1.setPWM(0);
+						lightState = 0;
+					}
+				}
+			break;
+
+			case 2:
+				if(((PINB & 1) != 0) || ((PINB & (1<<1)) == 0)) {
+					lightState = 1;
+				}
+			}
+		}
 	}
 }

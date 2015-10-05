@@ -1,29 +1,55 @@
-21:40:33 **** Incremental Build of configuration Release for project LCD ****
+23:22:31 **** Incremental Build of configuration Release for project LCD ****
 make all 
 Building file: ../main.cpp
 Invoking: AVR C++ Compiler
 avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.cpp"
+In file included from ../main.cpp:12:0:
+../Code/LCD.h:32:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
+../Code/LCD.h:32:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispData[32] = {0};
+                                    ^
+../Code/LCD.h:33:36: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  volatile uint8_t dispUpdate[4]= {0};
+                                    ^
 Finished building: ../main.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
 avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o  ./PWMLed.o ./main.o   
-./main.o: In function `__vector_13':
-main.cpp:(.text.__vector_13+0x26): undefined reference to `LCD::updateDisplay()'
-main.cpp:(.text.__vector_13+0x6c): undefined reference to `PWMLed::updatePWM()'
-main.cpp:(.text.__vector_13+0x74): undefined reference to `PWMLed::updatePWM()'
-./main.o: In function `main':
-main.cpp:(.text.startup.main+0x2c): undefined reference to `LCD::cursorMode(unsigned char)'
-main.cpp:(.text.startup.main+0x36): undefined reference to `PWMLed::setPWM(unsigned char)'
-main.cpp:(.text.startup.main+0x40): undefined reference to `PWMLed::setPWM(unsigned char)'
-main.cpp:(.text.startup.main+0x5c): undefined reference to `PWMLed::setPWM(unsigned char)'
-main.cpp:(.text.startup.main+0x66): undefined reference to `PWMLed::setPWM(unsigned char)'
-./main.o: In function `_GLOBAL__sub_I_disp':
-main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x10): undefined reference to `LCD::LCD(unsigned char volatile*, unsigned char volatile*, unsigned char volatile*)'
-main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x20): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
-main.cpp:(.text.startup._GLOBAL__sub_I_disp+0x30): undefined reference to `PWMLed::PWMLed(unsigned char volatile*, unsigned char, unsigned char)'
-collect2: error: ld returned 1 exit status
-make: *** [LCD.elf] Error 1
+Finished building target: LCD.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S LCD.elf  >"LCD.lss"
+Finished building: LCD.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+Finished building: LCD.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex LCD.elf  "LCD.eep"
+Finished building: LCD.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega644p LCD.elf
+AVR Memory Usage
+----------------
+Device: atmega644p
 
-21:40:33 Build Finished (took 62ms)
+Program:    1500 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         66 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:22:31 Build Finished (took 116ms)
 
