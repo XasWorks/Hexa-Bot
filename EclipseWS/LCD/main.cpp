@@ -45,7 +45,7 @@ int main() {
 
 	sei();
 
-	disp.cursorMode(CURSOR_OFF);
+	disp.cursorMode(CURSOR_ON_BLINK);
 
 	//State of the light. 0 means completely off, 1 means awake, 2 means asleep
 	uint8_t lightState = 0;

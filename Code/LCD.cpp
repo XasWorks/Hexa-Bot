@@ -167,8 +167,8 @@
 
 	//Write out a number onto the screen, starting at "start" and displaying "len" characters (in base 10)
 	void LCD::writeNum(uint16_t n, uint8_t start, uint8_t len) {
-		uint16_t x=1;
-		uint16_t oN=0;
+		uint32_t x=1;
+		uint32_t oN=0;
 		for(uint8_t i=1; i < len; i++) {
 			x *= 10;
 		}
