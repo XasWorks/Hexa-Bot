@@ -1,4 +1,3 @@
-
 #include "PrimitiveStepper.h"
 
 //Step the motor once into specified direction.
@@ -27,14 +26,15 @@ PrimitiveStepper::PrimitiveStepper(volatile uint8_t *P, uint8_t pin,
 }
 
 //Default constructor for derived classes. Does nothing.
-PrimitiveStepper::PrimitiveStepper() {}
+PrimitiveStepper::PrimitiveStepper() {
+}
 
 //ISR Routine for the motor, updates it when required.
 void PrimitiveStepper::update() {
 	if (stepsToGo != 0) {	//If there are any steps to do ..
 		virtualSteps += stepSpeed;//Add up the stepping speed to the virtual steps ...
-		if ((virtualSteps & (1 << 15)) != 0) {//If there has to be an actual step done
-			virtualSteps &= ~(1 << 15);
+		if (virtualSteps >= (1 << 15)) {//If there has to be an actual step done
+			virtualSteps -= (1 << 15);
 			if (stepsToGo < 0) {		//If it has to move backwards
 				step(0);
 			} else {					//Otherwise, if it has to move forwards
@@ -49,9 +49,9 @@ void PrimitiveStepper::update() {
 
 //Set the speed of the motor in steps per second.
 void PrimitiveStepper::setSpeed(uint16_t stepsPerSec) {
-	stepSpeed = (uint16_t) (((uint32_t) (stepsPerSec) * (1<<15))
-			/ (uint32_t) updateSpeed);		//Calculate the required steps per ISR call.
-											//Uses 15 bit software comma for extra precision.
+	stepSpeed = (uint16_t) (((uint32_t) (stepsPerSec) * (1 << 15))
+			/ (uint32_t) updateSpeed);//Calculate the required steps per ISR call.
+									  //Uses 15 bit software comma for extra precision.
 }
 
 //Move the stepper motor by the specified amount of steps.

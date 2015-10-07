@@ -23,20 +23,20 @@ RotaryStepper::RotaryStepper(volatile uint8_t *P, uint8_t pinMotor,
 
 //Set the speed of the motor to the given amount of degrees/sec
 void RotaryStepper::setSpeed(uint16_t degreePerSec) {
-	this->stepSpeed = (uint16_t)(((((uint32_t)degreePerSec * stepsPerRotation) / 360) << 15) / updateSpeed);
+	this->stepSpeed = (uint16_t)(((((uint32_t)degreePerSec * (uint32_t)stepsPerRotation) / 360) << 15) / updateSpeed);
 	//Calculate the required amount of steps per second. Shift left by 15 (sc) and then divide by ISR frequency
 }
 
 //Rotate the stepper to an absolute position in degrees.
 void RotaryStepper::rotateTo(int32_t target) {
-	stepsToGo += (target * (int32_t)stepsPerRotation)/360 - currentSteps;
+	stepsToGo = (target * (int32_t)stepsPerRotation)/360 - currentSteps;
 	//Get the required steps it has to perform,
 	//Then set the difference of current and wanted position into the toGo variable.
 }
 
 //Rotate the stepper to an absolute position in degrees with given software comma.
 void RotaryStepper::rotateTo(int32_t target, uint8_t precision) {
-	stepsToGo += ((target*stepsPerRotation)/360 >> precision)	- currentSteps;
+	stepsToGo = ((target*stepsPerRotation)/360 >> precision)	- currentSteps;
 	//Calculate the required amount of steps to do, divided by the software comma precision, then
 	//Add the difference of current and wanted position to the toGo variable.
 }
