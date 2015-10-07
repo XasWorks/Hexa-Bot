@@ -1,13 +1,13 @@
-12:28:53 **** Incremental Build of configuration Release for project LCD ****
+15:12:25 **** Incremental Build of configuration Release for project LCD ****
 make all 
-Building file: ../Code/PrimitiveStepper.cpp
+Building file: ../Code/RotaryStepper.cpp
 Invoking: AVR C++ Compiler
-avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"Code/PrimitiveStepper.d" -MT"Code/PrimitiveStepper.d" -c -o "Code/PrimitiveStepper.o" "../Code/PrimitiveStepper.cpp"
-Finished building: ../Code/PrimitiveStepper.cpp
+avr-g++ -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -funsigned-char -funsigned-bitfields -fno-exceptions -mmcu=atmega644p -DF_CPU=16000000UL -MMD -MP -MF"Code/RotaryStepper.d" -MT"Code/RotaryStepper.d" -c -o "Code/RotaryStepper.o" "../Code/RotaryStepper.cpp"
+Finished building: ../Code/RotaryStepper.cpp
  
 Building target: LCD.elf
 Invoking: AVR C++ Linker
-avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o ./Code/PrimitiveStepper.o  ./PWMLed.o ./main.o   
+avr-g++ -Wl,-Map,LCD.map,--cref -mrelax -Wl,--gc-sections -mmcu=atmega644p -o "LCD.elf"  ./Code/LCD.o ./Code/PrimitiveStepper.o ./Code/RotaryStepper.o  ./PWMLed.o ./main.o   
 Finished building target: LCD.elf
  
 Invoking: AVR Create Extended Listing
@@ -38,5 +38,5 @@ Data:         66 bytes (1.6% Full)
 Finished building: sizedummy
  
 
-12:28:53 Build Finished (took 509ms)
+15:12:26 Build Finished (took 161ms)
 

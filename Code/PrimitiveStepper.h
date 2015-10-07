@@ -1,8 +1,14 @@
+#ifndef _PRIMITIVE_STEPPER_H
+#define _PRIMITIVE_STEPPER_H
+
 #include <avr/io.h>
 #include <math.h>
 
 class PrimitiveStepper {
-private:
+protected:
+	//Constructor for derived classes. Does not initialise any values!!
+	PrimitiveStepper();
+
 	//Port of the stepper motor
 	volatile uint8_t *PORT;
 	//Pin of the stepper motor. Stepping signals are issued at pin, dir signals at pin+1
@@ -18,8 +24,9 @@ private:
 	//How many stes per ISR the motor has to make. Software comma at 1<<15, allowing for finer speeds.
 	volatile uint16_t stepSpeed;
 	//Total steps the motor has made. Useful for absolute positioning.
-	volatile int32_t totalSteps;
+	volatile int32_t currentSteps;
 
+	//Step the motor ONCE into the specified direction (0 == backwards, else forwards)
 	void step(uint8_t dir);
 
 public:
@@ -39,6 +46,8 @@ public:
 	//Wait for every motor move of this motor to finish.
 	void flush();
 
-	//Reset the motor and abort all movements
+	//Reset the motor and abort all movements.
 	void reset();
 };
+
+#endif
