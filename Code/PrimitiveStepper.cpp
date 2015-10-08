@@ -25,8 +25,6 @@ PrimitiveStepper::PrimitiveStepper(volatile uint8_t *P, uint8_t pin,
 	this->pin = pin;
 	this->updateSpeed = upSpeed;
 	*(PORT - 1) |= (3 << pin);
-
-	accelleration = (uint16_t) ((uint32_t) (8000) << 15 / updateSpeed);
 }
 
 //Default constructor for derived classes. Does nothing.
@@ -37,15 +35,11 @@ PrimitiveStepper::PrimitiveStepper() {
 void PrimitiveStepper::update() {
 	if (stepsToGo != 0) {	//If there are any steps to do ..
 
-		if (currentAccell < stepSpeed)
-			currentAccell += accelleration;
-		else if (currentAccell > stepSpeed)
-			currentAccell = stepSpeed;
+		virtualSteps += stepSpeed;		//Add up the stepping speed to the virtual steps ...
 
-		virtualSteps += currentAccell;//Add up the stepping speed to the virtual steps ...
+		if (virtualSteps >= 1) {		//If there has to be an actual step done
+			virtualSteps -= 1;
 
-		if (virtualSteps >= (1 << 15)) {//If there has to be an actual step done
-			virtualSteps -= (1 << 15);
 			if (stepsToGo < 0)				//If it has to move backwards
 				step(0);
 			else
@@ -54,7 +48,6 @@ void PrimitiveStepper::update() {
 
 			if (stepsToGo == 0) {//If the goal was reached, reset the virtual steps.
 				virtualSteps = 0;
-				currentAccell = 0;
 			}
 
 		}
@@ -63,9 +56,7 @@ void PrimitiveStepper::update() {
 
 //Set the speed of the motor in steps per second.
 void PrimitiveStepper::setSpeed(uint16_t stepsPerSec) {
-	stepSpeed = (uint16_t) (((uint32_t) (stepsPerSec) * (1 << 15))
-			/ (uint32_t) updateSpeed);//Calculate the required steps per ISR call.
-									  //Uses 15 bit software comma for extra precision.
+	stepSpeed = stepsPerSec / updateSpeed;//Calculate the required steps per ISR call.
 }
 
 //Move the stepper motor by the specified amount of steps.

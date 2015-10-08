@@ -20,15 +20,10 @@ protected:
 	//Steps the motor still has to make.
 	volatile int32_t stepsToGo;
 	//How many stes per ISR the motor has to make. Software comma at 1<<15, allowing for finer speeds.
-	volatile uint16_t stepSpeed;
-
-	//Accelleration value in Steps/(ISR^2)
-	volatile uint16_t accelleration;
-	//Actual accelleration value. Will be incremented during the ISR for a gradual speedup.
-	volatile uint16_t currentAccell;
+	volatile float stepSpeed;
 
 	//How many "virtual" steps the system currently has. Allows for finer speeds.
-	volatile uint16_t virtualSteps;
+	volatile float virtualSteps;
 	//Total steps the motor has made. Useful for absolute positioning.
 	volatile int32_t currentSteps;
 

@@ -22,13 +22,11 @@ public:
 			int16_t stepsPerRotation);
 
 	//Set the speed of the motor in degrees per second it should do.
-	//TODO Software comma implementation?
 	void setSpeed(uint16_t degreePerSec);
 
 	//Rotate the motor to a specific, absolute position, given in degrees.
 	//Optionally takes in a software comma for finer positioning.
-	void rotateTo(int32_t target);
-	void rotateTo(int32_t target, uint8_t precision);
+	void rotateTo(float target);
 
 	//Move the motor by the specified amount of degrees, relative to the current position.
 	//Optionally takes in a software comma for finer positioning.
