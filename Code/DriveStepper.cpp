@@ -21,13 +21,14 @@ DriveStepper::DriveStepper(volatile uint8_t *P, uint8_t pin,
 
 
 void DriveStepper::moveXY(float X, float Y) {
-	float xSin = sin((globalRotation + localRotation) * DEG_TO_RAD) * X;
-	float yCos = cos((globalRotation + localRotation) * DEG_TO_RAD) * Y;
+	float mmToMove = sin((globalRotation + localRotation) * DEG_TO_RAD) * X + cos((globalRotation + localRotation) * DEG_TO_RAD) * Y;
 
-	this->stepsToGo += (xSin + yCos) * stepsPerMM;
-	this->stepSpeed = (stepsToGo * movementSpeed) / (xSin + yCos) / updateFrequency;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		this->stepsToGo = (mmToMove * stepsPerMM);
+		this->stepSpeed =  fabs((stepsToGo * movementSpeed) / sqrt(pow(X,2) + pow(Y,2)));
+	}
 }
 
 void DriveStepper::setSpeed(float mmPerSec) {
-	this->movementSpeed = mmPerSec;
+	this->movementSpeed = mmPerSec / updateFrequency;
 }

@@ -10,6 +10,7 @@
 
 #include "PrimitiveStepper.h"
 #include <math.h>
+#include <util/atomic.h>
 
 #define DEG_TO_RAD 0.017453293
 
@@ -25,10 +26,10 @@ private:
 	//Rotation speed in Degrees / Second
 	float rotationSpeed = 1;
 	//Movement speed in mm / Second
-	float movementSpeed = 100;
+	float movementSpeed;
 
 	//Global rotation of the current motor (where it is facing)
-	float globalRotation=0;
+	float globalRotation = 0;
 
 
 public:
