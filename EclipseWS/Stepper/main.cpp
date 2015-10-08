@@ -10,43 +10,27 @@
 #include <util/delay.h>
 
 #include "Code/LCD.h"
-#include "Code/PrimitiveStepper.h"
-#include "Code/RotaryStepper.h"
+#include "Code/DriveStepper.h"
 
-RotaryStepper stepA(&PORTD,0,10000,200*8);
-
-volatile uint16_t ms=0;
-volatile uint8_t sec=0;
-volatile uint8_t min=0;
+DriveStepper stepA(&PORTD,0,5000, 12.732394854, 1, 0);
 
 ISR(TIMER1_COMPA_vect) {
 	stepA.update();
-
-	if(++ms == 10000) {
-		ms = 0;
-		if(++sec == 60) {
-			sec = 0;
-			if(++min == 60)
-				min = 0;
-		}
-	}
 }
 
 int main() {
 
 	TCCR1B |= ((1<< CS11) | (1<< CS10) | (1<< WGM12));
-	OCR1A =	F_CPU/64/10000 -1;
+	OCR1A =	F_CPU/64/5000 -1;
 
 	TIMSK1 |= (1<< OCIE1A);
 
 	sei();
 
-
-	stepA.setSpeed(360*2);
-
-	stepA.rotateTo(360*10);
+	stepA.moveXY(100, 0);
 	stepA.flush();
-	stepA.rotateTo(0);
+	stepA.moveXY(0, 100);
+
 	while (true) {
 		_delay_ms(10);
 	}

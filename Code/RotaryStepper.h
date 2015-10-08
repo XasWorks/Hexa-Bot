@@ -18,11 +18,14 @@ private:
 public:
 	//Constructor for the Rotary Motor class.
 	//Requires a pointer to the PORT used, PIN, ISR SPEED and STEPS PER ROTATION
-	RotaryStepper(volatile uint8_t *P, uint8_t pin, uint16_t updateSpeed,
+	RotaryStepper(volatile uint8_t *P, uint8_t pin, uint16_t updateFrequency,
 			int16_t stepsPerRotation);
 
+	//Returns the current position of the motor it is in.
+	float getPosition();
+
 	//Set the speed of the motor in degrees per second it should do.
-	void setSpeed(uint16_t degreePerSec);
+	void setSpeed(float degreePerSec);
 
 	//Rotate the motor to a specific, absolute position, given in degrees.
 	//Optionally takes in a software comma for finer positioning.
@@ -30,7 +33,7 @@ public:
 
 	//Move the motor by the specified amount of degrees, relative to the current position.
 	//Optionally takes in a software comma for finer positioning.
-	void move(int32_t amount);
+	void move(float amount);
 	void move(int32_t amount, uint8_t precision);
 };
 

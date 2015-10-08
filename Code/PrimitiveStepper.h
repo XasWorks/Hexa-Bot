@@ -15,18 +15,17 @@ protected:
 	volatile uint8_t pin;
 
 	//Speed of the ISR. Required to set the stepping speed correctly.
-	volatile uint16_t updateSpeed;
+	volatile uint16_t updateFrequency;
 
-	//Steps the motor still has to make.
-	volatile int32_t stepsToGo;
-	//How many stes per ISR the motor has to make. Software comma at 1<<15, allowing for finer speeds.
-	volatile float stepSpeed;
-
-	//How many "virtual" steps the system currently has. Allows for finer speeds.
-	volatile float virtualSteps;
 	//Total steps the motor has made. Useful for absolute positioning.
 	volatile int32_t currentSteps;
+	//Steps the motor still has to make.
+	volatile int32_t stepsToGo;
 
+	//Steps per ISR Call.
+	volatile float stepSpeed;
+	//Step buffer of the system. Not every ISR call will induce a Step, thusly, the rest has to be buffered.
+	volatile float stepBuffer;
 
 	//Step the motor ONCE into the specified direction (0 == backwards, else forwards)
 	void step(uint8_t dir);
@@ -42,14 +41,13 @@ public:
 	void update();
 
 	//Set the speed in steps per Second. Primitive, not influenced by steps/mm.
-	void setSpeed(uint16_t stepsPerSecond);
-	//Move the motor by a certain amount of steps. Primitive, not influenced by steps/mm.
+	void setSpeed(uint16_t stepsPerSecond); //Move the motor by a certain amount of steps. Primitive, not influenced by steps/mm.
+	//Reset the motor and abort all movements.
+	void reset();
+
 	void move(int32_t steps);
 	//Wait for every motor move of this motor to finish.
 	void flush();
-
-	//Reset the motor and abort all movements.
-	void reset();
 };
 
 #endif
