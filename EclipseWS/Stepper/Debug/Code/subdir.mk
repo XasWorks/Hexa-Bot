@@ -4,13 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Code/LCD.cpp 
+../Code/LCD.cpp \
+../Code/PrimitiveStepper.cpp \
+../Code/RotaryStepper.cpp 
 
 OBJS += \
-./Code/LCD.o 
+./Code/LCD.o \
+./Code/PrimitiveStepper.o \
+./Code/RotaryStepper.o 
 
 CPP_DEPS += \
-./Code/LCD.d 
+./Code/LCD.d \
+./Code/PrimitiveStepper.d \
+./Code/RotaryStepper.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

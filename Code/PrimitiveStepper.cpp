@@ -1,3 +1,5 @@
+#include <util/delay.h>
+
 #include "PrimitiveStepper.h"
 
 //Step the motor once into specified direction.
@@ -23,6 +25,8 @@ PrimitiveStepper::PrimitiveStepper(volatile uint8_t *P, uint8_t pin,
 	this->pin = pin;
 	this->updateSpeed = upSpeed;
 	*(PORT - 1) |= (3 << pin);
+
+	accelleration = (uint16_t) ((uint32_t) (8000) << 15 / updateSpeed);
 }
 
 //Default constructor for derived classes. Does nothing.
@@ -32,17 +36,27 @@ PrimitiveStepper::PrimitiveStepper() {
 //ISR Routine for the motor, updates it when required.
 void PrimitiveStepper::update() {
 	if (stepsToGo != 0) {	//If there are any steps to do ..
-		virtualSteps += stepSpeed;//Add up the stepping speed to the virtual steps ...
+
+		if (currentAccell < stepSpeed)
+			currentAccell += accelleration;
+		else if (currentAccell > stepSpeed)
+			currentAccell = stepSpeed;
+
+		virtualSteps += currentAccell;//Add up the stepping speed to the virtual steps ...
+
 		if (virtualSteps >= (1 << 15)) {//If there has to be an actual step done
 			virtualSteps -= (1 << 15);
-			if (stepsToGo < 0) {		//If it has to move backwards
+			if (stepsToGo < 0)				//If it has to move backwards
 				step(0);
-			} else {					//Otherwise, if it has to move forwards
+			else
+				//Otherwise, if it has to move forwards
 				step(1);
+
+			if (stepsToGo == 0) {//If the goal was reached, reset the virtual steps.
+				virtualSteps = 0;
+				currentAccell = 0;
 			}
 
-			if (stepsToGo == 0)	//If the goal was reached, reset the virtual steps.
-				virtualSteps = 0;
 		}
 	}
 }
@@ -62,8 +76,8 @@ void PrimitiveStepper::move(int32_t steps) {
 //Wait for the motor movements to finish.
 void PrimitiveStepper::flush() {
 	while ((stepsToGo != 0) && (stepSpeed != 0)) {
+		_delay_ms(1);
 	}
-
 }
 
 //Reset all the values back to 0, except PORT and PIN configurations.

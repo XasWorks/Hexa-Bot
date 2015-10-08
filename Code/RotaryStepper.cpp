@@ -19,6 +19,8 @@ RotaryStepper::RotaryStepper(volatile uint8_t *P, uint8_t pinMotor,
 	this->stepsPerRotation = stepsPerRotation;
 
 	*(PORT - 1) |= (3 << pin);
+
+	accelleration = 10;
 }
 
 //Set the speed of the motor to the given amount of degrees/sec

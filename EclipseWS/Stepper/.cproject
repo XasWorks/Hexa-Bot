@@ -29,7 +29,7 @@
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.debug.2079820389" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.debug">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.299677166" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level"/>
-								<option id="de.innot.avreclipse.compiler.option.optimize.215465535" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.215465535" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.two" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.1740164391" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.1354980564" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug">
@@ -84,7 +84,7 @@
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.release.186383934" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.release">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.1904823868" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level" value="de.innot.avreclipse.compiler.option.debug.level.none" valueType="enumerated"/>
-								<option id="de.innot.avreclipse.compiler.option.optimize.1226685127" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.size" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.1226685127" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.none" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.1468981922" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.release.514263847" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.release">
@@ -116,7 +116,14 @@
 		<project id="Stepper.de.innot.avreclipse.project.winavr.elf_2.1.0.311756253" name="AVR Cross Target Application" projectType="de.innot.avreclipse.project.winavr.elf_2.1.0"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/Stepper"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Stepper"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.app.debug.16156670;de.innot.avreclipse.configuration.app.debug.16156670.;de.innot.avreclipse.tool.compiler.winavr.app.debug.2079820389;de.innot.avreclipse.compiler.winavr.input.1740164391">

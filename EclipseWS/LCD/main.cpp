@@ -5,6 +5,7 @@
  *      Author: xasin
  */
 
+#include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <math.h>
