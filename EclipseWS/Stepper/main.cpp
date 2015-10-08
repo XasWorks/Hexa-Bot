@@ -12,10 +12,11 @@
 #include "Code/LCD.h"
 #include "Code/DriveStepper.h"
 
-DriveStepper stepA(&PORTD,0,5000, 12.732394854, 1, 0);
+DriveStepper stepA(&PORTD,0,5000, 200, 12.732394854, 20, 0);
 
 ISR(TIMER1_COMPA_vect) {
 	stepA.update();
+	stepA.recalculate();
 }
 
 int main() {
@@ -27,11 +28,12 @@ int main() {
 
 	sei();
 
-	stepA.setSpeed(100);
+	stepA.setMovementSpeed(100);
+	stepA.setRotationSpeed(200);
 
-	stepA.moveXY(100, 100);
-	stepA.flush();
-	stepA.moveXY(0, -100);
+	_delay_ms(1000);
+	stepA.rotate(2000);
+	stepA.moveXY(0, 1000);
 
 	while (true) {
 		_delay_ms(10);

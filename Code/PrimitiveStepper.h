@@ -20,7 +20,7 @@ protected:
 	//Total steps the motor has made. Useful for absolute positioning.
 	volatile int32_t currentSteps;
 	//Steps the motor still has to make.
-	volatile int32_t stepsToGo;
+	volatile float stepsToGo;
 
 	//Steps per ISR Call.
 	volatile float stepSpeed;

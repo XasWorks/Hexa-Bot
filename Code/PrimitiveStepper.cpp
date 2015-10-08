@@ -33,16 +33,16 @@ PrimitiveStepper::PrimitiveStepper() {
 
 //ISR Routine for the motor, updates it when required.
 void PrimitiveStepper::update() {
-	if (stepsToGo != 0) {	//If there are any steps to do ..
+	if ((stepsToGo <= -1) || (stepsToGo >= 1)) {	//If there are any steps to do ..
 
 		stepBuffer += stepSpeed;	//Add up the stepping speed to the virtual steps ...
 
 		if (stepBuffer >= 1) {		//If there has to be an actual step done
 			stepBuffer -= 1;
 
-			if (stepsToGo < 0)		//If it has to move backwards
+			if (stepsToGo <= -1)		//If it has to move backwards
 				step(0);
-			else					//Otherwise, if it has to move forwards
+			else if(stepsToGo >= 1)				//Otherwise, if it has to move forwards
 				step(1);
 
 			if (stepsToGo == 0)		//If the goal was reached, reset the virtual steps.

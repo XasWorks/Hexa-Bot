@@ -16,28 +16,46 @@
 
 class DriveStepper: public PrimitiveStepper {
 private:
+	uint16_t ISRPerCal;
+	uint16_t calculationDivider;
+
 	//Rotational offset of the motor.
-	float localRotation;
+	volatile float localRotation;
 	//Steps per MM of movement.
-	float stepsPerMM;
+	volatile float stepsPerMM;
 	//Distance of the motor from the center of rotation.
-	float motorOffset;
+	volatile float motorOffset;
 
-	//Rotation speed in Degrees / Second
-	float rotationSpeed = 1;
-	//Movement speed in mm / Second
-	float movementSpeed;
+	//Movement speed in mm / Sec
+	volatile float mmPerSec;
 
-	//Global rotation of the current motor (where it is facing)
-	float globalRotation = 0;
+	//Current position of the robot (in mm or degrees)
+	volatile float currentX;
+	volatile float currentY;
+	volatile float currentRotation;
+
+	//Target positions of the robot (in mm or degrees)
+	volatile float targetX;
+	volatile float targetY;
+	volatile float targetRotation;
+
+	//Buffer values of the subroutine calculation.
+	volatile float xPerCal;
+	volatile float yPerCal;
+	volatile float degPerCal;
+
 
 
 public:
 	DriveStepper(volatile uint8_t *P, uint8_t pin,
-			uint16_t updateFrequency, float stepsPerMM, float motorOffset, float localRotation);
+			uint16_t updateFrequency, uint16_t calculationFrequency, float stepsPerMM, float motorOffset, float localRotation);
 
-	void setSpeed(float mmPerSec);
+	void recalculate();
 
+	void setMovementSpeed(float mmPerSec);
+	void setRotationSpeed(float degPerSec);
+
+	void rotate(float angle);
 	void moveXY(float X, float Y);
 };
 
