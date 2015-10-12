@@ -44,18 +44,32 @@ private:
 	volatile float yPerCal;
 	volatile float degPerCal;
 
+	//Buffer values for the buffered triangulation calculations
+	volatile float oldAngle;
+	volatile float currentSin;
+	volatile float currentCos;
+
+	//Sinus and Cosinus calculation with buffers (Quicker processing)
+	void recalSinCos(float angle);
 
 
 public:
+	//Constructor for one of the driver stepper motors.
+	//Requires:PORT Pointer, ISR frequency, recalculationFrequency, steps per MM, radius of the motor and the local rotation.
 	DriveStepper(volatile uint8_t *P, uint8_t pin,
 			uint16_t updateFrequency, uint16_t calculationFrequency, float stepsPerMM, float motorOffset, float localRotation);
 
+	//Recalculation ISR. Call together with the normal update after setting sei();
 	void recalculate();
 
+	//Set the movement speed in mm per second.
 	void setMovementSpeed(float mmPerSec);
+	//Set the rotational speed in degrees per second.
 	void setRotationSpeed(float degPerSec);
 
+	//Rotate the motor by a given angle in degrees
 	void rotate(float angle);
+	//Move the robot by the given mm in A and Y.
 	void moveXY(float X, float Y);
 };
 

@@ -12,57 +12,90 @@ DriveStepper::DriveStepper(volatile uint8_t *P, uint8_t pin,
 		float stepsPerMM, float motorOffset, float localRotation) {
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
 	{
+		//Initialize all the values.
 		this->PORT = P;
 		this->pin = pin;
 		this->updateFrequency = updateFrequency;
 		this->ISRPerCal = updateFrequency / calculationFrequency;
-
-		*(PORT - 1) |= (3 << pin);
-
 		this->stepsPerMM = stepsPerMM;
 		this->motorOffset = motorOffset;
 		this->localRotation = localRotation;
 
+		//Enable output mode
+		*(PORT - 1) |= (0b11 << pin);
+
+		//Set absolute position values to 0.
 		currentRotation = 0;
 		currentX = 0;
 		currentY = 0;
 
+		//Set the software prescaler value to 0.
 		calculationDivider = 0;
 	}
 }
 
+void DriveStepper::recalSinCos(float angle) {
+	if (angle != oldAngle) {
+		currentSin = sin(angle);
+		currentCos = cos(angle);
+
+		oldAngle = angle;
+	}
+}
+
 void DriveStepper::recalculate() {
+	//Software prescaler
 	if (++calculationDivider == ISRPerCal) {
 		calculationDivider = 0;
 
-		if (fabs(targetX - currentX) >= fabs(xPerCal)) {
-			currentX += xPerCal;
+		if (currentX != targetX) {
+			if (fabs(targetX - currentX) >= fabs(xPerCal)) {
+				recalSinCos((currentRotation + localRotation) * DEG_TO_RAD);
 
-			stepsToGo += sin((currentRotation + localRotation) * DEG_TO_RAD)
-					* xPerCal * stepsPerMM;
+				//Step the motor by the according amount.
+				stepsToGo += currentSin * xPerCal * stepsPerMM;
+
+				//Shift the current position by what we will move.
+				currentX += xPerCal;
+			}
+			else {
+				stepsToGo += currentSin * (targetX - currentX) * stepsPerMM;
+
+				currentX = targetX;
+			}
 		}
 
-		if (fabs(targetY - currentY) >= fabs(yPerCal)) {
-			currentY += yPerCal;
+		if (currentY != targetY) {
+			recalSinCos((currentRotation + localRotation) * DEG_TO_RAD);
+			if (fabs(targetY - currentY) >= fabs(yPerCal)) {
 
-			stepsToGo += cos((currentRotation + localRotation) * DEG_TO_RAD)
-					* yPerCal * stepsPerMM;
+				stepsToGo += currentCos * yPerCal * stepsPerMM;
+
+				currentY += yPerCal;
+			}
+			else {
+				stepsToGo += currentCos * (targetY - currentY) * stepsPerMM;
+
+				currentY = targetY;
+			}
 		}
 
 		stepSpeed = fabs(stepsToGo / (ISRPerCal));
 	}
-	else if(calculationDivider == ISRPerCal /2) {
+	else if (calculationDivider == ISRPerCal / 2) {
 
-		if(fabs(targetRotation - currentRotation) >= fabs(degPerCal)) {
-			if((targetRotation - currentRotation) < 0) {
+		if (fabs(targetRotation - currentRotation) >= fabs(degPerCal)) {
+			if ((targetRotation - currentRotation) < 0) {
 				currentRotation -= degPerCal;
 
-				stepsToGo -= motorOffset*(degPerCal * DEG_TO_RAD) * stepsPerMM;
+				stepsToGo -= motorOffset * (degPerCal * DEG_TO_RAD)
+						* stepsPerMM;
 			}
 			else {
 				currentRotation += degPerCal;
 
-				stepsToGo += motorOffset*(degPerCal * DEG_TO_RAD) * stepsPerMM;
+				stepsToGo += motorOffset * (degPerCal * DEG_TO_RAD)
+						* stepsPerMM;
 			}
 		}
 
@@ -83,13 +116,15 @@ void DriveStepper::moveXY(float X, float Y) {
 }
 
 void DriveStepper::rotate(float angle) {
-	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
 		this->targetRotation += angle;
 	}
 }
 
 void DriveStepper::setRotationSpeed(float degPerSec) {
-	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
 		this->degPerCal = degPerSec / (updateFrequency / ISRPerCal);
 	}
 }
