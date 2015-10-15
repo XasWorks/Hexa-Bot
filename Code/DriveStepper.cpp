@@ -52,7 +52,7 @@ void DriveStepper::recalculate() {
 			if (fabs(targetX - currentX) >= fabs(xPerCal)) {
 				recalSinCos((currentRotation + localRotation) * DEG_TO_RAD);
 
-				//Step the motor by the according amount.
+				/*//Step the motor by the according amount.*/
 				stepsToGo += currentSin * xPerCal * stepsPerMM;
 
 				//Shift the current position by what we will move.
@@ -103,7 +103,7 @@ void DriveStepper::recalculate() {
 	}
 }
 
-void DriveStepper::moveXY(float X, float Y) {
+void DriveStepper::moveXYBy(float X, float Y) {
 	float totalMM = sqrt(pow(X, 2) + pow(Y, 2));
 
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
@@ -115,7 +115,26 @@ void DriveStepper::moveXY(float X, float Y) {
 	}
 }
 
-void DriveStepper::rotate(float angle) {
+
+void DriveStepper::moveXYTo(float X, float Y) {
+	float totalMM = sqrt(pow((currentX - X), 2) + pow(currentY - Y, 2));
+
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		targetX = X;
+		targetY = Y;
+		xPerCal = X / ((totalMM / mmPerSec) * (updateFrequency / ISRPerCal));
+		yPerCal = Y / ((totalMM / mmPerSec) * (updateFrequency / ISRPerCal));
+	}
+}
+
+void DriveStepper::rotateTo(float angle) {
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		this->targetRotation = angle;
+	}
+}
+
+void DriveStepper::rotateBy(float angle) {
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
 	{
 		this->targetRotation += angle;

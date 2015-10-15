@@ -67,10 +67,15 @@ public:
 	//Set the rotational speed in degrees per second.
 	void setRotationSpeed(float degPerSec);
 
-	//Rotate the motor by a given angle in degrees
-	void rotate(float angle);
-	//Move the robot by the given mm in A and Y.
-	void moveXY(float X, float Y);
+	//Rotate the robot to a specific rotation
+	void rotateTo(float angle);
+	//Rotate the robot by a given angle in degrees
+	void rotateBy(float angle);
+
+	//Move the robot to the given position in X and Y in mm.
+	void moveXYTo(float X, float Y);
+	//Move the robot by the given mm in X and Y.
+	void moveXYBy(float X, float Y);
 };
 
 #endif /* CODE_DRIVESTEPPER_H_ */
