@@ -111,7 +111,7 @@ module subwheelConnector(n, r, i) {
 
 module connectorStrengthener(n, r, i) {
 	rotate([0,0, 360/n * i]) translate([0,0, -cRad]) intersection() {
-		cylinder(r=sqrt(pow(connectorOffset(n, r),2) + pow(wheelOffset(n, r) - subwheelBaseSize, 2)) + 0.4, h=0.8);
+		cylinder(r=sqrt(pow(connectorOffset(n, r),2) + pow(wheelOffset(n, r) - subwheelBaseSize, 2)) + 0.6, h=0.8, $fn=75);
 		translate([0,connectorOffset(n, r) + cPlay,0]) cube([r, r, 0.8]);
 		rotate([0,0, 360/n*2]) translate([0,-(connectorOffset(n,r) + cPlay + r), 0]) cube([r,r, 0.8]);
 	}

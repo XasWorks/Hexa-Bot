@@ -32,9 +32,13 @@ int main() {
 	stepA.setRotationSpeed(300);
 
 	_delay_ms(1000);
+	stepA.moveXYBy(100, 100);
 	stepA.rotateBy(2000);
+	stepA.finishRotation();
 	stepA.moveXYBy(0, 1000);
+	stepA.finishAll();
 
+	stepA.moveXYTo(0, 0);
 	while (true) {
 		_delay_ms(10);
 	}

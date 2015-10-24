@@ -6,6 +6,7 @@
  */
 
 #include "DriveStepper.h"
+#include <util/delay.h>
 
 DriveStepper::DriveStepper(volatile uint8_t *P, uint8_t pin,
 		uint16_t updateFrequency, uint16_t calculationFrequency,
@@ -57,8 +58,7 @@ void DriveStepper::recalculate() {
 
 				//Shift the current position by what we will move.
 				currentX += xPerCal;
-			}
-			else {
+			} else {
 				stepsToGo += currentSin * (targetX - currentX) * stepsPerMM;
 
 				currentX = targetX;
@@ -72,8 +72,7 @@ void DriveStepper::recalculate() {
 				stepsToGo += currentCos * yPerCal * stepsPerMM;
 
 				currentY += yPerCal;
-			}
-			else {
+			} else {
 				stepsToGo += currentCos * (targetY - currentY) * stepsPerMM;
 
 				currentY = targetY;
@@ -81,8 +80,7 @@ void DriveStepper::recalculate() {
 		}
 
 		stepSpeed = fabs(stepsToGo / (ISRPerCal));
-	}
-	else if (calculationDivider == ISRPerCal / 2) {
+	} else if (calculationDivider == ISRPerCal / 2) {
 
 		if (fabs(targetRotation - currentRotation) >= fabs(degPerCal)) {
 			if ((targetRotation - currentRotation) < 0) {
@@ -90,8 +88,7 @@ void DriveStepper::recalculate() {
 
 				stepsToGo -= motorOffset * (degPerCal * DEG_TO_RAD)
 						* stepsPerMM;
-			}
-			else {
+			} else {
 				currentRotation += degPerCal;
 
 				stepsToGo += motorOffset * (degPerCal * DEG_TO_RAD)
@@ -115,7 +112,6 @@ void DriveStepper::moveXYBy(float X, float Y) {
 	}
 }
 
-
 void DriveStepper::moveXYTo(float X, float Y) {
 	float totalMM = sqrt(pow((currentX - X), 2) + pow(currentY - Y, 2));
 
@@ -129,7 +125,8 @@ void DriveStepper::moveXYTo(float X, float Y) {
 }
 
 void DriveStepper::rotateTo(float angle) {
-	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
 		this->targetRotation = angle;
 	}
 }
@@ -139,6 +136,23 @@ void DriveStepper::rotateBy(float angle) {
 	{
 		this->targetRotation += angle;
 	}
+}
+
+void DriveStepper::finishRotation() {
+	while ((currentRotation - targetRotation) != 0) {
+		_delay_ms(1);
+	}
+}
+
+void DriveStepper::finishMovement() {
+	while ((currentX - targetX) != 0 || (currentY - targetY) != 0) {
+		_delay_ms(1);
+	}
+}
+
+void DriveStepper::finishAll() {
+	finishMovement();
+	finishRotation();
 }
 
 void DriveStepper::setRotationSpeed(float degPerSec) {

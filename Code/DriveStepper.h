@@ -76,6 +76,10 @@ public:
 	void moveXYTo(float X, float Y);
 	//Move the robot by the given mm in X and Y.
 	void moveXYBy(float X, float Y);
+
+	void finishRotation();
+	void finishMovement();
+	void finishAll();
 };
 
 #endif /* CODE_DRIVESTEPPER_H_ */

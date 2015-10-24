@@ -89,7 +89,7 @@
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.release.514263847" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.release">
 								<option id="de.innot.avreclipse.cppcompiler.option.debug.level.177731848" name="Generate Debugging Info" superClass="de.innot.avreclipse.cppcompiler.option.debug.level" value="de.innot.avreclipse.cppcompiler.option.debug.level.none" valueType="enumerated"/>
-								<option id="de.innot.avreclipse.cppcompiler.option.optimize.424613194" name="Optimization Level" superClass="de.innot.avreclipse.cppcompiler.option.optimize" value="de.innot.avreclipse.cppcompiler.optimize.two" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.optimize.424613194" name="Optimization Level" superClass="de.innot.avreclipse.cppcompiler.option.optimize" value="de.innot.avreclipse.cppcompiler.optimize.three" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.cppcompiler.input.744641158" superClass="de.innot.avreclipse.cppcompiler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.linker.winavr.app.release.153593805" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.app.release"/>

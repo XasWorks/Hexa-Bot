@@ -1,6 +1,6 @@
 use <Transforms.scad>
 
-beamSize = 0.8;			//Thickness of the beam
+beamSize = 1;			//Thickness of the beam
 beamHeight = 2.5;			//The height of either one of the upper or lower beams.
 beamOuterShift = 1.4;		//How far should the outer edge point of the transition from either lower or upper section to middle section be shifted inwards?
 beamShift = 1.6;			//How far should the two sections be spread apart?
