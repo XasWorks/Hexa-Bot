@@ -1,36 +1,37 @@
-use <HexGrid.scad>
+use <NewHexGrid.scad>
 
 
 plateThickness = 1.5;
 
-difference() {
-	union() {
-		translate([-10 + plateThickness,0, -35/2 - 5 + 2.5]) rotate([0, -90, 0]) difference() {
-			translate([0, -35/2, 0]) cube([35/2 + 5,35,plateThickness]);
+module mountPlate() {
+	difference() {
+		cube([35, 35/2, plateThickness]);
+		translate([35/2, 35/2, 0]) {
 			cylinder(d=25,h=plateThickness);
 			for(i=[0:3]) rotate([0,0, 90*i]) translate([26/2, 26/2, 0]) cylinder(d=3.8, h=plateThickness, $fn=10);
 		}
-		
-		translate([-10, -35/2 - 1, 1.5]) hull() {
-			cube(1);
-			translate([10,0,0]) cube(1);
-			translate([0,0, -21.6]) cube(1);
-		}
-		
-		translate([-10, 35/2, 1.5]) hull() {
-			cube(1);
-			translate([10,0,0]) cube(1);
-			translate([0,0, -21.6]) cube(1);
-		}
-	}
-	
-	translate([10, -sin(60)*20, -1.3]) minkowski() {
-		hexGrid(1,3, true, false);
-		cylinder(r=0.15,h=1.6);
 	}
 }
 
-translate([10, -sin(60)*20, 0]) difference() {
-	translate([0,0, -2.5 - 1.6 ]) hexGrid(1,3, true, false);
-	translate([-50, -50, -6.6]) cube([100, 100, 5]);
+module plateStabiliser() {
+	hull() {
+		translate([0,0.5, -1]) cube(1);
+		translate([0,0.5, -22.5]) cube(1);
+		translate([0, -15, -1]) cube(1);
+	}
+}
+
+translate([-35/2, sin(60) * 17.5+ sin(30) * 17.5, 2.2]) {
+	translate([0,0, -5]) {
+		rotate([-90, 0, 0]) mountPlate();
+		cube([35, plateThickness, 5]);
+	}
+	
+	translate([-0.999,0,0]) plateStabiliser();
+	translate([35 - 0.001, 0, 0]) plateStabiliser();
+}
+
+hexPattern([[-1,0], [0,0], [1,0], [-1,1], [0,1]]) {
+	upperHex();
+	translate([0,0, - 1.6]) middleHex();
 }
