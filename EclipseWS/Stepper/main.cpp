@@ -39,6 +39,10 @@ int main() {
 	stepA.finishAll();
 
 	stepA.moveXYTo(0, 0);
+
+	DriveStepper *test;
+	test = new DriveStepper(&PORTD,0,5000, 100, 6.366197724, 20, 0);
+
 	while (true) {
 		_delay_ms(10);
 	}
