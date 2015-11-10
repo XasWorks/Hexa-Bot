@@ -36,6 +36,7 @@ void Movable::rotateTo(float angle) {
 }
 
 void Movable::headTo(float angle) {
+	//First, calculate the current heading (by using Modulo of a full rotation). Then subtract to be left with the angle the robot has to rotate to get to the specific heading
 	rTarget -= (rTarget % 360) - angle;
 }
 

@@ -8,6 +8,8 @@
 #ifndef CODE_TRANSLATIVESTEPPER_H_
 #define CODE_TRANSLATIVESTEPPER_H_
 
+#include "PrimitiveStepper.h"
+
 class TranslativeStepper {
 public:
 	TranslativeStepper();

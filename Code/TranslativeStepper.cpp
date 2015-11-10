@@ -8,7 +8,6 @@
 #include "TranslativeStepper.h"
 
 TranslativeStepper::TranslativeStepper() {
-	// TODO Auto-generated constructor stub
 
 }
 
