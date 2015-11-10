@@ -11,10 +11,10 @@
 //Interface class for everything that can move. Robot wheels, Drone coordinates, etc.
 class Movable {
 private:
-	float xPos, xTarget;
-	float yPos, yTarget;
-	float speed;
-	float rPos, rTarget, rSpeed;
+	volatile float xPos, xTarget;
+	volatile float yPos, yTarget;
+	volatile float speed;
+	volatile float rPos, rTarget, rSpeed;
 
 public:
 	Movable();
