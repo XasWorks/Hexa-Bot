@@ -14,11 +14,11 @@ TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uin
 
 	*(PORT - 1) |= (0b11 << pin);
 
-	float stepsPerMM = (M_PI * 2 * radius) / (200 * microstepping);
+	float stepsPerMM = (200 * microstepping) / (M_PI * 2 * radius);
 
-	float xFact = stepsPerMM * sin(rotation);
-	float yFact = stepsPerMM * cos(rotation);
-	float sPerDeg = (M_PI * 0.0055555555555 * distance) / stepsPerMM;
+	this->xFact = stepsPerMM * sin(rotation);
+	this->yFact = stepsPerMM * cos(rotation);
+	this->sPerDeg = (M_PI * 0.0055555555555 * distance) / stepsPerMM;
 }
 
 void TranslativeStepper::stepBy(float x, float y) {
