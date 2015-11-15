@@ -6,6 +6,7 @@
  */
 
 #include "Locomotor.h"
+#include <util/delay.h>
 
 Locomotor::Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeStepper *C, uint16_t ISRFreq) {
 	this->A = A;
