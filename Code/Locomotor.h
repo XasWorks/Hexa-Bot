@@ -35,6 +35,9 @@ public:
 	void moveTo(float x, float y);
 	void moveBy(float x, float y);
 
+	bool isReady();
+	void flush();
+
 	void update();
 };
 

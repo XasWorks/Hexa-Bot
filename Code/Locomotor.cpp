@@ -48,23 +48,74 @@ void Locomotor::moveBy(float x, float y) {
 	this->recalculateXYFact();
 }
 
-void Locomotor::update() {
-	float cSin = sin(this->rPos);
-	float cCos = cos(this->rPos);
-	float xThisISR = 0;
-	if(fabs(this->xPos - this->xTarget) > this->xPerISR) {
-		xThisISR = cSin * xPerISR + cCos* yPerISR;
-		this->xPos += this->xPerISR;
-	}
-	float yThisISR = 0;
-	if(fabs(this->yPos - this->yTarget) > this->yPerISR) {
-		yThisISR = cCos* xPerISR + cSin * yPerISR;
-		this->yPos += this->yPerISR;
-	}
-
-	A->stepBy(xThisISR, yThisISR);
-	B->stepBy(xThisISR, yThisISR);
-	C->stepBy(xThisISR, yThisISR);
-
+bool Locomotor::isReady() {
+	if(this->xTarget != this->xPos)
+		return false;
+	if(this->yTarget != this->yPos)
+		return false;
+	if(this->rTarget != this->rPos)
+		return false;
+	return true;
 }
 
+void Locomotor::flush() {
+	while(this->isReady() == false) {
+		_delay_ms(1);
+	}
+}
+
+void Locomotor::update() {
+	//Pre-Calculate the Sin and Cos values
+	float cSin = sin(this->rPos);
+	float cCos = cos(this->rPos);
+
+	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
+	float xDifference = this->xTarget - this->xPos;
+	float yDifference = this->yTarget - this->yPos;
+	float rDifference = this->rTarget - this->rPos;
+
+	float xThisISR = 0;
+	float yThisISR = 0;
+	float rThisISR = 0;
+
+	//X-Steps calculation
+	if(xDifference != 0) {
+		if(fabs(xDifference) > this->xPerISR) {
+			xThisISR = cSin * xPerISR + cCos* yPerISR;
+			this->xPos += this->xPerISR;
+		}
+		else {
+			xThisISR = cSin * xDifference + cCos * yDifference;
+			this->xPos = this->xTarget;
+		}
+	}
+
+	//Y-Steps calculation
+	if(yDifference != 0) {
+		if(fabs(yDifference) > this->yPerISR) {
+			yThisISR = cCos* xPerISR + cSin * yPerISR;
+			this->yPos += this->yPerISR;
+		}
+		else {
+			yThisISR = cCos * xDifference + cSin * yDifference;
+			this->yPos = this->yTarget;
+		}
+	}
+
+	//Rotation-Stepping calculation
+	if(rDifference != 0) {
+		if(fabs(rDifference) > this->rPerISR) {
+			rThisISR = this->rPerISR;
+			this->rPos += this->rPerISR;
+		}
+		else {
+			rThisISR = rDifference;
+			this->rPos = this->rTarget;
+		}
+	}
+
+	A->stepBy(xThisISR, yThisISR, rThisISR);
+	B->stepBy(xThisISR, yThisISR, rThisISR);
+	C->stepBy(xThisISR, yThisISR, rThisISR);
+
+}

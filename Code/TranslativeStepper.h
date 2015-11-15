@@ -18,7 +18,7 @@ class TranslativeStepper : public PrimitiveStepper {
 
 private:
 	//Coordinate factors for the motor (sin/cos precalculated and in steps/mm) aswell as the steps per degree factor
-	volatile float xFact, yFact, sPerDeg;
+	volatile float xFact, yFact, rFact;
 	//How often will the ISR be called before the steps are recalculated?
 	volatile uint8_t ISRPerCal;
 
@@ -30,7 +30,8 @@ public:
 	//Radius is the wheel radius for the motor, rotation the Z-Axis rotation facing towards X-Movement, and distance the distance of the wheel to the center of the robot.
 	TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uint8_t ISRPerCal, uint8_t microstepping, float radius, float rotation, float distance);
 
-	//Make the system recalculate values for movement along the x and y axis, or otherwise rotation.
+	//Make the system recalculate values for movement along the x and y axis, and/or rotation.
+	void stepBy(float x, float y, float r);
 	void stepBy(float x, float y);
 	void stepBy(float r);
 };
