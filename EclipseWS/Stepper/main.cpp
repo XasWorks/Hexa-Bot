@@ -9,10 +9,9 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "Code/LCD.h"
-#include "Code/DriveStepper.h"
+#include "Code/LCD/LCD.h"
 
-#include "Code/Locomotor.h"
+#include "Code/Movement/Locomotor.h"
 
 TranslativeStepper stepA(&PORTD,0,10000/400, 1, 20, 0, 10);
 Locomotor test(&stepA, 0, 0, 400);
