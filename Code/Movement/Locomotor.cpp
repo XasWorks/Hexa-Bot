@@ -79,6 +79,9 @@ void Locomotor::update() {
 	float yThisISR = 0;
 	float rThisISR = 0;
 
+
+	//TODO implement a different, separate calculation of "*** This ISR"
+
 	//X-Steps calculation
 	if(xDifference != 0) {
 		if(fabs(xDifference) > this->xPerISR) {

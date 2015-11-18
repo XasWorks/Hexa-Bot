@@ -18,12 +18,13 @@ TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uin
 
 	this->xFact = stepsPerMM * sin(rotation);
 	this->yFact = stepsPerMM * cos(rotation);
-	this->rFact = (M_PI * 0.0055555555555 * distance) / stepsPerMM;
+	this->rFact = (M_PI * 0.0055555555555 * distance) * stepsPerMM;
 }
 
 void TranslativeStepper::stepBy(float x, float y, float r) {
 	//Calculate the nececary steps to go by multiplying the axis with their according conversion value (steps to mm)
 	stepsToGo += x *xFact + y *yFact + r *rFact;
+	stepSpeed = stepsToGo / ISRPerCal;
 }
 
 void TranslativeStepper::stepBy(float x, float y) {
