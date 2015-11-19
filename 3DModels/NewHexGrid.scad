@@ -15,8 +15,8 @@ module lowerHex(hexSize = defaultHexSize) {
 		cube([beamSize, tan(30)* (hexSize - beamSize*2 - beamPlay), beamHeight]);
 }
 
-module middleHex(hexSize = defaultHexSize, aligned= false) {
-	if(aligned) translate([0,0, beamHeight]) middleHex(hexSize);
+module middleHex(hexSize = defaultHexSize, aligned= true) {
+	if(aligned) translate([0,0, beamHeight]) middleHex(hexSize, aligned = false);
 	else 
 	render() for(i=[0:5]) rotate([0,0, 360/6 *i])
 		shine(length = hexSize, height= beamHeight*2, angle = 60.01)
@@ -29,8 +29,8 @@ module middleHex(hexSize = defaultHexSize, aligned= false) {
 							[hexSize/2 - beamSize, beamShift]]);
 }
 
-module upperHex(hexSize = defaultHexSize, aligned= false) {
-	if(aligned) translate([0,0, beamHeight + beamShift]) upperHex(hexSize);
+module upperHex(hexSize = defaultHexSize, aligned= true) {
+	if(aligned) translate([0,0, beamHeight + beamShift]) upperHex(hexSize, aligned = false);
 	else 
 	render() for(i=[0:5]) rotate([0,0, 360/6 * i]) 
 		translate([hexSize/2 - beamSize, 
@@ -53,6 +53,3 @@ module hexPattern(i, hexSize = defaultHexSize) {
 			translate([hexSize * x[0], x[1] * sin(60) * hexSize]) children();
 	}
 }
-
-for(i=[0:5]) rotate([0,0, 360/6 *i]) hexPattern([[1,0], [1,1], [2,0], [2,1], [2,-1]]) hex();
-hex();
