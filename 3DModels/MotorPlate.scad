@@ -18,15 +18,33 @@ frameHeight = 6;
 
 plateThickness = 1.5;
 
+//Stabilising beams for the motor connector plate
+module plateStabiliser() {
+	hull() {
+		translate([0.5, 0, 0]) cube(1);
+		translate([-35 - frameSize*2, 0, frameHeight - 1]) cube(1);
+		translate([0.5, 0, 35/2-1]) cube(1);
+	}
+}
+
+//Generate the plate that holds the motor
 module motorHolder() {
+	//Generate the stabilising beams for the motors
+	translate([0, 35/2, 0]) plateStabiliser();
+	translate([0, -35/2 - 1, 0]) plateStabiliser();
+	
+	//Generate the actual motor mount
 	translate([plateThickness, 0, 0]) rotate([0, -90, 0]) difference() {
 		translate([0, -35/2, 0]) cube([35/2, 35, plateThickness]);
 		
+		//Make holes for the screws and the central cylinder.
 		cylinder(d=25,h=plateThickness);
 		for(i=[0:3]) rotate([0,0, 90*i]) translate([26/2, 26/2, 0]) cylinder(d=3.8, h=plateThickness, $fn=14);
 	}	
 }
 
+
+//Generate a union of the motor frame, holder, and the hex structure.
 module halfReadyBase() {
 	render() {
 		//Hex Grid base structure
@@ -46,6 +64,7 @@ module halfReadyBase() {
 	}
 }
 	
+//Cut out spaces for the motors.
 module refinement() {
 	render() difference() {
 		halfReadyBase();
