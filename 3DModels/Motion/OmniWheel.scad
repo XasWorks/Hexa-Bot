@@ -19,22 +19,22 @@ $fs = 0.5;
 generate = 1;
 
 //GENERATION VARIABLES 
-num = 3*2;	//Number of all subwheels to create. (Has to be a round number!!)
+num = 4*2;	//Number of all subwheels to create. (Has to be a round number!!)
 radius = 35;	//Radius of the omni-wheel.
 
 //SUBWHEEL VARIABLES
 subwheelBaseSize = 3.5;	//Size of the subwheels at their smallest point (The edge)
 subwheelPlay = 0.5; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
-subwheelOverlap = 3;		//Angle in which the subwheel pieces will overlap. Causes smoother movement as there is no definite edge.
+subwheelOverlap = 5;		//Angle in which the subwheel pieces will overlap. Causes smoother movement as there is no definite edge.
 
 //AXIS HOLE VARIABLE
 axisDiameter = 1.75;
-axisPlay = 0.383;
+axisPlay = 0.4;
 
 //SUBWHEEL CONNECTOR VARIABLES
-cRad = axisDiameter/2 + 1.5; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
+cRad = axisDiameter/2 + 1.8; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
 cThick = 0.8; 					//Thickness of the connectors.
-cPlay = 0.2; 					//Play room for the connector ports (distance to the subwheel)
+cPlay = 0.5; 					//Play room for the connector ports (distance to the subwheel)
 
 //FRAME VARIABLES
 frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
@@ -42,8 +42,8 @@ frameHeight = cRad + subwheelRadius(num, radius);
 frameThickness = 0.8;		//Thickness of the main frame
 
 //STABILITY BEAM VARIABLES
-beamThickness = 2.5; 		//Thickness of the stability beams
-beamNum = 5;
+beamThickness = 4; 		//Thickness of the stability beams
+beamNum = 7;
 
 //CONNECTOR VARIABLES
 connectorThickness = 1;	//Thickness of the vertical connectors
@@ -173,7 +173,7 @@ module structuralBeams() {
 		cylinder(r= frameRadius, h= cRad*2);		//Make sure that the structural beams don't poke out of the main frame.
 		
 		for(i=[0:360/beamNum:360]) 
-			rotate([0,0, i + 360/beamNum/2]) translate([0, -beamThickness/2, 0]) cube([frameRadius, beamThickness, 1]);		//Create the beams.
+			rotate([0,0, i + 360/beamNum/2]) translate([0, -beamThickness/2, 0]) cube([frameRadius, beamThickness, 2]);		//Create the beams.
 	}
 }
 
