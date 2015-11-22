@@ -7,22 +7,28 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #include "Code/Movement/Locomotor.h"
 
-#define F_ISR1 10000
+#define F_ISR1 5000
+#define F_CAL  400
 
-TranslativeStepper stepA(&PORTD, 0, F_ISR1/400, 8, 30, 0, 0);
-Locomotor test(&stepA, 0, 0, 400);
+TranslativeStepper stepA = TranslativeStepper(&PORTD, 0, F_ISR1/F_CAL, 8, 30, 0, 75);
+TranslativeStepper stepB = TranslativeStepper(&PORTD, 2, F_ISR1/F_CAL, 8, 30, 120, 75);
+TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, 8, 30, 240, 75);
+
+Locomotor test = Locomotor(&stepA, &stepB, &stepC, F_CAL);
 
 uint16_t prescaler = 0;
 ISR(TIMER1_COMPA_vect) {
 	//Update the stepper motor controllers
 	stepA.update();
+	stepB.update();
 
 	//Software prescaler for slower ISR for calculation updating
 	prescaler++;
-	if(prescaler == F_ISR1/400) {
+	if(prescaler == F_ISR1/F_CAL) {
 		test.update();
 		prescaler = 0;
 	}
@@ -41,6 +47,8 @@ int main() {
 
 	//Enable global interrupts
 	sei();
+
+	_delay_ms(1000);
 
 	test.setSpeed(100);
 	test.setRotationSpeed(100);

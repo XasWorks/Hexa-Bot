@@ -9,10 +9,10 @@
 
 TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uint8_t ISRPerCal, uint8_t microstepping, float radius, float rotation, float distance) {
 	this->PORT = PORT;
-	this->pin = pin;
+	this->pin = pins;
 	this->ISRPerCal = ISRPerCal;
 
-	*(PORT - 1) |= (0b11 << pin);
+	*(PORT - 1) |= (0b11 << this->pin);
 
 	float stepsPerMM = (200 * microstepping) / (M_PI * 2 * radius);
 
