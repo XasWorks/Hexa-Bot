@@ -8,7 +8,7 @@
 #ifndef CODE_ROTARYSTEPPER_H_
 #define CODE_ROTARYSTEPPER_H_
 
-#include "PrimitiveStepper.h"
+#include "Movement/PrimitiveStepper.h"
 
 class RotaryStepper: public PrimitiveStepper {
 private:
