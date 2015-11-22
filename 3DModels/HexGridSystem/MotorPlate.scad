@@ -61,7 +61,7 @@ module halfReadyBase() {
 	render() {
 		
 		//Hex Grid base structure, rotated upside-down
-		translate([0,0, 6]) rotate([180, 0, 0]) rawBase();
+		translate([0,0, 5.99]) rotate([180, 0, 0]) rawBase();
 		
 		//Add in the frame cube (it will be cut out later, as well as the motor mounting structure.
 		//Generate and rotate this setup three times.
