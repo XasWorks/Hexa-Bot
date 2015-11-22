@@ -1,4 +1,4 @@
-use <Transforms.scad>
+use <../Lib/Transforms.scad>
 
 defaultHexSize = 17.5;
 beamSize = 1;			//Thickness of the beam

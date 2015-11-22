@@ -7,7 +7,7 @@
 	Created	= 17.09.15
 */
 
-use <Transforms.scad>
+use <../Lib/Transforms.scad>
 
 function subwheelRadius(n, r) = r - cos(360/(2*n) + subwheelOverlap)*r + subwheelBaseSize;		//Calculate the radius of a standard subwheel at largest point (Center)
 function wheelOffset(n, r) = cos(360/(2*n) + subwheelOverlap)*r;						//Calculate the offset of a subwheel that is required to shift it so that it aligns with the main circle (CAUTION Does not implement subwheel size shift!!)
@@ -19,8 +19,8 @@ $fs = 0.5;
 generate = 1;
 
 //GENERATION VARIABLES 
-num = 5*2;	//Number of all subwheels to create. (Has to be a round number!!)
-radius = 20;	//Radius of the omni-wheel.
+num = 3*2;	//Number of all subwheels to create. (Has to be a round number!!)
+radius = 35;	//Radius of the omni-wheel.
 
 //SUBWHEEL VARIABLES
 subwheelBaseSize = 3.5;	//Size of the subwheels at their smallest point (The edge)
