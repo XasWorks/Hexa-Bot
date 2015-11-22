@@ -32,6 +32,6 @@ translate([-35/2, sin(60) * 17.5+ sin(30) * 17.5, 2.2]) {
 }
 
 hexPattern([[-1,0], [0,0], [1,0], [-1,1], [0,1]]) {
-	upperHex();
-	translate([0,0, - 1.6]) middleHex();
+	upperHex(aligned=false);
+	translate([0,0, - 1.6]) middleHex(aligned=false);
 }
