@@ -25,6 +25,7 @@ ISR(TIMER1_COMPA_vect) {
 	//Update the stepper motor controllers
 	stepA.update();
 	stepB.update();
+	stepC.update();
 
 	//Software prescaler for slower ISR for calculation updating
 	prescaler++;
