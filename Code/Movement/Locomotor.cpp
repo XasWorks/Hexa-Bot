@@ -18,8 +18,8 @@ Locomotor::Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeSt
 }
 
 void Locomotor::recalculateXYFact() {
-	float travelMM = sqrt(pow((this->xPos - this->xTarget), 2)
-			+ pow(this->xPos - this-> yTarget, 2));
+	float travelMM = sqrt(pow((this->xTarget - this->xPos), 2)
+			+ pow(this->yTarget - this-> yPos, 2));
 
 	this->xPerISR = ((this->xTarget - this->xPos) / travelMM) * this->speed / this->ISRFreq;
 	this->yPerISR = ((this->yTarget - this->yPos) / travelMM) * this->speed / this->ISRFreq;
@@ -67,8 +67,8 @@ void Locomotor::flush() {
 
 void Locomotor::update() {
 	//Pre-Calculate the Sin and Cos values
-	float cSin = sin(this->rPos);
-	float cCos = cos(this->rPos);
+	float cSin = sin(this->rPos * DEG_TO_RAD);
+	float cCos = cos(this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
 	float xDifference = this->xTarget - this->xPos;
@@ -79,47 +79,29 @@ void Locomotor::update() {
 	float yThisISR = 0;
 	float rThisISR = 0;
 
-
-	//TODO implement a different, separate calculation of "*** This ISR"
-
 	//X-Steps calculation
 	if(xDifference != 0) {
-		if(fabs(xDifference) > this->xPerISR) {
-			xThisISR = cSin * xPerISR + cCos* yPerISR;
-			this->xPos += this->xPerISR;
-		}
-		else {
-			xThisISR = cSin * xDifference + cCos * yDifference;
-			this->xPos = this->xTarget;
-		}
+		xThisISR = (fabs(xDifference) > this->xPerISR) ? xPerISR : xDifference;
+		this->xPos += xThisISR;
 	}
 
 	//Y-Steps calculation
 	if(yDifference != 0) {
-		if(fabs(yDifference) > this->yPerISR) {
-			yThisISR = cCos* xPerISR + cSin * yPerISR;
-			this->yPos += this->yPerISR;
-		}
-		else {
-			yThisISR = cCos * xDifference + cSin * yDifference;
-			this->yPos = this->yTarget;
-		}
+		yThisISR = (fabs(yDifference) > this->yPerISR) ? yPerISR : yDifference;
+		this->yPos += yThisISR;
 	}
+
+	float xRotated = cCos * xThisISR + cSin * yThisISR;
+	float yRotated = cSin * xThisISR + cCos * yThisISR;
 
 	//Rotation-Stepping calculation
 	if(rDifference != 0) {
-		if(fabs(rDifference) > this->rPerISR) {
-			rThisISR = this->rPerISR;
-			this->rPos += this->rPerISR;
-		}
-		else {
-			rThisISR = rDifference;
-			this->rPos = this->rTarget;
-		}
+		rThisISR = (fabs(rDifference) > this->rPerISR) ? this->rPerISR : rDifference;
+		this->rPos += rThisISR;
 	}
 
-	A->stepBy(xThisISR, yThisISR, rThisISR);
-	B->stepBy(xThisISR, yThisISR, rThisISR);
-	C->stepBy(xThisISR, yThisISR, rThisISR);
+	A->stepBy(xRotated, yRotated, rThisISR);
+	B->stepBy(xRotated, yRotated, rThisISR);
+	C->stepBy(xRotated, yRotated, rThisISR);
 
 }

@@ -12,13 +12,15 @@
 #include "Movable.h"
 #include "TranslativeStepper.h"
 
+#define DEG_TO_RAD 0.017453293
+
 class Locomotor : public Movable {
 private:
 	//Stepper motor instances
 	TranslativeStepper *A,*B,*C;
 
 	//Distance that the motors have to cover per Calculation
-	volatile float xPerISR, yPerISR, rPerISR;
+	volatile float xPerISR = 0, yPerISR = 0, rPerISR = 0;
 
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;

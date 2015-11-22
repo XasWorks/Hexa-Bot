@@ -8,7 +8,7 @@
 #ifndef CODE_DRIVESTEPPER_H_
 #define CODE_DRIVESTEPPER_H_
 
-#include "PrimitiveStepper.h"
+#include "Movement/PrimitiveStepper.h"
 #include <math.h>
 #include <util/atomic.h>
 
