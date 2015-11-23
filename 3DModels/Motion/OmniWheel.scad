@@ -196,14 +196,16 @@ module omniWheel(n, r, subwheels = false) {
 				translate([0,0, -cRad]) cylinder(r= frameRadius - 0.001, h= frameHeight); //Make sure they don't enter the central cylinder
 			}
 			
+			//Generate the cylinder for the stepper motor axis
 			translate([0,0,-cRad])
-				cylinder(d= 5 + 0.4 + 2, h= frameHeight);
+				cylinder(d= 5 + 4, h= frameHeight);
 				
 		}
 		
+		//Generate the hole for the axis, as well as the edge to fix the wheel on the axis
 		rotate([0,0, 360/(n*2)]) translate([0,0, -cRad]) difference() {
-			cylinder(d= 5 + 0.4, h= frameHeight);
-			translate([ (5 + 0.4)/2 - 0.45, -(5 + 0.4)/2, 0]) cube([ (5 + 0.4) / 2, 5 + 0.4, frameHeight]);
+			cylinder(d= 5.12, h= frameHeight);
+			translate([ 2.5 - 0.48, -(5 + 0.4)/2, 0]) cube([ (5 + 0.4) / 2, 5 + 0.4, frameHeight]);
 		}
 		
 		subwheelSet(n, r, true); 	//Make sure that there is enough space for the subwheels.
