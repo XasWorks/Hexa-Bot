@@ -14,9 +14,9 @@
 #define F_ISR1 5000
 #define F_CAL  400
 
-TranslativeStepper stepA = TranslativeStepper(&PORTD, 0, F_ISR1/F_CAL, 8, 30, 0, 75);
-TranslativeStepper stepB = TranslativeStepper(&PORTD, 2, F_ISR1/F_CAL, 8, 30, 120, 75);
-TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, 8, 30, 240, 75);
+TranslativeStepper stepA = TranslativeStepper(&PORTD, 0, F_ISR1/F_CAL, 16, 35, 240, 75);
+TranslativeStepper stepB = TranslativeStepper(&PORTD, 2, F_ISR1/F_CAL, 16, 35, 120, 75);
+TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, 16, 35, 0, 75);
 
 Locomotor test = Locomotor(&stepA, &stepB, &stepC, F_CAL);
 
@@ -51,10 +51,19 @@ int main() {
 
 	_delay_ms(1000);
 
-	test.setSpeed(100);
-	test.setRotationSpeed(100);
-	test.rotateBy(1000);
-	test.moveBy(1000,0);
+	test.setSpeed(20);
+	test.setRotationSpeed(50);
 
-	while(true) {}
+	test.flush();
+
+	while(true) {
+		test.moveTo(20,0);
+		test.flush();
+		test.moveTo(-20,0);
+		test.flush();
+		test.moveTo(0,20);
+		test.flush();
+		test.moveTo(0,-20);
+		test.flush();
+	}
 }

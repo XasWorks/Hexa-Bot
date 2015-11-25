@@ -81,13 +81,13 @@ void Locomotor::update() {
 
 	//X-Steps calculation
 	if(xDifference != 0) {
-		xThisISR = (fabs(xDifference) > this->xPerISR) ? xPerISR : xDifference;
+		xThisISR = (fabs(xDifference) > fabs(this->xPerISR)) ? xPerISR : xDifference;
 		this->xPos += xThisISR;
 	}
 
 	//Y-Steps calculation
 	if(yDifference != 0) {
-		yThisISR = (fabs(yDifference) > this->yPerISR) ? yPerISR : yDifference;
+		yThisISR = (fabs(yDifference) > fabs(this->yPerISR)) ? yPerISR : yDifference;
 		this->yPos += yThisISR;
 	}
 
@@ -96,7 +96,7 @@ void Locomotor::update() {
 
 	//Rotation-Stepping calculation
 	if(rDifference != 0) {
-		rThisISR = (fabs(rDifference) > this->rPerISR) ? this->rPerISR : rDifference;
+		rThisISR = (fabs(rDifference) > fabs(this->rPerISR)) ? this->rPerISR : rDifference;
 		this->rPos += rThisISR;
 	}
 

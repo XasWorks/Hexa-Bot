@@ -1,0 +1,46 @@
+Motor Controller Documentation: 
+
+Chips used:
+    - ATMega328 MCU
+    - Pololu A4988 Stepper Motor Driver
+
+I2C Interface Layout: 
+    - Ground (Black)
+    - SDA (White)
+    - Vcc (Grey)
+    - SCL (Purple)
+
+Ground Connections: 
+    + SPI Connector 
+    + Quartz    
+    + MCU
+    + I2C
+    + Battery Connector
+    + Driver.0 
+    + Driver.1 
+    + Driver.2
+    
+Vcc Connections: 
+    + SPI 
+    + MCU
+    + I2C
+    + Motor Drivers
+
+Other connections:
+    + Vmot 
+    + Crystal
+    + SPI Interface
+    + I2C 
+    + Microstepping pins
+    + Sensor pins
+    + Motor Controllers to MCU
+
+Wiring from the Mega8: 
+    - PB3 & PB4 & PB5: SPI
+    - PB6 & PB7: OSC (16MHz)
+    - PC0 - PC3: Sensor Connectors
+    - PC5 & PC4: I2C Interface
+    - PC6: RESET
+    - PD0 & PD1: Driver.0
+    - PD2 & PD3: Driver.1
+    - PD4 & PD5: Driver.2
