@@ -49,7 +49,21 @@ void Locomotor::moveBy(float x, float y) {
 	this->recalculateXYFact();
 }
 
-bool Locomotor::isReady() {
+void Locomotor::moveTowards(float dist) {
+	this->xTarget += dist * cos(this->rPos * DEG_TO_RAD);
+	this->yTarget += dist * sin(this->rPos * DEG_TO_RAD);
+
+	this->recalculateXYFact();
+}
+
+void Locomotor::moveTowards(float dist, float dir) {
+	this->xTarget += dist * cos(dir * DEG_TO_RAD);
+	this->yTarget += dist * sin(dir * DEG_TO_RAD);
+
+	this->recalculateXYFact();
+}
+
+void bool Locomotor::isReady() {
 	if(this->xTarget != this->xPos)
 		return false;
 	if(this->yTarget != this->yPos)

@@ -25,17 +25,20 @@ private:
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;
 
+	void recalculateXYFact();
 
 public:
 	Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeStepper *C, uint16_t ISRSpeed);
-
-	void recalculateXYFact();
 
 	void setRotationSpeed(float newSpeed);
 	void setSpeed(float speed);
 
 	void moveTo(float x, float y);
 	void moveBy(float x, float y);
+
+	//Move the motor towards either specified direction or wanted heading
+	void moveTowards(float dist);
+	void moveTowards(float dist, float direction);
 
 	bool isReady();
 	void flush();

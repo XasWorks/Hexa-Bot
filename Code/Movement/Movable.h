@@ -32,6 +32,10 @@ public:
 	void moveTo(float x, float y);
 	void moveBy(float x, float y);
 
+	//Move the motor either towards current heading direction, or specified direction
+	void moveTowards(float dist);
+	void moveTowards(float dist, float angle);
+
 	//Wait for all functions to finish. Abstract method
 	void flush();
 
