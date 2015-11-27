@@ -98,14 +98,6 @@ void Locomotor::accelerate() {
 		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : -this->acceleration;
 }
 
-float Locomotor::calcAxis(float position, float target, float fact) {
-	float difference = target - position;
-	if((difference) != 0)
-		return (fabs(difference) > fabs(fact * this->speed)) ? fact * this->speed : difference;
-	else
-		return 0;
-}
-
 void Locomotor::update() {
 
 	accelerate();

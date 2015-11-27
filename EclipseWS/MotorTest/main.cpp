@@ -76,41 +76,36 @@ int main() {
 
 	test.setSpeed(0);
 	test.setAcceleration(50);
-	test.accelerateTo(250);
-
-	test.moveBy(100,0);
 
 	float accell_speed=0;
 
 	while(true) {
+		if(test.atPosition())
+			test.moveTowards(75);
 
+		if(react_prescaler == F_ISR1 / F_REACT) {
+			react_prescaler = 0;
 
-//		if(test.atPosition())
-//			test.moveTowards(75);
-//
-//		if(react_prescaler == F_ISR1 / F_REACT) {
-//			react_prescaler = 0;
-//
-//			if((PINC & 1) == 0) {
-//				if(accell_speed <= MAX_SPEED) {
-//					accell_speed += ACCELL / F_REACT;
-//					test.setRotationSpeed(accell_speed);
-//				}
-//				test.rotateBy(accell_speed / F_REACT);
-//				test.setSpeed(ROT_SPEED);
-//			}
-//			else if((PINC & 2) == 0) {
-//				if(accell_speed <= MAX_SPEED) {
-//					accell_speed += ACCELL / F_REACT;
-//					test.setRotationSpeed(accell_speed);
-//				}
-//				test.rotateBy(-accell_speed / F_REACT);
-//				test.setSpeed(ROT_SPEED);
-//			}
-//			else {
-//				accell_speed = START_SPEED;
-//				test.accelerateTo(DRIVE_SPEED);
-//			}
-//		}
+			if((PINC & 1) == 0) {
+				if(accell_speed <= MAX_SPEED) {
+					accell_speed += ACCELL / F_REACT;
+					test.setRotationSpeed(accell_speed);
+				}
+				test.rotateBy(accell_speed / F_REACT);
+				test.accelerateTo(ROT_SPEED);
+			}
+			else if((PINC & 2) == 0) {
+				if(accell_speed <= MAX_SPEED) {
+					accell_speed += ACCELL / F_REACT;
+					test.setRotationSpeed(accell_speed);
+				}
+				test.rotateBy(-accell_speed / F_REACT);
+				test.accelerateTo(ROT_SPEED);
+			}
+			else {
+				accell_speed = START_SPEED;
+				test.accelerateTo(DRIVE_SPEED);
+			}
+		}
 	}
 }
