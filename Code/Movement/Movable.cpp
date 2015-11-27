@@ -55,6 +55,16 @@ void Movable::moveBy(float x, float y) {
 	yTarget += y;
 }
 
+bool Movable::atRotation() {
+	if(this->rTarget == this->rPos)
+		return true;
+	return false;
+}
+bool Movable::atPosition() {
+	if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
+		return true;
+	return false;
+}
 
 float Movable::getX() {
 	return xPos;

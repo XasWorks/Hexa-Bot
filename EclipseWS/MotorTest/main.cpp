@@ -12,9 +12,9 @@
 #include "Code/Movement/Locomotor.h"
 
 #define F_ISR1 5000
-#define F_CAL  150
+#define F_CAL  100
 
-#define F_REACT 20
+#define F_REACT 30
 
 #define STEPPING 8
 
@@ -61,24 +61,28 @@ int main() {
 	//Sensor input pin configuration
 	PORTC |= (0b11);
 
-	_delay_ms(1000);
+	_delay_ms(5000);
 
-	test.setSpeed(30);
-	test.setRotationSpeed(45);
 
-#define ACCELL 300
-#define MAX_SPEED 50
+#define ACCELL 500
+#define START_SPEED 50
+#define MAX_SPEED 200
+
+#define ROT_SPEED 100
+#define DRIVE_SPEED 300
+
+	test.accelerateTo(DRIVE_SPEED);
+	test.setAcceleration(1);
+	test.setRotationSpeed(START_SPEED);
 
 	float accell_speed=0;
 
 	while(true) {
-
+		if(test.atPosition())
+			test.moveTowards(75);
 
 		if(react_prescaler == F_ISR1 / F_REACT) {
 			react_prescaler = 0;
-
-			test.moveTowards(20 / F_REACT);
-
 
 			if((PINC & 1) == 0) {
 				if(accell_speed <= MAX_SPEED) {
@@ -86,6 +90,7 @@ int main() {
 					test.setRotationSpeed(accell_speed);
 				}
 				test.rotateBy(accell_speed / F_REACT);
+				test.setSpeed(ROT_SPEED);
 			}
 			else if((PINC & 2) == 0) {
 				if(accell_speed <= MAX_SPEED) {
@@ -93,9 +98,12 @@ int main() {
 					test.setRotationSpeed(accell_speed);
 				}
 				test.rotateBy(-accell_speed / F_REACT);
+				test.setSpeed(ROT_SPEED);
 			}
-			else
-				accell_speed = 0;
+			else {
+				accell_speed = START_SPEED;
+				test.accelerateTo(DRIVE_SPEED);
+			}
 		}
 	}
 }

@@ -41,6 +41,8 @@ public:
 
 	//Returns true if the robot is finished with everything important and can move again.
 	bool isReady();
+	bool atPosition();
+	bool atRotation();
 
 	//Return the different corrdinates (in mm) or current rotation (in degrees)
 	float getX();
