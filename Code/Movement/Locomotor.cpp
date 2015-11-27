@@ -63,7 +63,7 @@ void Locomotor::moveTowards(float dist, float dir) {
 	this->recalculateXYFact();
 }
 
-void bool Locomotor::isReady() {
+bool Locomotor::isReady() {
 	if(this->xTarget != this->xPos)
 		return false;
 	if(this->yTarget != this->yPos)
@@ -81,8 +81,8 @@ void Locomotor::flush() {
 
 void Locomotor::update() {
 	//Pre-Calculate the Sin and Cos values
-	float cSin = sin(this->rPos * DEG_TO_RAD);
-	float cCos = cos(this->rPos * DEG_TO_RAD);
+	float cSin = sin(-1 * this->rPos * DEG_TO_RAD);
+	float cCos = cos(-1 * this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
 	float xDifference = this->xTarget - this->xPos;
@@ -105,12 +105,12 @@ void Locomotor::update() {
 		this->yPos += yThisISR;
 	}
 
-	float xRotated = cCos * xThisISR + cSin * yThisISR;
+	float xRotated = cCos * xThisISR - cSin * yThisISR;
 	float yRotated = cSin * xThisISR + cCos * yThisISR;
 
 	//Rotation-Stepping calculation
 	if(rDifference != 0) {
-		rThisISR = (fabs(rDifference) > fabs(this->rPerISR)) ? this->rPerISR : rDifference;
+		rThisISR = (fabs(rDifference) > fabs(this->rPerISR)) ? ((rDifference < 0) ? -rPerISR : rPerISR) : rDifference;
 		this->rPos += rThisISR;
 	}
 
