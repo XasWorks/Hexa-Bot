@@ -23,16 +23,12 @@ private:
 	volatile float xFact = 0, yFact = 0, rPerISR = 0;
 	volatile float speedTarget = 0, acceleration = 0;
 
-	//Buffer values for sinus and cosin calculations
-	volatile float cSin, cCos, oldAngle;
-
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;
 
 	void recalculateXYFact();
 
 	void accelerate();
-	void precalTrig();
 	float calcAxis(float position, float target, float fact);
 
 public:

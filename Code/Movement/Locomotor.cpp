@@ -91,19 +91,11 @@ void Locomotor::flush() {
 
 void Locomotor::accelerate() {
 	//Acceleration controls
+	float speedDiff = speedTarget - speed;
 	if(this->speedTarget > this->speed)
-		this->speed += (this->acceleration > (this->speedTarget - this->speed)) ? (this->speedTarget - this->speed) : this->acceleration;
+		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : this->acceleration;
 	else if(this->speedTarget < this->speed)
-		this->speed -= (this->acceleration > (this->speed - this->speedTarget)) ? (this->speed - this->speedTarget) : this->acceleration;
-}
-
-void Locomotor::precalTrig() {
-	if(this->rPos != this->oldAngle) {
-		cSin = sin(-1 * this->rPos * DEG_TO_RAD);
-		cCos = cos(-1 * this->rPos * DEG_TO_RAD);
-
-		this->oldAngle = this->rPos;
-	}
+		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : -this->acceleration;
 }
 
 float Locomotor::calcAxis(float position, float target, float fact) {
@@ -116,10 +108,11 @@ float Locomotor::calcAxis(float position, float target, float fact) {
 
 void Locomotor::update() {
 
-	this->accelerate();
+	accelerate();
 
 	//Pre-Calculate the Sin and Cos values
-	precalTrig();
+	float cSin = sin(-1 * this->rPos * DEG_TO_RAD);
+	float cCos = cos(-1 * this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
 	float xDifference = this->xTarget - this->xPos;

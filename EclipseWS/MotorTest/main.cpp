@@ -74,10 +74,11 @@ int main() {
 #define ROT_SPEED 100
 #define DRIVE_SPEED 300
 
-	test.setSpeed(25);
+	test.setSpeed(0);
+	test.setAcceleration(50);
+	test.accelerateTo(250);
 
-	test.moveBy(100,100);
-	test.rotateBy(90);
+	test.moveBy(100,0);
 
 	float accell_speed=0;
 
