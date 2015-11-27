@@ -122,6 +122,8 @@ void Locomotor::update() {
 	precalTrig();
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
+	float xDifference = this->xTarget - this->xPos;
+	float yDifference = this->yTarget - this->yPos;
 	float rDifference = this->rTarget - this->rPos;
 
 	float xThisISR = 0;

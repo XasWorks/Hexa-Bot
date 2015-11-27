@@ -47,6 +47,9 @@ ISR(TIMER1_COMPA_vect) {
 
 int main() {
 
+	DDRC |= (0b100);
+	PORTC |= (1<<2);
+
 	//CTC Register 1A set up for F_ISR Speed
 	OCR1A = F_CPU/64/F_ISR1 -1;
 	//Clock select to 64-prescaler, CTC mode
@@ -61,49 +64,52 @@ int main() {
 	//Sensor input pin configuration
 	PORTC |= (0b11);
 
-	_delay_ms(5000);
+	_delay_ms(500);
 
 
-#define ACCELL 500
-#define START_SPEED 50
+#define ACCELL 300
+#define START_SPEED 20
 #define MAX_SPEED 200
 
 #define ROT_SPEED 100
 #define DRIVE_SPEED 300
 
-	test.accelerateTo(DRIVE_SPEED);
-	test.setAcceleration(1);
-	test.setRotationSpeed(START_SPEED);
+	test.setSpeed(25);
+
+	test.moveBy(100,100);
+	test.rotateBy(90);
 
 	float accell_speed=0;
 
 	while(true) {
-		if(test.atPosition())
-			test.moveTowards(75);
 
-		if(react_prescaler == F_ISR1 / F_REACT) {
-			react_prescaler = 0;
 
-			if((PINC & 1) == 0) {
-				if(accell_speed <= MAX_SPEED) {
-					accell_speed += ACCELL / F_REACT;
-					test.setRotationSpeed(accell_speed);
-				}
-				test.rotateBy(accell_speed / F_REACT);
-				test.setSpeed(ROT_SPEED);
-			}
-			else if((PINC & 2) == 0) {
-				if(accell_speed <= MAX_SPEED) {
-					accell_speed += ACCELL / F_REACT;
-					test.setRotationSpeed(accell_speed);
-				}
-				test.rotateBy(-accell_speed / F_REACT);
-				test.setSpeed(ROT_SPEED);
-			}
-			else {
-				accell_speed = START_SPEED;
-				test.accelerateTo(DRIVE_SPEED);
-			}
-		}
+//		if(test.atPosition())
+//			test.moveTowards(75);
+//
+//		if(react_prescaler == F_ISR1 / F_REACT) {
+//			react_prescaler = 0;
+//
+//			if((PINC & 1) == 0) {
+//				if(accell_speed <= MAX_SPEED) {
+//					accell_speed += ACCELL / F_REACT;
+//					test.setRotationSpeed(accell_speed);
+//				}
+//				test.rotateBy(accell_speed / F_REACT);
+//				test.setSpeed(ROT_SPEED);
+//			}
+//			else if((PINC & 2) == 0) {
+//				if(accell_speed <= MAX_SPEED) {
+//					accell_speed += ACCELL / F_REACT;
+//					test.setRotationSpeed(accell_speed);
+//				}
+//				test.rotateBy(-accell_speed / F_REACT);
+//				test.setSpeed(ROT_SPEED);
+//			}
+//			else {
+//				accell_speed = START_SPEED;
+//				test.accelerateTo(DRIVE_SPEED);
+//			}
+//		}
 	}
 }
