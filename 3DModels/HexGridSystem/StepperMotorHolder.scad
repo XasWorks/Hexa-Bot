@@ -1,4 +1,4 @@
-use <NewHexGrid.scad>
+use <../Lib/NewHexGrid.scad>
 
 
 plateThickness = 1.5;
