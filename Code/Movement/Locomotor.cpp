@@ -21,8 +21,8 @@ void Locomotor::recalculateXYFact() {
 	float travelMM = sqrt(pow((this->xTarget - this->xPos), 2)
 			+ pow(this->yTarget - this-> yPos, 2));
 
-	this->xPerISR = ((this->xTarget - this->xPos) / travelMM) * this->speed / this->ISRFreq;
-	this->yPerISR = ((this->yTarget - this->yPos) / travelMM) * this->speed / this->ISRFreq;
+	this->xFact = ((this->xTarget - this->xPos) / travelMM);
+	this->yFact = ((this->yTarget - this->yPos) / travelMM);
 }
 
 void Locomotor::setRotationSpeed(float newSpeed) {
@@ -30,9 +30,19 @@ void Locomotor::setRotationSpeed(float newSpeed) {
 }
 
 void Locomotor::setSpeed(float newSpeed) {
-	this->speed = newSpeed;
+	if(newSpeed > 0) {
+		this->speed = newSpeed / ISRFreq;
+		this->speedTarget = newSpeed / ISRFreq;
+	}
+}
 
-	this->recalculateXYFact();
+void Locomotor::setAcceleration(float acceleration) {
+	if(acceleration > 0)
+		this->acceleration = acceleration / ISRFreq;
+}
+
+void Locomotor::accelerateTo(float targetSpeed) {
+	this->speedTarget = targetSpeed / ISRFreq;
 }
 
 void Locomotor::moveTo(float x, float y) {
@@ -45,6 +55,20 @@ void Locomotor::moveTo(float x, float y) {
 void Locomotor::moveBy(float x, float y) {
 	this->xTarget += x;
 	this->yTarget += y;
+
+	this->recalculateXYFact();
+}
+
+void Locomotor::moveTowards(float dist) {
+	this->xTarget += dist * cos(this->rPos * DEG_TO_RAD);
+	this->yTarget += dist * sin(this->rPos * DEG_TO_RAD);
+
+	this->recalculateXYFact();
+}
+
+void Locomotor::moveTowards(float dist, float dir) {
+	this->xTarget += dist * cos(dir * DEG_TO_RAD);
+	this->yTarget += dist * sin(dir * DEG_TO_RAD);
 
 	this->recalculateXYFact();
 }
@@ -65,10 +89,22 @@ void Locomotor::flush() {
 	}
 }
 
+void Locomotor::accelerate() {
+	//Acceleration controls
+	float speedDiff = speedTarget - speed;
+	if(this->speedTarget > this->speed)
+		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : this->acceleration;
+	else if(this->speedTarget < this->speed)
+		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : -this->acceleration;
+}
+
 void Locomotor::update() {
+
+	accelerate();
+
 	//Pre-Calculate the Sin and Cos values
-	float cSin = sin(this->rPos * DEG_TO_RAD);
-	float cCos = cos(this->rPos * DEG_TO_RAD);
+	float cSin = sin(-1 * this->rPos * DEG_TO_RAD);
+	float cCos = cos(-1 * this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
 	float xDifference = this->xTarget - this->xPos;
@@ -81,22 +117,22 @@ void Locomotor::update() {
 
 	//X-Steps calculation
 	if(xDifference != 0) {
-		xThisISR = (fabs(xDifference) > this->xPerISR) ? xPerISR : xDifference;
+		xThisISR = (fabs(xDifference) > fabs(this->xFact * speed)) ? xFact * speed : xDifference;
 		this->xPos += xThisISR;
 	}
 
 	//Y-Steps calculation
 	if(yDifference != 0) {
-		yThisISR = (fabs(yDifference) > this->yPerISR) ? yPerISR : yDifference;
+		yThisISR = (fabs(yDifference) > fabs(this->yFact * speed)) ? yFact * speed : yDifference;
 		this->yPos += yThisISR;
 	}
 
-	float xRotated = cCos * xThisISR + cSin * yThisISR;
+	float xRotated = cCos * xThisISR - cSin * yThisISR;
 	float yRotated = cSin * xThisISR + cCos * yThisISR;
 
 	//Rotation-Stepping calculation
 	if(rDifference != 0) {
-		rThisISR = (fabs(rDifference) > this->rPerISR) ? this->rPerISR : rDifference;
+		rThisISR = (fabs(rDifference) > fabs(this->rPerISR)) ? ((rDifference < 0) ? -rPerISR : rPerISR) : rDifference;
 		this->rPos += rThisISR;
 	}
 

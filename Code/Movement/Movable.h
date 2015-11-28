@@ -32,11 +32,17 @@ public:
 	void moveTo(float x, float y);
 	void moveBy(float x, float y);
 
+	//Move the motor either towards current heading direction, or specified direction
+	void moveTowards(float dist);
+	void moveTowards(float dist, float angle);
+
 	//Wait for all functions to finish. Abstract method
 	void flush();
 
 	//Returns true if the robot is finished with everything important and can move again.
 	bool isReady();
+	bool atPosition();
+	bool atRotation();
 
 	//Return the different corrdinates (in mm) or current rotation (in degrees)
 	float getX();

@@ -20,22 +20,32 @@ private:
 	TranslativeStepper *A,*B,*C;
 
 	//Distance that the motors have to cover per Calculation
-	volatile float xPerISR = 0, yPerISR = 0, rPerISR = 0;
+	volatile float xFact = 0, yFact = 0, rPerISR = 0;
+	volatile float speedTarget = 0, acceleration = 0;
 
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;
 
+	void recalculateXYFact();
+
+	void accelerate();
+	float calcAxis(float position, float target, float fact);
 
 public:
 	Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeStepper *C, uint16_t ISRSpeed);
 
-	void recalculateXYFact();
-
 	void setRotationSpeed(float newSpeed);
 	void setSpeed(float speed);
 
+	void setAcceleration(float acceleration);
+	void accelerateTo(float targetSpeed);
+
 	void moveTo(float x, float y);
 	void moveBy(float x, float y);
+
+	//Move the motor towards either specified direction or wanted heading
+	void moveTowards(float dist);
+	void moveTowards(float dist, float direction);
 
 	bool isReady();
 	void flush();
