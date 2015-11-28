@@ -67,15 +67,15 @@ int main() {
 	_delay_ms(500);
 
 
-#define ACCELL 300
-#define START_SPEED 20
-#define MAX_SPEED 200
+#define ROT_SPEED 150
+#define DRIVE_SPEED 150
 
-#define ROT_SPEED 100
-#define DRIVE_SPEED 300
+#define ACCELL 1000
+#define START_SPEED 0
+#define MAX_SPEED 90
 
 	test.setSpeed(0);
-	test.setAcceleration(50);
+	test.setAcceleration(30);
 
 	float accell_speed=0;
 
@@ -92,7 +92,7 @@ int main() {
 					test.setRotationSpeed(accell_speed);
 				}
 				test.rotateBy(accell_speed / F_REACT);
-				test.accelerateTo(ROT_SPEED);
+				test.setSpeed(ROT_SPEED);
 			}
 			else if((PINC & 2) == 0) {
 				if(accell_speed <= MAX_SPEED) {
@@ -100,10 +100,11 @@ int main() {
 					test.setRotationSpeed(accell_speed);
 				}
 				test.rotateBy(-accell_speed / F_REACT);
-				test.accelerateTo(ROT_SPEED);
+				test.setSpeed(ROT_SPEED);
 			}
 			else {
-				accell_speed = START_SPEED;
+				if(accell_speed > START_SPEED)
+					accell_speed -= ACCELL / F_REACT;
 				test.accelerateTo(DRIVE_SPEED);
 			}
 		}
