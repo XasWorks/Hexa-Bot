@@ -26,30 +26,40 @@ private:
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;
 
+	//Recalculate movement per ISR factors of X and Y axis
 	void recalculateXYFact();
 
+	//Code to calculate the robots accelleration value
 	void accelerate();
-	float calcAxis(float position, float target, float fact);
 
 public:
+	//Constructor for the Locomotor. It requires three pointers to instances of the Translative Stepper class with appropriately set values, as well as the ISR Speed the Update function will be executed at.
 	Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeStepper *C, uint16_t ISRSpeed);
 
+	//Set the rotation speed of the robot in degrees / second
 	void setRotationSpeed(float newSpeed);
+	//Set the movement speed of the robot in mm / second
 	void setSpeed(float speed);
 
+	//Set the acceleration of the robot in mm / second²
 	void setAcceleration(float acceleration);
+	//Accelerate the robot towards a wanted speed. Smoother movement.
 	void accelerateTo(float targetSpeed);
 
+	//Move the robot to the specified X and Y coordinates, in mm.
 	void moveTo(float x, float y);
+	//Move the robot by the specified amount of mm along X and Y axis
 	void moveBy(float x, float y);
 
-	//Move the motor towards either specified direction or wanted heading
+	//Move the robot forwards by "dist" mm
 	void moveTowards(float dist);
+	//Move the robot towards the specified direction in degrees by "dist" mm.
 	void moveTowards(float dist, float direction);
 
-	bool isReady();
+	//Wait for all movements to finish.
 	void flush();
 
+	//Update the robot calculation, must be executed within a regular and slow ISR (~75Hz)
 	void update();
 };
 

@@ -19,21 +19,26 @@ protected:
 public:
 	Movable();
 
-	//Set the rotation speed (in degrees / second)  and the movement speed (in mm / second)
+	//Set the rotation speed in degrees / second
 	void setRotationSpeed(float speed);
+	//Set the movement speed in mm / second
 	void setSpeed(float speed);
 
-	//Rotate to or by a specific angle. "headTo" is a special case in which the total amount of rotations is ignored, thusly using the fastest way to head towards "angle"
+	//Rotate it towards a specific direction in degrees
 	void rotateTo(float angle);
+	//Make the robot face a specific direction in degrees, ranging from -180 to 180.
 	void headTo(float angle);
+	//Rotate the robot by the specified amount of degrees.
 	void rotateBy(float angle);
 
-	//Move the robot to or by a specific position or distance in mm.
+	//Move the robot to a specific position in mm
 	void moveTo(float x, float y);
+	//Move the robot by the specified amount of mm.
 	void moveBy(float x, float y);
 
-	//Move the motor either towards current heading direction, or specified direction
+	//Move the robot forwards by the specified amount of mm towards the direction the robot is currently facing.
 	void moveTowards(float dist);
+	//Move the robot forwards towards the specified direction in degrees by "dist" mm.
 	void moveTowards(float dist, float angle);
 
 	//Wait for all functions to finish. Abstract method
@@ -41,12 +46,16 @@ public:
 
 	//Returns true if the robot is finished with everything important and can move again.
 	bool isReady();
+	//Returns true if the robot is at its wanted position
 	bool atPosition();
+	//Returns true if the robot is at its wanted rotation
 	bool atRotation();
 
-	//Return the different corrdinates (in mm) or current rotation (in degrees)
+	//Return the current X positon in mm.
 	float getX();
+	//Return the current Y position in mm.
 	float getY();
+	//Return the current rotation in degrees.
 	float getR();
 };
 
