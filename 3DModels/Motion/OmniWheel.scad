@@ -23,18 +23,18 @@ num = 5*2;	//Number of all subwheels to create. (Has to be a round number!!)
 radius = 35;	//Radius of the omni-wheel.
 
 //SUBWHEEL VARIABLES
-subwheelBaseSize = 3.5;	//Size of the subwheels at their smallest point (The edge)
+subwheelBaseSize = 4.25;	//Size of the subwheels at their smallest point (The edge)
 subwheelPlay = 0.5; 		//The additional size that will be cut out around the subwheels to ensure smooth movement
-subwheelOverlap = 5;		//Angle in which the subwheel pieces will overlap. Causes smoother movement as there is no definite edge.
+subwheelOverlap = 3;		//Angle in which the subwheel pieces will overlap. Causes smoother movement as there is no definite edge.
 
 //AXIS HOLE VARIABLE
 axisDiameter = 1.75;
-axisPlay = 0.4;
+axisPlay = 0.45;
 
 //SUBWHEEL CONNECTOR VARIABLES
-cRad = axisDiameter/2 + 1.8; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
+cRad = axisDiameter/2 + 1.5; 	//Radius of the connectors to the subwheels (Best is slightly smaller than the subwheel.
 cThick = 1.5; 					//Thickness of the connectors.
-cPlay = 0.08; 					//Play room for the connector ports (distance to the subwheel)
+cPlay = 0.1; 					//Play room for the connector ports (distance to the subwheel)
 
 //FRAME VARIABLES
 frameRadius = connectorOffset(num, radius) + cPlay + cThick;		//Radius of the frame Cylinder
@@ -106,7 +106,7 @@ module subwheelConnector(n, r, i) {
 		}
 		
 		//Create the hole for the filament axis to go through
-		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.3, h= connectorOffset(n, r)*2 + 10, $fn=14);
+		translate([wheelOffset(n, r) - subwheelBaseSize, connectorOffset(n, r) + 5, 0]) rotate([90,0,0]) cylinder(d= axisDiameter + 0.38, h= connectorOffset(n, r)*2 + 10, $fn=14);
 	}
 }
 

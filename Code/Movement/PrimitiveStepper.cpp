@@ -5,15 +5,15 @@
 //Step the motor once into specified direction.
 void PrimitiveStepper::step(uint8_t dir) {
 	if (dir == 0) {					//Rotate it backwards
-		*PORT |= (1 << (pin + 1));	//Reverse direction then step and reset.
+		*PORT |= (1 << (pin + 1));	//Set the direction pin, then activate the stepping pin and deactivate both immediately
 		*PORT |= (1 << pin);
 		*PORT &= ~(3 << pin);
-		stepsToGo++;
+		stepsToGo++;				//One step backwards was done; increase the amount of steps to do and decrease the total amount
 		currentSteps--;
 	} else {						//Rotate it forwards
-		*PORT |= (1 << pin);
+		*PORT |= (1 << pin);		//Activate the step pin and immediately deactivate
 		*PORT &= ~(1 << pin);
-		stepsToGo--;
+		stepsToGo--;				//Decrease the steps to do and increase total amount of steps done.
 		currentSteps++;
 	}
 }
@@ -24,7 +24,8 @@ PrimitiveStepper::PrimitiveStepper(volatile uint8_t *P, uint8_t pin,
 	this->PORT = P;
 	this->pin = pin;
 	this->updateFrequency = upSpeed;
-	*(PORT - 1) |= (3 << pin);
+
+	*(PORT - 1) |= (3 << pin); 	//Set up the pins to outputs (DDRx address is one below PORTx)
 }
 
 //Default constructor for derived classes. Does nothing.
@@ -33,27 +34,24 @@ PrimitiveStepper::PrimitiveStepper() {
 
 //ISR Routine for the motor, updates it when required.
 void PrimitiveStepper::update() {
-	if ((stepsToGo <= -1) || (stepsToGo >= 1)) {	//If there are any steps to do ..
+	if ((stepsToGo <= -1) || (stepsToGo >= 1)) {	//If there are any steps to do at all
 
-		stepBuffer += stepSpeed;	//Add up the stepping speed to the virtual steps ...
+		stepBuffer += stepSpeed;	//Increase the "Buffer step" value by the Steps/ISR value
 
-		if (stepBuffer >= 1) {		//If there has to be an actual step done
+		if (stepBuffer >= 1) {		//Is there a step to be done?
 			stepBuffer -= 1;
 
-			if (stepsToGo <= -1)		//If it has to move backwards
+			if (stepsToGo <= -1)		//Backwards movement
 				step(0);
-			else if(stepsToGo >= 1)				//Otherwise, if it has to move forwards
+			else if(stepsToGo >= 1)		//Forwards movement
 				step(1);
-
-			if (stepsToGo == 0)		//If the goal was reached, reset the virtual steps.
-				stepBuffer = 0;
 		}
 	}
 }
 
 //Set the speed of the motor in steps per second.
 void PrimitiveStepper::setSpeed(uint16_t stepsPerSec) {
-	stepSpeed = stepsPerSec / updateFrequency;//Calculate the required steps per ISR call.
+	stepSpeed = stepsPerSec / updateFrequency;	//Calculate the required steps per ISR call.
 }
 
 //Move the stepper motor by the specified amount of steps.

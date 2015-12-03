@@ -7,15 +7,24 @@
 
 #include "TranslativeStepper.h"
 
+//Constructor for a translative stepper.
+//It requires the PORT of the motors, the pins (step then direction pin)
+//The difference between ISR Frequency and Calculation Frequency
+//The microstepping of the motor (assumed that it is a standard stepper motor with 200 steps per revolution)
+//The radius of the wheel used, the rotation of the wheel relative to the X-Axis of the robot, and the distance of the wheel to the center.
 TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uint8_t ISRPerCal, uint8_t microstepping, float radius, float rotation, float distance) {
+	//Save these values
 	this->PORT = PORT;
 	this->pin = pins;
 	this->ISRPerCal = ISRPerCal;
 
+	//Set the two pins to output (DDRx one below PORTx)
 	*(PORT - 1) |= (0b11 << this->pin);
 
+	//Calculate how many steps per mm the wheel will have to do.
 	float stepsPerMM = (200 * microstepping) / (M_PI * 2 * radius);
 
+	//Calculate the "movement factors", i.e. the conversion factor for 1mm of X or Y movement, or one degree of rotation, into steps.
 	this->xFact = stepsPerMM * sin(rotation * DEG_TO_RAD);
 	this->yFact = stepsPerMM * cos(rotation * DEG_TO_RAD);
 	this->rFact = (M_PI * 0.0055555555555 * distance) * stepsPerMM;

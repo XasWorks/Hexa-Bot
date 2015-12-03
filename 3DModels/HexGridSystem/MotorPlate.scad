@@ -1,4 +1,4 @@
-use <NewHexGrid.scad>
+use <../Lib/NewHexGrid.scad>
 
 
 //Generate the "raw" hex base, without any modifications.
