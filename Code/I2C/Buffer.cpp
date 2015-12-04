@@ -8,10 +8,12 @@
 #include "Buffer.h"
 
 void Buffer::shift() {
-	for (uint8_t i=1; i < inStore; i++) {
-		this->input[i -1] = this->input[i];
+	if(this->inStore != 0) {
+		for (uint8_t i=1; i < inStore; i++) {
+			this->input[i -1] = this->input[i];
+		}
+		this->inStore--;
 	}
-	this->inStore--;
 }
 
 Buffer::Buffer() {
