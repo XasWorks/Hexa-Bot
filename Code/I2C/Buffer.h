@@ -16,7 +16,7 @@
 class Buffer {
 private:
 	//Buffer arrays for the values, as well as a counter for how many items are stored
-	volatile uint8_t input[BUF_SIZE] = {0};
+	volatile uint8_t input[BUF_SIZE];
 	volatile uint8_t inStore = 0;
 
 	//Moves all the items of the list forwards by one
