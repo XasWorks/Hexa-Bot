@@ -6,16 +6,20 @@ beamHeight = 2.2;			//The height of either one of the upper or lower beams.
 beamOuterShift = 1.6;		//How far should the outer edge point of the transition from either lower or upper section to middle section be shifted inwards?
 beamShift = 1.6;			//How far should the two sections be spread apart?
 
-beamPlay = 0.4; 			//How much room should be left between 
+beamPlay = 0.25; 			//How much room should be left between 
 
 module lowerHex(hexSize = defaultHexSize) {
 	render() for(i=[0:5]) rotate([0,0, 360/6 * i]) 
-		shine(length = hexSize, height= beamHeight*2, angle = 60.02) 
+		shine(length = hexSize, height= beamHeight*2, angle = 59.99) 
 		translate([hexSize/2 - beamSize*2, 
 			tan(30) * (hexSize- beamSize*2) /2, 0.01]) 
 		rotate([90, 0, 0]) 
 		linear_extrude(height= tan(30) * (hexSize - beamSize*2))
-		polygon([[-beamPlay,0], [beamSize - beamPlay, 0], [beamSize, beamHeight], [0, beamHeight]]);
+		polygon([[0,0], [beamSize - beamPlay, 0], [beamSize, beamHeight], [0, beamHeight]]);
+}
+
+module hexFill(hexSize = defaultHexSize) {
+	for(i=[0:60:360]) rotate([0, 0, i]) translate([0, -tan(30)*(hexSize - beamSize*4)/2, 0]) cube([(hexSize - beamSize*4 - 0.01)/2, tan(30)*(hexSize - beamSize *4), beamHeight]);
 }
 
 module middleHex(hexSize = defaultHexSize, aligned= true) {
@@ -58,4 +62,5 @@ module hexPattern(i, hexSize = defaultHexSize) {
 	}
 }
 
-hexPattern([[1,0], [1,1], [2,0], [2,1], [2,2], [2,3], [3,0], [3,1], [3,2], [4,0]]) hex();
+lowerHex();
+hexFill();

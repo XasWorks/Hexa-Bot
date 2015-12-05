@@ -1,6 +1,6 @@
 use <../Lib/NewHexGrid.scad>
 
-connectorHeight = 20;
+connectorHeight = 30;
 
 beamWidth = 2;
 beamElevation = 2.2 + 1.6 + 0.01;
