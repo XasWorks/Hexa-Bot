@@ -1,14 +1,13 @@
-use <../Lib/NewHexGrid.scad>
+use <../Lib/HexGrid.scad>
 
 hexFillRadius = 17.5 - 3;
 hexFillHeight = 2.2;
 
 module connectorHex() {
-	hexFill();
-	lowerHex();
+	lowerFill();
 }
 
-screwConnectorLength = 13;
+screwConnectorLength = 6.5;
 screwConnectorThickness = 1.5;
 
 module screwCylinder() {
@@ -24,7 +23,7 @@ module screwCylinder() {
 
 module sensorConnector() {
 	screwCylinder()
-	translate([0, 0, screwConnectorLength - hexFillHeight]) connectorHex();
+	connectorHex();
 }
 
 sensorConnector();
