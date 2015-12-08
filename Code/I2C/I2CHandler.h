@@ -34,7 +34,7 @@ private:
 public:
 	I2CHandler(uint8_t ID, uint8_t mode);
 
-	void transmit(uint8_t DATA[], uint8_t length);
+	void transmit(uint8_t *DATA, uint8_t length);
 	void update();
 };
 
