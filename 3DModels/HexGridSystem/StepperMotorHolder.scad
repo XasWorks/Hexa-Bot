@@ -1,4 +1,4 @@
-use <../Lib/NewHexGrid.scad>
+use <../Lib/HexGrid.scad>
 
 
 plateThickness = 1.5;
@@ -26,7 +26,6 @@ translate([-35/2, sin(60) * 17.5+ sin(30) * 17.5, 2.2]) {
 		rotate([-90, 0, 0]) mountPlate();
 		cube([35, plateThickness, 5]);
 	}
-	
 	translate([-0.999,0,0]) plateStabiliser();
 	translate([35 - 0.001, 0, 0]) plateStabiliser();
 }

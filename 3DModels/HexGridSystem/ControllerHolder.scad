@@ -1,4 +1,4 @@
-use <../Lib/NewHexGrid.scad>
+use <../Lib/HexGrid.scad>
 
 basePosition = 	[[0, 1.5* 17.5/cos(30)/2, 2.25],
 				 [0,0,0]];
@@ -10,7 +10,7 @@ module position(modArray, negative = false) {
 					-modArray[1][2]])
 		translate([	-modArray[0][0],
 					-modArray[0][1],
-					-modArray[0][2]])  
+					-modArray[0][2]])
 		children();
 	}
 	else {
@@ -46,13 +46,13 @@ module mountPillar() {
 
 module pillars(positions) {
 	position(platePosition, true) electronicsPlate();
-	
+
 	for(i=positions) {
 		rotate([0, 0, -90*i[0]]) {
 			if(i[0] == 0 || i[0] == 2) {
 				translate([i[1] - electronicsWidth/2, electronicsDepth/2 + wallThickness, 0]) mountPillar();
 			}
-			else 
+			else
 			translate([i[1] - electronicsDepth/2, electronicsWidth/2 + wallThickness, 0]) mountPillar();
 		}
 	}
@@ -63,11 +63,11 @@ platePosition = [	[0, 0, plateThickness],
 
 module electronicsPlate() {
 	position(basePosition, true) base();
-	
+
 	difference() {
-		translate([ - (electronicsWidth + wallThickness*2)/2, -(electronicsDepth + wallThickness*2)/2, 0]) 
+		translate([ - (electronicsWidth + wallThickness*2)/2, -(electronicsDepth + wallThickness*2)/2, 0])
 		cube([(electronicsWidth + wallThickness*2), (electronicsDepth + wallThickness*2), plateThickness]);
-		
+
 		translate([ - (electronicsWidth - pillarSupport*2)/2, -(electronicsDepth-pillarSupport*2)/2, 0]) cube([electronicsWidth - pillarSupport*2, electronicsDepth - pillarSupport*2, plateThickness]);
 	}
 }

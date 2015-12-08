@@ -1,4 +1,4 @@
-use <../Lib/NewHexGrid.scad>
+use <../Lib/HexGrid.scad>
 
 connectorHeight = 30;
 
@@ -27,8 +27,8 @@ module stabiliserBeam() {
 }
 
 module beams() {
-	for(i=[0:5]) 
-		rotate([0,0, 60 * i]) 
+	for(i=[0:5])
+		rotate([0,0, 60 * i])
 		translate([0, - 17.5 / cos(30) / 2, beamElevation]) stabiliserBeam();
 }
 
