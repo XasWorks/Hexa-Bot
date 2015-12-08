@@ -55,8 +55,7 @@ module motorMount() {
 	}
 }
 
-
-//Generate a union of the motor frame, holder, and the hex structure.
+/Generate a union of the motor frame, holder, and the hex structure.
 module halfReadyBase() {
 	render() {
 
