@@ -12,7 +12,7 @@
 #include "Code/Movement/Locomotor.h"
 
 #define F_ISR1 5000
-#define F_CAL  100
+#define F_CAL  50
 
 #define F_REACT 30
 
@@ -66,18 +66,14 @@ int main() {
 
 	_delay_ms(500);
 
+#define ROT_SPEED 50
+#define DRIVE_SPEED 200
 
-#define ROT_SPEED 150
-#define DRIVE_SPEED 150
-
-#define ACCELL 80
-#define START_SPEED 30
-#define MAX_SPEED 150
+#define ACCELL 200/3
 
 	test.setSpeed(0);
-	test.setAcceleration(30);
-
-	float accell_speed=0;
+	test.setRotationSpeed(90);
+	test.setAcceleration(ACCELL);
 
 	while(true) {
 		if(test.atPosition())
