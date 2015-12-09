@@ -62,10 +62,3 @@ module hexPattern(i, hexSize = defaultHexSize) {
 			translate([hexSize * x[0], x[1] * sin(60) * hexSize]) children();
 	}
 }
-
-<<<<<<< Updated upstream
-lowerHex();
-hexFill();
-=======
-hexPattern([[1,0], [1,1], [2,0], [2,1], [2,2], [2,3], [3,0], [3,1], [3,2], [4,0]]) hex();
->>>>>>> Stashed changes

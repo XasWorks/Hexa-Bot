@@ -16,7 +16,7 @@
 
 #define F_REACT 30
 
-#define STEPPING 8
+#define STEPPING 16
 
 TranslativeStepper stepA = TranslativeStepper(&PORTD, 0, F_ISR1/F_CAL, STEPPING, 35, -30, 75);
 TranslativeStepper stepB = TranslativeStepper(&PORTD, 2, F_ISR1/F_CAL, STEPPING, 35, 30, 75);
@@ -70,9 +70,9 @@ int main() {
 #define ROT_SPEED 150
 #define DRIVE_SPEED 150
 
-#define ACCELL 1000
-#define START_SPEED 0
-#define MAX_SPEED 90
+#define ACCELL 80
+#define START_SPEED 30
+#define MAX_SPEED 150
 
 	test.setSpeed(0);
 	test.setAcceleration(30);
@@ -83,28 +83,17 @@ int main() {
 		if(test.atPosition())
 			test.moveTowards(75);
 
-		if(react_prescaler == F_ISR1 / F_REACT) {
-			react_prescaler = 0;
+		if(test.atRotation()) {
 
 			if((PINC & 1) == 0) {
-				if(accell_speed <= MAX_SPEED) {
-					accell_speed += ACCELL / F_REACT;
-					test.setRotationSpeed(accell_speed);
-				}
-				test.rotateBy(accell_speed / F_REACT);
+				test.rotateBy(1);
 				test.setSpeed(ROT_SPEED);
 			}
 			else if((PINC & 2) == 0) {
-				if(accell_speed <= MAX_SPEED) {
-					accell_speed += ACCELL / F_REACT;
-					test.setRotationSpeed(accell_speed);
-				}
-				test.rotateBy(-accell_speed / F_REACT);
+				test.rotateBy(-1);
 				test.setSpeed(ROT_SPEED);
 			}
 			else {
-				if(accell_speed > START_SPEED)
-					accell_speed -= ACCELL / F_REACT;
 				test.accelerateTo(DRIVE_SPEED);
 			}
 		}
