@@ -6,7 +6,7 @@
 use <../Lib/Parenting.scad>
 
 baseThickness = 1;
-holePosition = 14;
+holePosition = 13.3;
 
 basePosition = [[0, 0, baseThickness], 0];
 
