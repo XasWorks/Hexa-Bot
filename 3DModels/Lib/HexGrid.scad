@@ -11,6 +11,15 @@ beamThickness = 1;
 //By how much should the polygon piece slope at the bottom layer?
 hexPlay = 0.3;
 
+//Generate a parenting node for the according hexagon
+function hexNode(hexagon, height = hexHeight + hexMiddleHeight, rotation = 0) =
+			//Translative coordinates
+			[	[	hexDiameter * hexagon[0] + ((hexagon[1] % 2 != 0) ? hexDiameter/2 : 0),
+					hexDiameter * sin(60) * hexagon[1],
+					height],
+			//Rotation coordinates
+				[	0, 0, 60 * rotation] ];
+
 module hexSegment(b2, t2, b1, t1, h) {
 	fixDist = 0;
 
