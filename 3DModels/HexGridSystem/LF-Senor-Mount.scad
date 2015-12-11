@@ -12,14 +12,19 @@ screwConnectorThickness = 1.5;
 
 lHexSize = 17.5 - 2.2 - 0.4;
 
+inMovement = 6;
+
+mountXPos = lHexSize /2 - sin(30) * (inMovement);
+mountYPos = tan(30) * mountXPos;
+
 module screwCylinder() {
 	$fs = 0.85;
 	difference() {
 		union() {
 			children();
-			translate([lHexSize/2 - 3, 0, 0]) cylinder(r = 3/2 + screwConnectorThickness, h= screwConnectorLength);
+			translate([mountXPos, mountYPos, 0]) cylinder(r = 3/2 + screwConnectorThickness, h= screwConnectorLength);
 		}
-		translate([lHexSize/2 - 3, 0, 0]) cylinder(r= 3/2, h= screwConnectorLength);
+		translate([mountXPos, mountYPos, 0]) cylinder(r= 3/2, h= screwConnectorLength);
 	}
 }
 
