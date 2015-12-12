@@ -28,18 +28,19 @@ module base() {
 }
 
 shieldingHeight = 20;
+shieldingScale = 1.6;
 
 module shieldShape() {
   difference() {
-    translate([-5, 0]) square([10, sensorYDistance*2 + sensorYSize]);
+    translate([-5, 0]) square([10, sensorYDistance + sensorYSize]);
 
     translate([-sensorXSize/2, sensorYDistance]) square([sensorXSize, sensorYSize]);
   }
 }
 
 module shield() {
-  linear_extrude(height = shieldingHeight) {
-    shieldShape();
+  translate([0, sensorYSize + sensorYDistance, 0]) linear_extrude(height = shieldingHeight, scale = shieldingScale) {
+    translate([0, -sensorYSize - sensorYDistance, 0]) shieldShape();
   }
 }
 
