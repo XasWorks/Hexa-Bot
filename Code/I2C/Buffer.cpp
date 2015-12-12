@@ -17,6 +17,7 @@ void Buffer::shift() {
 }
 
 Buffer::Buffer() {
+
 }
 
 uint8_t Buffer::isAvailable() {

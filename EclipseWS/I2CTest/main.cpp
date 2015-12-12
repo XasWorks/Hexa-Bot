@@ -7,6 +7,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "Code/I2C/Buffer.h"
 #include "Code/I2C/I2CHandler.h"
 
 I2CHandler test(1, 0);

@@ -11,14 +11,14 @@
 #define I2CMODE_IDLE 0
 #define I2CMODE_TRANSMIT 1
 
-#include "Buffer.h"
 #include <avr/io.h>
+#include "Buffer.h"
 
 
 class I2CHandler {
 private:
-	Buffer *input;
-	Buffer *output;
+	Buffer input;
+	Buffer output;
 
 	volatile uint8_t mode;
 
