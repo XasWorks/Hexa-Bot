@@ -46,7 +46,7 @@ void loop() // Display RGB and colors in the serial Monitor
   Serial.print(blue, DEC);  
   
 
-  if (red < blue && red < green && red < 20)
+  if (red < blue && red < green && red < 10)
   {  
    Serial.println(" - (Red Color)");  
    }  
