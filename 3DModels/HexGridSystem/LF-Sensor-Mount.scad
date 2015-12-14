@@ -7,12 +7,12 @@ module connectorHex() {
 	lowerFill();
 }
 
-screwConnectorLength = 6.5;
-screwConnectorThickness = 1.5;
+screwConnectorLength = 2.6;
+screwConnectorThickness = 1;
 
 lHexSize = 17.5 - 2.2 - 0.4;
 
-inMovement = 6;
+inMovement = 4.5;
 
 mountXPos = lHexSize /2 - sin(30) * (inMovement);
 mountYPos = tan(30) * mountXPos;
@@ -22,7 +22,7 @@ module screwCylinder() {
 	difference() {
 		union() {
 			children();
-			translate([mountXPos, mountYPos, 0]) cylinder(r = 3/2 + screwConnectorThickness, h= screwConnectorLength);
+			translate([mountXPos, mountYPos, 2]) cylinder(r = 3/2 + screwConnectorThickness, h= screwConnectorLength -2);
 		}
 		translate([mountXPos, mountYPos, 0]) cylinder(r= 3/2, h= screwConnectorLength);
 	}
