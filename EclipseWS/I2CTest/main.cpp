@@ -21,5 +21,4 @@ int main() {
 
 	uint8_t jibber[3] = {0,0,0};
 
-	test.transmit(jibber,3);
 }

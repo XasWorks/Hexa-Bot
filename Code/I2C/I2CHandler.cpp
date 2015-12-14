@@ -37,6 +37,7 @@ uint8_t I2CHandler::readSR() {
 	return TWSR & ~(1<< TWPS0 | 1<< TWPS1);
 }
 
+
 I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	//Activate Pull-UPs
 	PORTC |= (1<< PC5 | 1<< PC4);
@@ -51,28 +52,25 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	TWCR |= (1<< TWIE);
 }
 
-void I2CHandler::transmit(uint8_t *DATA, uint8_t length) {
-	for(uint8_t i=0; i < length; i++) {
-		this->input.queue(DATA[i]);
-	}
-
-	this->mode = I2CMODE_TRANSMIT;
-
+void I2CHandler::startJob(I2CJob *job) {
+	this->currentJob = job;
+	this->currentJob->I2CInit(&output);
+	this->mode = I2C_MASTER_TRANSMIT;
 	this->start();
 }
 
 void I2CHandler::update() {
 	switch(3) {
-	case I2CMODE_TRANSMIT:
-		if(this->input.isAvailable() != 0)
-			this->load(this->input.read());
+	case I2C_MASTER_TRANSMIT:
+		if(this->output.isAvailable() != 0)
+			this->load(this->output.read());
 		else {
 			this->stop();
-			//this->mode = I2CMODE_IDLE;
+			this->currentJob->I2CFinish(&input);
+			this->mode = I2C_IDLE;
 		}
 	break;
 	}
 
 	this->clearTWINT();
 }
-
