@@ -11,7 +11,7 @@
 #include <avr/io.h>
 
 //How many bytes should the buffer contain?
-#define BUF_SIZE 16
+#define BUF_SIZE 8
 
 class Buffer {
 private:

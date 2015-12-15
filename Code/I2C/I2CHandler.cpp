@@ -87,7 +87,7 @@ void I2CHandler::beginOperation(uint8_t mode) {
 }
 
 void I2CHandler::update() {
-	switch(3) {
+	switch(this->mode) {
 	case I2C_MASTER_TRANSMIT:
 		if(this->output.isAvailable() != 0)
 			this->load(this->output.read());
@@ -97,6 +97,9 @@ void I2CHandler::update() {
 			else
 				this->stop();
 		}
+	break;
+
+	default:
 	break;
 	}
 

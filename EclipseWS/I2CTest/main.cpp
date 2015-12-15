@@ -41,16 +41,16 @@ public:
 PortExp SensrJob(0b010000, &test);
 
 ISR(TWI_vect) {
-	PORTB ^= (1<< PB5);
-
 	test.update();
 }
 
 int main() {
 	DDRB |= (1<< PB5);
-	PORTB |= (1<< PB5);
 
 	_delay_ms(1000);
+	PORTB |= (1 << PB5);
+	_delay_ms(500);
+	PORTB &= ~(1<< PB5);
 
 	sei();
 
