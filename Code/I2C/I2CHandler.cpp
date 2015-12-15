@@ -5,7 +5,10 @@
  *      Author: xasin
  */
 
+#include <util/delay.h>
+
 #include "I2CHandler.h"
+
 
 void I2CHandler::clearTWINT() {
 	TWCR |= (1<< TWINT);
@@ -26,6 +29,7 @@ void I2CHandler::start() {
 
 void I2CHandler::stop() {
 	TWCR |= (1<< TWEN | 1<< TWSTO);
+	this->mode = I2C_IDLE;
 }
 
 void I2CHandler::load(uint8_t data) {
@@ -36,7 +40,6 @@ void I2CHandler::load(uint8_t data) {
 uint8_t I2CHandler::readSR() {
 	return TWSR & ~(1<< TWPS0 | 1<< TWPS1);
 }
-
 
 I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	//Activate Pull-UPs
@@ -52,11 +55,35 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	TWCR |= (1<< TWIE);
 }
 
-void I2CHandler::startJob(I2CJob *job) {
-	this->currentJob = job;
-	this->currentJob->I2CInit(&output);
-	this->mode = I2C_MASTER_TRANSMIT;
-	this->start();
+bool I2CHandler::isReady() {
+	return (this->mode == I2C_IDLE);
+}
+
+void I2CHandler::flush() {
+	while(this->isReady() == false) {
+		_delay_ms(1);
+	}
+}
+
+void I2CHandler::queueOut(uint8_t *msg, uint8_t length) {
+	if(this->mode == I2C_IDLE) {
+		for(uint8_t i=0; i< length; i++) {
+			this->output.queue(msg[i]);
+		}
+	}
+}
+
+void I2CHandler::queueOut(uint8_t msg) {
+	if(this->mode == I2C_IDLE) {
+		this->output.queue(msg);
+	}
+}
+
+void I2CHandler::beginOperation(uint8_t mode) {
+	if(this->output.isAvailable() != 0) {
+		this->mode = mode;
+		this->start();
+	}
 }
 
 void I2CHandler::update() {
@@ -65,9 +92,10 @@ void I2CHandler::update() {
 		if(this->output.isAvailable() != 0)
 			this->load(this->output.read());
 		else {
-			this->stop();
-			this->currentJob->I2CFinish(&input);
-			this->mode = I2C_IDLE;
+			if(this->currentJob != 0)
+				this->currentJob->I2CFinish();
+			else
+				this->stop();
 		}
 	break;
 	}

@@ -10,20 +10,21 @@
 
 #define I2C_IDLE 0
 #define I2C_MASTER_TRANSMIT 1
+#define I2C_MASTER_READ 2
 
 #include <avr/io.h>
 #include "Buffer.h"
+
 #include "I2CJob.h"
 
-
 class I2CHandler {
-private:
+protected:
 	Buffer input;
 	Buffer output;
 
 	volatile uint8_t mode;
 
-	I2CJob *currentJob;
+	I2CJob *currentJob = 0;
 
 	void clearTWINT();
 	void ACK();
@@ -37,9 +38,13 @@ private:
 public:
 	I2CHandler(uint8_t ID, uint8_t mode);
 
-	void transmit(uint8_t *DATA, uint8_t length);
+	bool isReady();
+	void flush();
 
-	void startJob(I2CJob *job);
+	void queueOut(uint8_t *msg, uint8_t length);
+	void queueOut(uint8_t msg);
+	void beginOperation(uint8_t mode);
+
 	void update();
 };
 
