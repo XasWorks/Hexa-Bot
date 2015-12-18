@@ -25,9 +25,13 @@ uint8_t Buffer::isAvailable() {
 }
 
 uint8_t Buffer::read() {
-	uint8_t temp = this->input[0];
-	this->shift();
-	return temp;
+	if(this->inStore != 0) {
+		uint8_t temp = this->input[0];
+		this->shift();
+		return temp;
+	}
+	else
+		return 0;
 }
 
 uint8_t Buffer::peek() {

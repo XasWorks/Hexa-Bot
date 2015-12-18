@@ -17,28 +17,20 @@ void I2CHandler::clearTWINT() {
 void I2CHandler::ACK() {
 	TWCR |= (1<< TWEA);
 }
-
 void I2CHandler::NACK() {
 	TWCR &= ~(1<< TWEA);
 }
-
 void I2CHandler::start() {
 	//Set a start bit condition on the TWI Control
-	TWCR |= (1<< TWEN | 1<< TWSTA | 1<< TWINT);
+	TWCR |= (1<< TWSTA | 1<< TWINT);
 }
-
 void I2CHandler::stop() {
-	TWCR |= (1<< TWEN | 1<< TWSTO);
+	TWCR |= (1<< TWSTO);
 	this->mode = I2C_IDLE;
 }
 
-void I2CHandler::load(uint8_t data) {
-	TWCR &= ~(1<< TWSTA);
-	TWDR = data;
-}
-
 uint8_t I2CHandler::readSR() {
-	return TWSR & ~(1<< TWPS0 | 1<< TWPS1);
+	return (TWSR & 0xF8);
 }
 
 I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
@@ -46,19 +38,19 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	PORTC |= (1<< PC5 | 1<< PC4);
 
 	//Set the speed to 100kHz - TODO add proper speed setting.
-	TWBR = 72;
+	TWBR = 255;
+	TWCR |= 0b11;
 
 	//Set the TWI Address
 	TWAR = (ID << 1);
 
 	//Enable ISR
-	TWCR |= (1<< TWIE);
+	TWCR |= (1<< TWIE | 1<< TWEN);
 }
 
 bool I2CHandler::isReady() {
 	return (this->mode == I2C_IDLE);
 }
-
 void I2CHandler::flush() {
 	while(this->isReady() == false) {
 		_delay_ms(1);
@@ -72,13 +64,11 @@ void I2CHandler::queueOut(uint8_t *msg, uint8_t length) {
 		}
 	}
 }
-
 void I2CHandler::queueOut(uint8_t msg) {
 	if(this->mode == I2C_IDLE) {
 		this->output.queue(msg);
 	}
 }
-
 void I2CHandler::beginOperation(uint8_t mode) {
 	if(this->output.isAvailable() != 0) {
 		this->mode = mode;
@@ -87,19 +77,25 @@ void I2CHandler::beginOperation(uint8_t mode) {
 }
 
 void I2CHandler::update() {
-	switch(this->mode) {
-	case I2C_MASTER_TRANSMIT:
-		if(this->output.isAvailable() != 0)
-			this->load(this->output.read());
-		else {
-			if(this->currentJob != 0)
-				this->currentJob->I2CFinish();
-			else
-				this->stop();
-		}
+	switch(this->readSR()) {
+	case I2C_S_START:
+		TWCR &= ~(1<< TWSTA);
+		TWDR = this->output.read();
 	break;
 
-	default:
+	case I2C_S_SLAW_ACK:
+	case I2C_S_DATA_ACK:
+		if(this->output.isAvailable() > 0)
+			TWDR = this->output.read();
+		else
+			this->stop();
+	break;
+
+	case I2C_S_SLAW_NACK:
+	case I2C_S_SLAR_NACK:
+	case I2C_S_DATA_NACK:
+		PORTB |= (1<< PB5);
+		this->stop();
 	break;
 	}
 

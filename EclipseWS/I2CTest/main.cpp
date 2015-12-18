@@ -38,25 +38,19 @@ public:
 	}
 };
 
-PortExp SensrJob(0b010000, &test);
+PortExp SensrJob(0b01001110, &test);
 
 ISR(TWI_vect) {
+	PORTB ^= (1<< PB4);
 	test.update();
 }
 
 int main() {
-	DDRB |= (1<< PB5);
-
-	_delay_ms(1000);
-	PORTB |= (1 << PB5);
-	_delay_ms(500);
-	PORTB &= ~(1<< PB5);
+	DDRB |= (1<< PB5 | 1<< PB4);
 
 	sei();
 
 	SensrJob.setRegisters(0xffff, PORTEXP_IODIR);
-	test.flush();
-	SensrJob.setRegisters(0b0001, PORTEXP_GPIO);
 
 	while(1) {
 	}
