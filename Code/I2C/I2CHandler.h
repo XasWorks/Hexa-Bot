@@ -8,6 +8,8 @@
 #ifndef CODE_I2C_I2CHANDLER_H_
 #define CODE_I2C_I2CHANDLER_H_
 
+#define I2C_S_IDLE 			0xF8
+
 #define I2C_S_START			0x08
 #define I2C_S_REPSTART		0x10
 

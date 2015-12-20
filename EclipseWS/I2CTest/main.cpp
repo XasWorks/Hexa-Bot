@@ -14,7 +14,7 @@
 
 I2CHandler test(1, 0);
 
-#define PORTEXP_GPIO 0x13
+#define PORTEXP_GPIO 0x12
 #define PORTEXP_IODIR 0x00
 
 class PortExp : I2CJob {
@@ -29,6 +29,7 @@ public:
 	}
 
 	void setRegisters(uint16_t outputs, uint8_t reg) {
+		handler->flush();
 		handler->queueOut(address);
 		handler->queueOut(reg);
 		handler->queueOut(outputs & (0x00ff));
@@ -49,9 +50,13 @@ int main() {
 
 	sei();
 
-	SensrJob.setRegisters(0xffff, PORTEXP_IODIR);
+	SensrJob.setRegisters(0x0000, PORTEXP_IODIR);
 
 	while(1) {
+		SensrJob.setRegisters(0xffff, PORTEXP_GPIO);
+		_delay_ms(500);
+		SensrJob.setRegisters(0x0000, PORTEXP_GPIO);
+		_delay_ms(500);
 	}
 
 }

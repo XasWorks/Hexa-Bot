@@ -49,7 +49,7 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 }
 
 bool I2CHandler::isReady() {
-	return (this->mode == I2C_IDLE);
+	return (TWSR == I2C_S_IDLE);
 }
 void I2CHandler::flush() {
 	while(this->isReady() == false) {
