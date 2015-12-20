@@ -41,7 +41,6 @@ public:
 PortExp SensrJob(0b01001110, &test);
 
 ISR(TWI_vect) {
-	PORTB ^= (1<< PB4);
 	test.update();
 }
 

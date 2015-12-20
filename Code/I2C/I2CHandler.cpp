@@ -77,10 +77,13 @@ void I2CHandler::beginOperation(uint8_t mode) {
 }
 
 void I2CHandler::update() {
+	if((TWCR & (1<< TWINT)) == 0)
+		PORTB |= (1<< PB4);
+
 	switch(this->readSR()) {
 	case I2C_S_START:
-		TWCR &= ~(1<< TWSTA);
 		TWDR = this->output.read();
+		TWCR &= ~(1<< TWSTA);
 	break;
 
 	case I2C_S_SLAW_ACK:
