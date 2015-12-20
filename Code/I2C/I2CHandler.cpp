@@ -23,10 +23,11 @@ void I2CHandler::NACK() {
 void I2CHandler::start() {
 	//Set a start bit condition on the TWI Control
 	TWCR |= (1<< TWSTA | 1<< TWINT);
+	this->mode = 1;
 }
 void I2CHandler::stop() {
 	TWCR |= (1<< TWSTO);
-	this->mode = I2C_IDLE;
+	this->mode = 0;
 }
 
 uint8_t I2CHandler::readSR() {
@@ -38,8 +39,7 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	PORTC |= (1<< PC5 | 1<< PC4);
 
 	//Set the speed to 100kHz - TODO add proper speed setting.
-	TWBR = 255;
-	TWCR |= 0b11;
+	TWBR = 10;
 
 	//Set the TWI Address
 	TWAR = (ID << 1);
@@ -49,11 +49,10 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 }
 
 bool I2CHandler::isReady() {
-	return (TWSR == I2C_S_IDLE);
+	return (this->mode == 0);
 }
 void I2CHandler::flush() {
 	while(this->isReady() == false) {
-		_delay_ms(1);
 	}
 }
 
@@ -71,7 +70,7 @@ void I2CHandler::queueOut(uint8_t msg) {
 }
 void I2CHandler::beginOperation(uint8_t mode) {
 	if(this->output.isAvailable() != 0) {
-		this->mode = mode;
+		this->mode = 1;
 		this->start();
 	}
 }

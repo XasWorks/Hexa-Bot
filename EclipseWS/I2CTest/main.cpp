@@ -30,6 +30,7 @@ public:
 
 	void setRegisters(uint16_t outputs, uint8_t reg) {
 		handler->flush();
+
 		handler->queueOut(address);
 		handler->queueOut(reg);
 		handler->queueOut(outputs & (0x00ff));
@@ -53,10 +54,9 @@ int main() {
 	SensrJob.setRegisters(0x0000, PORTEXP_IODIR);
 
 	while(1) {
+		_delay_ms(50);
 		SensrJob.setRegisters(0xffff, PORTEXP_GPIO);
-		_delay_ms(500);
 		SensrJob.setRegisters(0x0000, PORTEXP_GPIO);
-		_delay_ms(500);
 	}
 
 }
