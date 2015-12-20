@@ -8,13 +8,16 @@
 #include "Buffer.h"
 
 void Buffer::shift() {
-	for (uint8_t i=1; i < inStore; i++) {
-		this->input[i -1] = this->input[i];
+	if(this->inStore != 0) {
+		for (uint8_t i=1; i < inStore; i++) {
+			this->input[i -1] = this->input[i];
+		}
+		this->inStore--;
 	}
-	this->inStore--;
 }
 
 Buffer::Buffer() {
+
 }
 
 uint8_t Buffer::isAvailable() {
@@ -22,9 +25,13 @@ uint8_t Buffer::isAvailable() {
 }
 
 uint8_t Buffer::read() {
-	uint8_t temp = this->input[0];
-	this->shift();
-	return temp;
+	if(this->inStore != 0) {
+		uint8_t temp = this->input[0];
+		this->shift();
+		return temp;
+	}
+	else
+		return 0;
 }
 
 uint8_t Buffer::peek() {
