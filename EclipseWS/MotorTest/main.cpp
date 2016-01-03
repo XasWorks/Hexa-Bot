@@ -60,10 +60,6 @@ int main() {
 	//Enable global interrupts
 	sei();
 
-
-	//Sensor input pin configuration
-	PORTC |= (0b11);
-
 	_delay_ms(500);
 
 #define ROT_SPEED 20

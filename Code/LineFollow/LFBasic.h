@@ -11,6 +11,13 @@
 #include <avr/io.h>
 #include "../Updatable.h"
 
+#define LF_OK 		0	//The line is under the sensors and tracked
+#define LF_AMBIG 	1	//The line is currently in an ambiguous state, no clear decision can be made
+#define LF_LOST 	2	//No sensors have the line and it could be lost
+
+#define LF_RIGHT 	127
+#define LF_LEFT 	-128
+
 class LFBasic : Updatable {
 public:
 	uint8_t lineStatus = 0;
