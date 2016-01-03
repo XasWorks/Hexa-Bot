@@ -11,10 +11,11 @@
 #include <math.h>
 #include "Movable.h"
 #include "TranslativeStepper.h"
+#include "../Updatable.h"
 
 #define DEG_TO_RAD 0.017453293
 
-class Locomotor : public Movable {
+class Locomotor : public Movable, Updatable {
 private:
 	//Stepper motor instances
 	TranslativeStepper *A,*B,*C;

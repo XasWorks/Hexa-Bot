@@ -35,8 +35,9 @@
 #include "Buffer.h"
 
 #include "I2CJob.h"
+#include "../Updatable.h"
 
-class I2CHandler {
+class I2CHandler : Updatable {
 protected:
 	Buffer input;
 	Buffer output;
