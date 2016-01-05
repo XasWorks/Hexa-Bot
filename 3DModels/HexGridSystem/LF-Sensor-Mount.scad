@@ -7,7 +7,7 @@ module connectorHex() {
 	lowerFill();
 }
 
-screwConnectorLength = 2.6;
+screwConnectorLength = 6;
 screwConnectorThickness = 1;
 
 lHexSize = 17.5 - 2.2 - 0.4;
@@ -24,7 +24,8 @@ module screwCylinder() {
 			children();
 			translate([mountXPos, mountYPos, 2]) cylinder(r = 3/2 + screwConnectorThickness, h= screwConnectorLength -2);
 		}
-		translate([mountXPos, mountYPos, 0]) cylinder(r= 3/2, h= screwConnectorLength);
+		
+		translate([mountXPos, mountYPos, 0]) cylinder(r= 3/2 + 0.01, h= screwConnectorLength);
 	}
 }
 
