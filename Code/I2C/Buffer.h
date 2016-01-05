@@ -11,12 +11,12 @@
 #include <avr/io.h>
 
 //How many bytes should the buffer contain?
-#define BUF_SIZE 16
+#define BUF_SIZE 8
 
 class Buffer {
 private:
 	//Buffer arrays for the values, as well as a counter for how many items are stored
-	volatile uint8_t input[BUF_SIZE] = {0};
+	volatile uint8_t input[BUF_SIZE];
 	volatile uint8_t inStore = 0;
 
 	//Moves all the items of the list forwards by one
