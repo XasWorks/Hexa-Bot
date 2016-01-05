@@ -12,6 +12,7 @@
 #include "LFBasic.h"
 
 class LF3Sens : public LFBasic {
+
 public:
 	LF3Sens();
 
