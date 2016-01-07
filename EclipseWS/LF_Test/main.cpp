@@ -9,17 +9,20 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "Code/LineFollow/LF3Sens.h"
-
 #define F_ISR1 1000
 
-LF3Sens LFSensr = LF3Sens();
+#include "Code/LineFollow/LF3Sens.h"
+
+LF3Sens LFSensor = LF3Sens();
 
 ISR(TIMER1_COMPA_vect) {
-	LFSensr.update();
+	LFSensor.update();
 }
 
 int main() {
+
+	DDRC |= (1<< 3);
+	PORTC &= ~(1<< 3);
 
 	//CTC Register 1A set up for F_ISR Speed
 	OCR1A = F_CPU/64/F_ISR1 -1;
@@ -31,5 +34,13 @@ int main() {
 	//Enable global interrupts
 	sei();
 
+	while(true) {
 
+		if(LFSensor.lineOffset == LF_RIGHT) {
+			PORTC |= (1<< 3);
+		}
+		else {
+			PORTC &= ~(1<< 3);
+		}
+	}
 }
