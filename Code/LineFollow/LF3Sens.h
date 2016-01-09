@@ -25,6 +25,8 @@ private:
 	//Value of the old sensors, to detect changes
 	uint8_t oSens;
 
+	//Update the sensors.
+	void setStatus(uint8_t sensors);
 public:
 	LF3Sens();
 
