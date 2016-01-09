@@ -34,7 +34,6 @@ void Locomotor::setRotationSpeed(float newSpeed) {
 
 void Locomotor::setSpeed(float newSpeed) {
 	if(newSpeed > 0) {
-		this->speed = newSpeed / ISRFreq;
 		this->speedTarget = newSpeed / ISRFreq;
 	}
 }
@@ -42,10 +41,6 @@ void Locomotor::setSpeed(float newSpeed) {
 void Locomotor::setAcceleration(float acceleration) {
 	if(acceleration > 0)
 		this->acceleration = acceleration / ISRFreq / ISRFreq;
-}
-
-void Locomotor::accelerateTo(float targetSpeed) {
-	this->speedTarget = targetSpeed / ISRFreq;
 }
 
 void Locomotor::moveTo(float x, float y) {
@@ -82,19 +77,7 @@ void Locomotor::flush() {
 	}
 }
 
-void Locomotor::accelerate() {
-	//Acceleration controls
-	float speedDiff = speedTarget - speed; 		//Calculate the speed difference (target to current speed)
-	if(this->speedTarget > this->speed)			//If it has to increase speed.
-		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : this->acceleration;		//Either increase speed by the acceleration value or the remaining speed change, depending on what is smaller.
-	else if(this->speedTarget < this->speed)	//If it has to decrease speed, do the same as above (basically)
-		this->speed += (this->acceleration > fabs(speedDiff)) ? speedDiff : -this->acceleration;
-}
-
 void Locomotor::update() {
-
-	//Accelerate the motor speed values.
-	accelerate();
 
 	//Pre-Calculate the Sin and Cos values for the current INVERSE Rotation!!
 	float cSin = sin(-1 * this->rPos * DEG_TO_RAD);
@@ -104,6 +87,8 @@ void Locomotor::update() {
 	float xDifference = this->xTarget - this->xPos;
 	float yDifference = this->yTarget - this->yPos;
 	float rDifference = this->rTarget - this->rPos;
+	float speedDiff 	= this->speedTarget - this->speed; 		//Calculate the speed difference (target to current speed)
+
 
 	//How much will the robot have to move each calculation?
 	float xThisISR = 0;
@@ -116,6 +101,12 @@ void Locomotor::update() {
  * or the remaining distance between target and current position, whatever is smaller.
  * Then increase (or decrease) the current position by the amount of mm that the robot will move this ISR.
 */
+
+	//Speed recalcultion
+	if(this->speedDiff != 0)
+		this->speed += (this->speedDiff > 0) ?
+											((this->speedDiff > this->accelleration) 	? this->accelleration : this->speedDiff)
+											((-this->speedDiff > this->accelleration) 	? -this->accelleration : this->speedDiff);
 
 	//X-Steps calculation
 	if(xDifference != 0) {

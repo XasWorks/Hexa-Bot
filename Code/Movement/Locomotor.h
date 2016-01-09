@@ -38,13 +38,11 @@ public:
 
 	//Set the rotation speed of the robot in degrees / second
 	void setRotationSpeed(float newSpeed);
-	//Set the movement speed of the robot in mm / second
+	//Accelerate the robot towards a wanted speed.
 	void setSpeed(float speed);
 
 	//Set the acceleration of the robot in mm / second²
 	void setAcceleration(float acceleration);
-	//Accelerate the robot towards a wanted speed. Smoother movement.
-	void accelerateTo(float targetSpeed);
 
 	//Move the robot to the specified X and Y coordinates, in mm.
 	void moveTo(float x, float y);
