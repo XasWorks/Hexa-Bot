@@ -84,9 +84,9 @@ void Locomotor::update() {
 	float cCos = cos(-1 * this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
-	float xDifference = this->xTarget - this->xPos;
-	float yDifference = this->yTarget - this->yPos;
-	float rDifference = this->rTarget - this->rPos;
+	float xDifference 	= this->xTarget - this->xPos;
+	float yDifference 	= this->yTarget - this->yPos;
+	float rDifference 	= this->rTarget - this->rPos;
 	float speedDiff 	= this->speedTarget - this->speed; 		//Calculate the speed difference (target to current speed)
 
 
@@ -103,10 +103,8 @@ void Locomotor::update() {
 */
 
 	//Speed recalcultion
-	if(this->speedDiff != 0)
-		this->speed += (this->speedDiff > 0) ?
-											((this->speedDiff > this->accelleration) 	? this->accelleration : this->speedDiff)
-											((-this->speedDiff > this->accelleration) 	? -this->accelleration : this->speedDiff);
+	if(speedDiff != 0)
+		this->speed += ((fabs(speedDiff) > this->acceleration) 	? this->acceleration : fabs(speedDiff));
 
 	//X-Steps calculation
 	if(xDifference != 0) {
@@ -135,4 +133,7 @@ void Locomotor::update() {
 	B->stepBy(xRotated, yRotated, rThisISR);
 	C->stepBy(xRotated, yRotated, rThisISR);
 
+	//Reset acceleration if at target
+	if(this->atPosition())
+		this->speed = 0;
 }

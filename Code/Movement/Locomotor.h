@@ -21,7 +21,7 @@ private:
 
 	//Distance that the motors have to cover per Calculation
 	volatile float xFact = 0, yFact = 0, rPerISR = 0;
-	volatile float speedTarget = 0, acceleration = 0;
+	volatile float speedTarget = 0, acceleration = 30;
 
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;
