@@ -131,7 +131,7 @@
 
 	//Update the display /one at a time/.
 	//This is suitable for ISR Routine updating without taking too long. Very efficient.
-	void LCD::updateDisplay() {
+	void LCD::update() {
 		if(readBusy() == false) {				//Only continue if the display is ready for instructions.
 			uint8_t nMark = nextMark();			//Read out if there is a character to be upadted, and which one.
 			if(nMark != 255) {

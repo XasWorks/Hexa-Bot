@@ -54,15 +54,11 @@ int main() {
 	OCR1A = F_CPU/64/F_ISR1 -1;
 	//Clock select to 64-prescaler, CTC mode
 	TCCR1B |= ((1<< CS11) | (1<< CS10) | (1<< WGM12));
-	//Timer output/compare match 1 A bit set
+	//Timer output/compare match 1A bit set
 	TIMSK1 |= (1<< OCIE1A);
 
 	//Enable global interrupts
 	sei();
-
-
-	//Sensor input pin configuration
-	PORTC |= (0b11);
 
 	_delay_ms(500);
 
