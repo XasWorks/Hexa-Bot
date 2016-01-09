@@ -46,25 +46,30 @@ void loop() // Display RGB and colors in the serial Monitor
   Serial.print(blue, DEC);  
   
 
-  if (red < blue && red < green && red < 10)
+  if (red < blue && red < green && red < 9)
   {  
    Serial.println(" - (Red Color)");  
    }  
 
-  else if (blue < red && blue < green)   
+  else if (blue < red && blue < green && blue < 14)   
   {  
    Serial.println(" - (Blue Color)");  
   }  
 
-  else if (green < red && green < blue)  
+  else if ( green < blue && green < 16)  
   {  
    Serial.println(" - (Green Color)");  
   } 
   
+  else if (red > 20 && green > 20 && blue >20)
+  {
+    Serial.println(" - (Black Color)");
+  }
+  
   else{
   Serial.println();  
   }
-   
+  delay(1000); 
  }  
     
 void color()  //Color reading
