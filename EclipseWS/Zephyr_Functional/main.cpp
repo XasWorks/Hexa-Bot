@@ -1,20 +1,11 @@
-/*
- * main.cpp
- *
- *  Created on: 22.11.2015
- *      Author: xasin
- */
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "Code/Movement/Locomotor.h"
+#include "../../Code/Movement/Locomotor.h"
 
-#define F_ISR1 5000
+#define F_ISR1 1000
 #define F_CAL  100
-
-#define F_REACT 30
 
 #define STEPPING 16
 
@@ -25,9 +16,6 @@ TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, STEPPING,
 Locomotor test = Locomotor(&stepA, &stepB, &stepC, F_CAL);
 
 uint16_t prescaler = 0;
-
-volatile uint16_t react_prescaler=0;
-
 ISR(TIMER1_COMPA_vect) {
 	//Update the stepper motor controllers
 	stepA.update();
@@ -36,16 +24,14 @@ ISR(TIMER1_COMPA_vect) {
 
 	//Software prescaler for slower ISR for calculation updating
 	prescaler++;
-	if(prescaler == F_ISR1/F_CAL) {
+	if(prescaler == F_ISR1 / F_CAL) {
 		test.update();
 		prescaler = 0;
 	}
 }
 
-int main() {
 
-	DDRC |= (0b100);
-	PORTC |= (1<<2);
+int main() {
 
 	//CTC Register 1A set up for F_ISR Speed
 	OCR1A = F_CPU/64/F_ISR1 -1;
@@ -57,46 +43,8 @@ int main() {
 	//Enable global interrupts
 	sei();
 
-	_delay_ms(500);
-
-#define ROT_SPEED 20
-#define DRIVE_SPEED 200
-
-#define ACCELL 200
-
-	test.setSpeed(0);
-	test.setRotationSpeed(360);
-	test.setAcceleration(ACCELL);
-
-	int8_t l_detect = 0;
 	while(true) {
-		if(test.atPosition())
-			test.moveTowards(75);
-
-		if(test.atRotation()) {
-
-			if((PINC & 0b11) == 0b10) {
-				test.rotateBy(1);
-				test.setSpeed(ROT_SPEED);
-				l_detect = 1;
-			}
-			else if((PINC & 0b11) == 0b01) {
-				test.rotateBy(-1);
-				test.setSpeed(ROT_SPEED);
-				l_detect = -1;
-			}
-
-			else if((PINC & 0b11) == 0b00) {
-				test.setSpeed(0);
-				if(l_detect < 0)
-					test.rotateBy(1);
-				else
-					test.rotateBy(-1);
-			}
-
-			else {
-				test.accelerateTo(DRIVE_SPEED);
-			}
-		}
 	}
+
+	return 0;
 }
