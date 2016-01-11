@@ -11,7 +11,7 @@ LF3Sens::LF3Sens() {
 }
 
 //Decide on the next status of the outputs
-LF3Sens::setStatus(uint8_t sensors) {
+void LF3Sens::setStatus(uint8_t sensors) {
 	switch(sensors) {
 	case 0:
 		this->lineStatus = LF_LOST;
