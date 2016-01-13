@@ -42,7 +42,7 @@ protected:
 	Buffer input;
 	Buffer output;
 
-	volatile uint8_t mode;
+	uint8_t mode;
 
 	I2CJob *currentJob = 0;
 

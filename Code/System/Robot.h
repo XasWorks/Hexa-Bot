@@ -26,7 +26,7 @@ private:
 	TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, STEPPING, 35, 180, 75);
 
 	//ISR Prescaler value
-	volatile uint16_t ISR1presc = 0;
+	uint16_t ISR1presc = 0;
 
 public:
 

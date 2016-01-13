@@ -13,20 +13,20 @@ protected:
 	//Port of the stepper motor
 	volatile uint8_t *PORT;
 	//Pin of the stepper motor. Stepping signals are issued at pin, dir signals at pin+1
-	volatile uint8_t pin;
+	uint8_t pin;
 
 	//Speed of the ISR. Required to set the stepping speed correctly.
-	volatile uint16_t updateFrequency;
+	uint16_t updateFrequency;
 
 	//Total steps the motor has made. Useful for absolute positioning.
 	volatile int32_t currentSteps;
 	//Steps the motor still has to make.
-	volatile float stepsToGo;
+	float stepsToGo;
 
 	//Steps per ISR Call.
-	volatile float stepSpeed;
+	float stepSpeed;
 	//Step buffer of the system. Not every ISR call will induce a Step, thusly, the rest has to be buffered.
-	volatile float stepBuffer;
+	float stepBuffer;
 
 	//Step the motor ONCE into the specified direction (0 == backwards, else forwards)
 	void step(uint8_t dir);

@@ -19,10 +19,10 @@ class TranslativeStepper : public PrimitiveStepper {
 
 private:
 	//Conversion factors for 1mm of X/Y movement or 1 degree rotation into the amount of steps the robot has to do.
-	volatile float xFact, yFact, rFact;
+	float xFact, yFact, rFact;
 
 	//Frequency difference between the ISR Update frequency and the Calculation Frequency.
-	volatile uint8_t ISRPerCal;
+	uint8_t ISRPerCal;
 
 public:
 	//Contstructor for a new Translative Stepper.

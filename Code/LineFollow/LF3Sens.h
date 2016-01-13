@@ -21,9 +21,9 @@
 class LF3Sens : public LFBasic {
 private:
 	//Update delay value, to make sure the sensors can change properly
-	volatile uint8_t uDelay = 0;
+	uint8_t uDelay = 0;
 	//Value of the old sensors, to detect changes
-	volatile uint8_t oSens = 0;
+	uint8_t oSens = 0;
 
 	//Update the sensors.
 	void setStatus(uint8_t sensors);

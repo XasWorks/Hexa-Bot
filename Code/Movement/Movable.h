@@ -13,7 +13,7 @@ class Movable {
 protected:
 	volatile float xPos = 0, xTarget = 0;
 	volatile float yPos = 0, yTarget = 0;
-	volatile float speed = 0;
+	float speed = 0;
 	volatile float rPos = 0, rTarget = 0, rSpeed = 0;
 
 public:
