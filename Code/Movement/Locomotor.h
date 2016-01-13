@@ -22,7 +22,11 @@ private:
 
 	//Distance that the motors have to cover per Calculation
 	volatile float xFact = 0, yFact = 0, rPerISR = 0;
+
 	volatile float speedTarget = 0, acceleration = 30;
+
+#define ACCEL_DEBOUNCE_CYCLES 3
+	volatile uint8_t accelDebounce = ACCEL_DEBOUNCE_CYCLES;
 
 	//Speed at which the robot will recalculate
 	uint16_t ISRFreq;

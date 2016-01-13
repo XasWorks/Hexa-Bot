@@ -133,7 +133,13 @@ void Locomotor::update() {
 	B->stepBy(xRotated, yRotated, rThisISR);
 	C->stepBy(xRotated, yRotated, rThisISR);
 
-	//Reset acceleration if at target
-	if(this->atPosition())
-		this->speed = 0;
+	//Reset acceleration if at target and not having received a new command for ACCEL_DEBOUNCE_CYCLES updates
+	if(this->atPosition()) {
+		if(accelDebounce == 0)
+			this->speed = 0;
+		else
+			accelDebounce--;
+	}
+	else
+		accelDebounce = ACCEL_DEBOUNCE_CYCLES;
 }
