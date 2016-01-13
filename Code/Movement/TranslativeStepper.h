@@ -10,6 +10,7 @@
 
 #include "PrimitiveStepper.h"
 #include <avr/io.h>
+#include <util/atomic.h>
 #include <math.h>
 
 #define DEG_TO_RAD 0.017453293

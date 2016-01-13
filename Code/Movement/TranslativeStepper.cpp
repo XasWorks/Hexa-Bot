@@ -21,13 +21,17 @@ TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, uin
 	//Set the two pins to output (DDRx one below PORTx)
 	*(PORT - 1) |= (0b11 << this->pin);
 
-	//Calculate how many steps per mm the wheel will have to do.
-	float stepsPerMM = (200 * microstepping) / (M_PI * 2 * radius);
 
-	//Calculate the "movement factors", i.e. the conversion factor for 1mm of X or Y movement, or one degree of rotation, into steps.
-	this->xFact = stepsPerMM * sin(rotation * DEG_TO_RAD);
-	this->yFact = stepsPerMM * cos(rotation * DEG_TO_RAD);
-	this->rFact = (M_PI * 0.0055555555555 * distance) * stepsPerMM;
+	//Atomic block to ensure that calculation is finished.
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+		//Calculate how many steps per mm the wheel will have to do.
+		float stepsPerMM = (200 * microstepping) / (M_PI * 2 * radius);
+
+		//Calculate the "movement factors", i.e. the conversion factor for 1mm of X or Y movement, or one degree of rotation, into steps.
+		this->xFact = stepsPerMM * sin(rotation * DEG_TO_RAD);
+		this->yFact = stepsPerMM * cos(rotation * DEG_TO_RAD);
+		this->rFact = (M_PI * 0.0055555555555 * distance) * stepsPerMM;
+	}
 }
 
 void TranslativeStepper::stepBy(float x, float y, float r) {

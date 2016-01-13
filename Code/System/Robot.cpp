@@ -7,9 +7,6 @@
 
 #include "Robot.h"
 Robot::Robot() {
-}
-
-void Robot::init() {
 	_delay_ms(500);
 
 	//CTC Register 1A set up for F_ISR Speed
@@ -32,8 +29,11 @@ void Robot::update() {
 	//Software prescaler for slower ISR for calculation updating
 	ISR1presc++;
 	if(ISR1presc == F_ISR1 / F_CAL) {
-		Motor.update();
+		//Re-Enable interrupts
+		sei();
+
 		ISR1presc = 0;
+		Motor.update();
 	}
 }
 

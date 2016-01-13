@@ -16,8 +16,6 @@ ISR(TIMER1_COMPA_vect) {
 
 int main() {
 
-	System.init();
-
 	System.Motor.setAcceleration(100);
 	System.Motor.setSpeed(100);
 	System.Motor.setRotationSpeed(100);
