@@ -8,6 +8,8 @@
 #ifndef CODE_MOVABLE_H_
 #define CODE_MOVABLE_H_
 
+#include <util/atomic.h>
+
 //Interface class for everything that can move. Robot wheels, Drone coordinates, etc.
 class Movable {
 protected:

@@ -2,8 +2,10 @@
 #define _PRIMITIVE_STEPPER_H
 
 #include <avr/io.h>
+#include <util/atomic.h>
 #include <math.h>
 #include "../Updatable.h"
+
 
 class PrimitiveStepper : Updatable {
 protected:

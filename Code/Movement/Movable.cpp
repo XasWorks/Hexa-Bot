@@ -23,16 +23,22 @@ Movable::Movable() {
 
 
 void Movable::setRotationSpeed(float newSpeed) {
-	rSpeed = newSpeed;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		rSpeed = newSpeed;
+	}
 }
 
 void Movable::setSpeed(float newSpeed) {
-	speed = newSpeed;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		speed = newSpeed;
+	}
 }
 
 
 void Movable::rotateTo(float angle) {
-	rTarget = angle;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		rTarget = angle;
+	}
 }
 
 void Movable::headTo(float angle) {
@@ -41,18 +47,24 @@ void Movable::headTo(float angle) {
 }
 
 void Movable::rotateBy(float angle) {
-	rTarget += angle;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		rTarget += angle;
+	}
 }
 
 
 void Movable::moveTo(float x, float y) {
-	xTarget = x;
-	yTarget = y;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		xTarget = x;
+		yTarget = y;
+	}
 }
 
 void Movable::moveBy(float x, float y) {
-	xTarget += x;
-	yTarget += y;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		xTarget += x;
+		yTarget += y;
+	}
 }
 
 bool Movable::isReady() {
@@ -60,24 +72,34 @@ bool Movable::isReady() {
 }
 
 bool Movable::atRotation() {
-	if(this->rTarget == this->rPos)
-		return true;
-	return false;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		if(this->rTarget == this->rPos)
+			return true;
+		return false;
+	}
 }
 bool Movable::atPosition() {
-	if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
-		return true;
-	return false;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
+			return true;
+		return false;
+	}
 }
 
 float Movable::getX() {
-	return xPos;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+			return xPos;
+	}
 }
 
 float Movable::getY() {
-	return yPos;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		return yPos;
+	}
 }
 
 float Movable::getR() {
-	return rPos;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		return rPos;
+	}
 }

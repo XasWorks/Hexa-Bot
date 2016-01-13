@@ -51,12 +51,16 @@ void PrimitiveStepper::update() {
 
 //Set the speed of the motor in steps per second.
 void PrimitiveStepper::setSpeed(uint16_t stepsPerSec) {
-	stepSpeed = stepsPerSec / updateFrequency;	//Calculate the required steps per ISR call.
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		stepSpeed = stepsPerSec / updateFrequency;	//Calculate the required steps per ISR call.
+	}
 }
 
 //Move the stepper motor by the specified amount of steps.
 void PrimitiveStepper::move(int32_t steps) {
-	stepsToGo += steps;
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		stepsToGo += steps;
+	}
 }
 
 //Wait for the motor movements to finish.

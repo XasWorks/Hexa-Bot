@@ -9,7 +9,8 @@
 #include <util/delay.h>
 
 //Constructor of the Locomotor object
-Locomotor::Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeStepper *C, uint16_t ISRFreq) {
+Locomotor::Locomotor(TranslativeStepper *A, TranslativeStepper *B,
+		TranslativeStepper *C, uint16_t ISRFreq) {
 	this->A = A;
 	this->B = B;
 	this->C = C;
@@ -20,59 +21,84 @@ Locomotor::Locomotor(TranslativeStepper *A, TranslativeStepper *B, TranslativeSt
 
 //Recalculate X and Y speed factors.
 void Locomotor::recalculateXYFact() {
-	float travelMM = sqrt(pow((this->xTarget - this->xPos), 2)
-			+ pow(this->yTarget - this-> yPos, 2));		//Calculate the distance the robot has to travel.
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		float travelMM = sqrt(
+				pow((this->xTarget - this->xPos), 2)
+						+ pow(this->yTarget - this->yPos, 2)); //Calculate the distance the robot has to travel.
 
-	//Calculate the X and Y factors (basically sinus and cosinus values for current direction of travel)
-	this->xFact = ((this->xTarget - this->xPos) / travelMM);
-	this->yFact = ((this->yTarget - this->yPos) / travelMM);
+						//Calculate the X and Y factors (basically sinus and cosinus values for current direction of travel)
+		this->xFact = ((this->xTarget - this->xPos) / travelMM);
+		this->yFact = ((this->yTarget - this->yPos) / travelMM);
+	}
 }
 
 void Locomotor::setRotationSpeed(float newSpeed) {
-	this->rPerISR = newSpeed / this->ISRFreq;
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->rPerISR = newSpeed / this->ISRFreq;
+	}
 }
 
 void Locomotor::setSpeed(float newSpeed) {
-	if(newSpeed > 0) {
-		this->speedTarget = newSpeed / ISRFreq;
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		if (newSpeed > 0) {
+			this->speedTarget = newSpeed / ISRFreq;
+		}
 	}
 }
 
 void Locomotor::setAcceleration(float acceleration) {
-	if(acceleration > 0)
-		this->acceleration = acceleration / ISRFreq / ISRFreq;
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		if (acceleration > 0)
+			this->acceleration = acceleration / ISRFreq / ISRFreq;
+	}
 }
 
 void Locomotor::moveTo(float x, float y) {
-	this->xTarget = x;
-	this->yTarget = y;
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->xTarget = x;
+		this->yTarget = y;
 
-	this->recalculateXYFact();
+		this->recalculateXYFact();
+	}
 }
 
 void Locomotor::moveBy(float x, float y) {
-	this->xTarget += x;
-	this->yTarget += y;
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->xTarget += x;
+		this->yTarget += y;
 
-	this->recalculateXYFact();
+		this->recalculateXYFact();
+	}
 }
 
 void Locomotor::moveTowards(float dist) {
-	this->xTarget += dist * cos(this->rPos * DEG_TO_RAD);
-	this->yTarget += dist * sin(this->rPos * DEG_TO_RAD);
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->xTarget += dist * cos(this->rPos * DEG_TO_RAD);
+		this->yTarget += dist * sin(this->rPos * DEG_TO_RAD);
 
-	this->recalculateXYFact();
+		this->recalculateXYFact();
+	}
 }
 
 void Locomotor::moveTowards(float dist, float dir) {
-	this->xTarget += dist * cos(dir * DEG_TO_RAD);
-	this->yTarget += dist * sin(dir * DEG_TO_RAD);
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->xTarget += dist * cos(dir * DEG_TO_RAD);
+		this->yTarget += dist * sin(dir * DEG_TO_RAD);
 
-	this->recalculateXYFact();
+		this->recalculateXYFact();
+	}
 }
 
 void Locomotor::flush() {
-	while(this->isReady() == false) {
+	while (this->isReady() == false) {
 		_delay_ms(20);
 	}
 }
@@ -84,44 +110,52 @@ void Locomotor::update() {
 	float cCos = cos(-1 * this->rPos * DEG_TO_RAD);
 
 	//Calculate the steps that the motors will have to do this calculation. CAUTION - X and Y Motor axis do not aling with the Robot's current X and Y Axis!
-	float xDifference 	= this->xTarget - this->xPos;
-	float yDifference 	= this->yTarget - this->yPos;
-	float rDifference 	= this->rTarget - this->rPos;
-	float speedDiff 	= this->speedTarget - this->speed; 		//Calculate the speed difference (target to current speed)
-
+	float xDifference = this->xTarget - this->xPos;
+	float yDifference = this->yTarget - this->yPos;
+	float rDifference = this->rTarget - this->rPos;
+	float speedDiff = this->speedTarget - this->speed; //Calculate the speed difference (target to current speed)
 
 	//How much will the robot have to move each calculation?
 	float xThisISR = 0;
 	float yThisISR = 0;
 	float rThisISR = 0;
 
-/* --- Basic explanation of the calculation ---
- * if the motor has to do any movement in the specified direction
- * Calculate how much movement it will have to do in this ISR. This is either the currently set speed, calculated from the Axis-Speed-Factor and current robot speed,
- * or the remaining distance between target and current position, whatever is smaller.
- * Then increase (or decrease) the current position by the amount of mm that the robot will move this ISR.
-*/
+	/* --- Basic explanation of the calculation ---
+	 * if the motor has to do any movement in the specified direction
+	 * Calculate how much movement it will have to do in this ISR. This is either the currently set speed, calculated from the Axis-Speed-Factor and current robot speed,
+	 * or the remaining distance between target and current position, whatever is smaller.
+	 * Then increase (or decrease) the current position by the amount of mm that the robot will move this ISR.
+	 */
 
 	//Speed recalcultion
-	if(speedDiff != 0)
-		this->speed += ((fabs(speedDiff) > this->acceleration) 	? ((speedDiff > 0) ? this->acceleration : -this->acceleration) : speedDiff );
-
+	if (speedDiff != 0)
+		this->speed += (
+				(fabs(speedDiff) > this->acceleration) ?
+						((speedDiff > 0) ?
+								this->acceleration : -this->acceleration) :
+						speedDiff);
 
 	//X-Steps calculation
-	if(xDifference != 0) {
-		xThisISR = (fabs(xDifference) > fabs(this->xFact * speed)) ? xFact * speed : xDifference;
+	if (xDifference != 0) {
+		xThisISR =
+				(fabs(xDifference) > fabs(this->xFact * speed)) ?
+						xFact * speed : xDifference;
 		this->xPos += xThisISR;
 	}
 
 	//Y-Steps calculation
-	if(yDifference != 0) {
-		yThisISR = (fabs(yDifference) > fabs(this->yFact * speed)) ? yFact * speed : yDifference;
+	if (yDifference != 0) {
+		yThisISR =
+				(fabs(yDifference) > fabs(this->yFact * speed)) ?
+						yFact * speed : yDifference;
 		this->yPos += yThisISR;
 	}
 
 	//Rotation-Stepping calculation
-	if(rDifference != 0) {
-		rThisISR = (fabs(rDifference) > fabs(this->rPerISR)) ? ((rDifference < 0) ? -rPerISR : rPerISR) : rDifference;
+	if (rDifference != 0) {
+		rThisISR =
+				(fabs(rDifference) > fabs(this->rPerISR)) ?
+						((rDifference < 0) ? -rPerISR : rPerISR) : rDifference;
 		this->rPos += rThisISR;
 	}
 
@@ -135,12 +169,11 @@ void Locomotor::update() {
 	C->stepBy(xRotated, yRotated, rThisISR);
 
 	//Reset acceleration if at target and not having received a new command for ACCEL_DEBOUNCE_CYCLES updates
-	if(this->atPosition()) {
-		if(accelDebounce == 0)
+	if (this->atPosition()) {
+		if (accelDebounce == 0)
 			this->speed = 0;
 		else
 			accelDebounce--;
-	}
-	else
+	} else
 		accelDebounce = ACCEL_DEBOUNCE_CYCLES;
 }
