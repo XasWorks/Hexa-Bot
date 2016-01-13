@@ -104,7 +104,8 @@ void Locomotor::update() {
 
 	//Speed recalcultion
 	if(speedDiff != 0)
-		this->speed += ((fabs(speedDiff) > this->acceleration) 	? this->acceleration : fabs(speedDiff));
+		this->speed += ((fabs(speedDiff) > this->acceleration) 	? ((speedDiff > 0) ? this->acceleration : -this->acceleration) : speedDiff );
+
 
 	//X-Steps calculation
 	if(xDifference != 0) {

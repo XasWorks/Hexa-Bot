@@ -16,6 +16,8 @@ ISR(TIMER1_COMPA_vect) {
 
 int main() {
 
+	System.init();
+
 	System.Motor.setAcceleration(500);
 	System.Motor.setSpeed(100);
 	System.Motor.setRotationSpeed(100);
@@ -26,20 +28,17 @@ int main() {
 
 
 		if(System.Motor.atRotation()) {
-			if(LFSensor.lineStatus == LF_OK) {
-				System.Motor.setRotationSpeed(80);
-				if(LFSensor.lineOffset > 0)
-					System.Motor.rotateBy(-1);
-				if(LFSensor.lineOffset < 0)
-					System.Motor.rotateBy(1);
+			if(LFSensor.lineStatus == LF_OK && LFSensor.lineOffset != 0) {
+				System.Motor.setRotationSpeed(fabs(LFSensor.lineOffset) * 100 / LF_RIGHT);
 			}
 			else if(LFSensor.lineStatus == LF_LOST) {
 				System.Motor.setRotationSpeed(200);
-				if(LFSensor.lineOffset > 0)
-					System.Motor.rotateBy(-1);
-				if(LFSensor.lineOffset < 0)
-					System.Motor.rotateBy(1);
 			}
+
+			if(LFSensor.lineOffset > 0)
+				System.Motor.rotateBy(-1);
+			if(LFSensor.lineOffset < 0)
+				System.Motor.rotateBy(1);
 		}
 
 	}
