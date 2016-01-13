@@ -21,8 +21,8 @@
 
 class LFBasic : Updatable {
 public:
-	uint8_t lineStatus = 0;
-	int8_t 	lineOffset = 0;
+	volatile uint8_t	lineStatus = 0;
+	volatile int8_t 	lineOffset = 0;
 
 	LFBasic();
 };
