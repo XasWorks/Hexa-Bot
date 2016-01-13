@@ -14,24 +14,13 @@
 
 #include "../Movement/Locomotor.h"
 
-#define F_ISR1 2500
+#define F_ISR1 1000
 #define F_CAL  100
 
 #define STEPPING 16
 
 class Robot {
 public:
-	//private:
-	TranslativeStepper stepA = TranslativeStepper(&PORTD, 0, F_ISR1/F_CAL, STEPPING, 35, -30, 75);
-	TranslativeStepper stepB = TranslativeStepper(&PORTD, 2, F_ISR1/F_CAL, STEPPING, 35, 30, 75);
-	TranslativeStepper stepC = TranslativeStepper(&PORTD, 4, F_ISR1/F_CAL, STEPPING, 35, 180, 75);
-
-	//ISR Prescaler value
-	uint16_t ISR1presc = 0;
-
-public:
-
-	Locomotor Motor = Locomotor(&stepA, &stepB, &stepC, F_CAL);
 
 	Robot(void);
 

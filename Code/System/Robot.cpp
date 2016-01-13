@@ -10,6 +10,7 @@ Robot::Robot() {
 }
 
 void Robot::init() {
+
 	//CTC Register 1A set up for F_ISR Speed
 	OCR1A = F_CPU/64/F_ISR1 -1;
 	//Clock select to 64-prescaler, CTC mode

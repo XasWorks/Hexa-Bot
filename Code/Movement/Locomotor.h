@@ -29,7 +29,7 @@ private:
 	volatile uint8_t accelDebounce = ACCEL_DEBOUNCE_CYCLES;
 
 	//Speed at which the robot will recalculate
-	uint16_t ISRFreq;
+	volatile uint16_t ISRFreq;
 
 	//Recalculate movement per ISR factors of X and Y axis
 	void recalculateXYFact();
