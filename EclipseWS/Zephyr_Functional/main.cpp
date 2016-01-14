@@ -10,6 +10,7 @@ LF3Sens LFSensor = LF3Sens();
 
 ISR(TIMER1_COMPA_vect) {
 	System.update();
+
 	LFSensor.update();
 }
 
