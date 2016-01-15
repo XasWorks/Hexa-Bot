@@ -36,7 +36,7 @@ void Locomotor::recalculateXYFact() {
 void Locomotor::setRotationSpeed(float newSpeed) {
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
 	{
-		this->rPerISR = newSpeed / this->ISRFreq;
+		this->rPerISR = fabs(newSpeed) / this->ISRFreq;
 	}
 }
 
