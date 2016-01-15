@@ -9,7 +9,8 @@
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
 
-Module::LFFollow LFSys = Module::LFFollow(&System, &LFSensor);
+using Module::LFFollow;
+LFFollow LFSys = LFFollow(&System, &LFSensor);
 
 ISR(TIMER1_COMPA_vect) {
 	System.update();
