@@ -4,21 +4,17 @@
 
 #include "Code/System/Robot.h"
 #include "Code/LineFollow/LF3Sens.h"
+#include "Code/Modules/LFFollow.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
+
+Module::LFFollow LFSys = Module::LFFollow(&System, &LFSensor);
 
 ISR(TIMER1_COMPA_vect) {
 	System.update();
 
 	LFSensor.update();
-}
-
-uint8_t abs(int8_t i) {
-	if(i > 0)
-		return i;
-	else
-		return -i;
 }
 
 int main() {
@@ -28,24 +24,7 @@ int main() {
 	System.Motor.setRotationSpeed(100);
 
 	while(true) {
-		if(System.Motor.atPosition() && LFSensor.lineStatus == LF_OK)
-			System.Motor.moveTowards(50);
-
-
-		if(System.Motor.atRotation()) {
-			if(LFSensor.lineStatus == LF_OK && LFSensor.lineOffset != 0) {
-				System.Motor.setRotationSpeed((abs(LFSensor.lineOffset) * 100) / LF_RIGHT);
-			}
-			else if(LFSensor.lineStatus == LF_LOST) {
-				System.Motor.setRotationSpeed(200);
-			}
-
-			if(LFSensor.lineOffset > 0)
-				System.Motor.rotateBy(-1);
-			if(LFSensor.lineOffset < 0)
-				System.Motor.rotateBy(1);
-		}
-
+		LFSys.execute();
 	}
 
 	return 0;
