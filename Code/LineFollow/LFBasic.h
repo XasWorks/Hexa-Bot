@@ -17,7 +17,7 @@
 #define LF_INTSEC	3	//A intersection has been found!
 
 #define LF_RIGHT 	127
-#define LF_LEFT 	-128
+#define LF_LEFT 	-127
 
 class LFBasic : Updatable {
 public:
