@@ -8,7 +8,10 @@
 #ifndef CODE_MOVABLE_H_
 #define CODE_MOVABLE_H_
 
+#include <math.h>
 #include <util/atomic.h>
+
+#define DEG_TO_RAD 0.017453293
 
 //Interface class for everything that can move. Robot wheels, Drone coordinates, etc.
 class Movable {
@@ -22,9 +25,9 @@ public:
 	Movable();
 
 	//Set the rotation speed in degrees / second
-	void setRotationSpeed(float speed);
+	virtual void setRotationSpeed(float speed);
 	//Set the movement speed in mm / second
-	void setSpeed(float speed);
+	virtual void setSpeed(float speed);
 
 	//Rotate it towards a specific direction in degrees
 	void rotateTo(float angle);
@@ -34,17 +37,17 @@ public:
 	void rotateBy(float angle);
 
 	//Move the robot to a specific position in mm
-	void moveTo(float x, float y);
+	virtual void moveTo(float x, float y);
 	//Move the robot by the specified amount of mm.
-	void moveBy(float x, float y);
+	virtual void moveBy(float x, float y);
 
 	//Move the robot forwards by the specified amount of mm towards the direction the robot is currently facing.
-	void moveTowards(float dist);
+	virtual void moveTowards(float dist);
 	//Move the robot forwards towards the specified direction in degrees by "dist" mm.
-	void moveTowards(float dist, float angle);
+	virtual void moveTowards(float dist, float angle);
 
 	//Wait for all functions to finish. Abstract method
-	void flush();
+	virtual void flush();
 
 	//Returns true if the robot is finished with everything important and can move again.
 	bool isReady();

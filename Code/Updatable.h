@@ -10,7 +10,7 @@
 
 class Updatable {
 public:
-	void update();
+	virtual void update() {};
 };
 
 

@@ -78,13 +78,7 @@ void Locomotor::moveBy(float x, float y) {
 }
 
 void Locomotor::moveTowards(float dist) {
-	ATOMIC_BLOCK(ATOMIC_FORCEON)
-	{
-		this->xTarget += dist * cos(this->rPos * DEG_TO_RAD);
-		this->yTarget += dist * sin(this->rPos * DEG_TO_RAD);
-
-		this->recalculateXYFact();
-	}
+		this->moveTowards(dist, this->rPos);
 }
 
 void Locomotor::moveTowards(float dist, float dir) {

@@ -13,8 +13,6 @@
 #include "TranslativeStepper.h"
 #include "../Updatable.h"
 
-#define DEG_TO_RAD 0.017453293
-
 class Locomotor : public Movable, Updatable {
 private:
 	//Stepper motor instances

@@ -14,7 +14,7 @@ namespace Module {
 	public:
 		Basic();
 
-		virtual void execute() {}
+		virtual void execute();
 	};
 
 }

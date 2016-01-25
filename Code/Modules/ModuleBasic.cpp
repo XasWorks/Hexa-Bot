@@ -10,4 +10,6 @@
 namespace Module {
 	Basic::Basic() {
 	}
+
+	void Basic::execute() {}
 }

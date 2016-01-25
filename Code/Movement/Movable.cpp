@@ -71,6 +71,23 @@ bool Movable::isReady() {
 	return (this->atPosition() && this->atRotation());
 }
 
+void Movable::flush() {
+	while(!this->isReady()) {
+	}
+}
+
+void Movable::moveTowards(float dist) {
+		this->moveTowards(dist, this->rPos);
+}
+
+void Movable::moveTowards(float dist, float dir) {
+	ATOMIC_BLOCK(ATOMIC_FORCEON)
+	{
+		this->xTarget += dist * cos(dir * DEG_TO_RAD);
+		this->yTarget += dist * sin(dir * DEG_TO_RAD);
+	}
+}
+
 bool Movable::atRotation() {
 	ATOMIC_BLOCK(ATOMIC_FORCEON) {
 		if(this->rTarget == this->rPos)
