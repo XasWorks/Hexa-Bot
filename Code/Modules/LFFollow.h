@@ -36,7 +36,7 @@ namespace Module {
 	public:
 		LFFollow(Robot *system, LFBasic *sensor);
 
-		void execute() override;
+		void execute();
 	};
 
 }
