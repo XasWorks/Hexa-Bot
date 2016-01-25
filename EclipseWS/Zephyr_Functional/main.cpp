@@ -12,6 +12,8 @@ LF3Sens LFSensor = LF3Sens();
 using Module::LFFollow;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
 
+using Module::Basic;
+Basic *cModule;
 
 ISR(TIMER1_COMPA_vect) {
 	System.update();
@@ -25,8 +27,10 @@ int main() {
 	System.Motor.setSpeed(100);
 	System.Motor.setRotationSpeed(100);
 
+	cModule = &LFSys;
+
 	while(true) {
-		LFSys.execute();
+		cModule->execute();
 	}
 
 	return 0;
