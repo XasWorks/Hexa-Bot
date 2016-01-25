@@ -21,7 +21,7 @@ namespace Module {
 
 	void LFFollow::setSpeeds() {
 		if(sys->Motor.atRotation()) {
-			if(sens->lineStatus == LF_OK) {
+			if(sens->lineStatus == LF_OK && sens->lineOffset != 0) {
 				sys->Motor.setRotationSpeed((sens->lineOffset * ROTATION_MAX_SPEED) / LF_RIGHT);
 				sys->Motor.setSpeed(MOVEMENT_SPEED);
 			}
