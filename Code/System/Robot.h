@@ -15,7 +15,7 @@
 #include "../Movement/Locomotor.h"
 
 #define F_ISR1 5000
-#define F_CAL  100
+#define F_CAL  30
 
 #define STEPPING 16
 

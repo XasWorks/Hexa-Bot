@@ -4,15 +4,17 @@
 
 #include "Code/System/Robot.h"
 #include "Code/LineFollow/LF3Sens.h"
+
 #include "Code/Modules/LFFollow.h"
+#include "Code/Modules/Intersection.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
 
-using Module::LFFollow;
+using namespace Module;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
+Intersection INTSECSys = Intersection(&System);
 
-using Module::Basic;
 Basic *cModule;
 
 ISR(TIMER1_COMPA_vect) {
@@ -21,15 +23,35 @@ ISR(TIMER1_COMPA_vect) {
 	LFSensor.update();
 }
 
-int main() {
+#define TASK_LF 0
+#define TASK_INTSEC 1
 
-	System.Motor.setAcceleration(100);
-	System.Motor.setSpeed(100);
-	System.Motor.setRotationSpeed(100);
+uint8_t currentTask = TASK_LF;
+
+void setTask() {
+	switch(currentTask) {
+
+	case TASK_LF:
+		if(LFSensor.lineStatus == LF_INTSEC) {
+			currentTask = TASK_INTSEC;
+			cModule = &INTSECSys;
+		}
+	break;
+
+	case TASK_INTSEC:
+		currentTask = TASK_LF;
+		cModule = &LFSys;
+	break;
+	}
+}
+
+int main() {
 
 	cModule = &LFSys;
 
 	while(true) {
+		setTask();
+
 		cModule->execute();
 	}
 
