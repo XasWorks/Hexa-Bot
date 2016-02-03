@@ -43,7 +43,7 @@ void Locomotor::setRotationSpeed(float newSpeed) {
 void Locomotor::setSpeed(float newSpeed) {
 	ATOMIC_BLOCK(ATOMIC_FORCEON)
 	{
-		if (newSpeed > 0) {
+		if (newSpeed > 1) {
 			this->speedTarget = newSpeed / ISRFreq;
 		}
 	}
