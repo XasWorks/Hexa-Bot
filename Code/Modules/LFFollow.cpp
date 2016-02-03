@@ -37,9 +37,9 @@ namespace Module {
 	void LFFollow::rotate() {
 		if(sys->Motor.atRotation()) {
 			if(sens->lineOffset > 0)
-				sys->Motor.rotateBy(-1);
+				sys->Motor.rotateBy(-3);
 			if(sens->lineOffset < 0)
-				sys->Motor.rotateBy(1);
+				sys->Motor.rotateBy(3);
 		}
 	}
 

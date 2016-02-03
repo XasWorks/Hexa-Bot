@@ -32,8 +32,10 @@ void Robot::update() {
 		//Re-Enable interrupts
 		sei();
 
+		PORTC |= (1<< 3);
 		ISR1presc = 0;
 		Motor.update();
+		PORTC &= ~(1<< 3);
 	}
 }
 
