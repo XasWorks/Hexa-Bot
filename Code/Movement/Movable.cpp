@@ -67,6 +67,22 @@ void Movable::moveBy(float x, float y) {
 	}
 }
 
+bool Movable::atRotation() {
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		if(this->rTarget == this->rPos)
+			return true;
+		return false;
+	}
+}
+
+bool Movable::atPosition() {
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
+			return true;
+		return false;
+	}
+}
+
 bool Movable::isReady() {
 	return (this->atPosition() && this->atRotation());
 }
@@ -85,21 +101,6 @@ void Movable::moveTowards(float dist, float dir) {
 	{
 		this->xTarget += dist * cos(dir * DEG_TO_RAD);
 		this->yTarget += dist * sin(dir * DEG_TO_RAD);
-	}
-}
-
-bool Movable::atRotation() {
-	ATOMIC_BLOCK(ATOMIC_FORCEON) {
-		if(this->rTarget == this->rPos)
-			return true;
-		return false;
-	}
-}
-bool Movable::atPosition() {
-	ATOMIC_BLOCK(ATOMIC_FORCEON) {
-		if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
-			return true;
-		return false;
 	}
 }
 

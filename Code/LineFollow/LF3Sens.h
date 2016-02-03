@@ -13,7 +13,7 @@
 #define CODE_LINEFOLLOW_LF3SENS_H_
 
 #define INTSEC_DEFAULT_DIR LF_RIGHT
-#define DELAY_VAL F_ISR1 / 10
+#define DELAY_VAL F_ISR1 / 5
 
 #include <avr/io.h>
 #include "LFBasic.h"

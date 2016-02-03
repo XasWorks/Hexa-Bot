@@ -37,17 +37,20 @@ namespace Module {
 	void LFFollow::rotate() {
 		if(sys->Motor.atRotation()) {
 			if(sens->lineOffset > 0)
-				sys->Motor.rotateBy(-3);
+				sys->Motor.rotateBy(-5);
 			if(sens->lineOffset < 0)
-				sys->Motor.rotateBy(3);
+				sys->Motor.rotateBy(5);
 		}
 	}
 
 	void LFFollow::execute() {
+		PORTC |= (1<< 3);
+
 		this->setSpeeds();
 
 		this->rotate();
 		this->move();
+		PORTC &= ~(1<< 3);
 	}
 
 }

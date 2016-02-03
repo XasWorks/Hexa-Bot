@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 #include <util/delay.h>
 
 #include "Code/System/Robot.h"
@@ -29,23 +30,26 @@ ISR(TIMER1_COMPA_vect) {
 uint8_t currentTask = TASK_LF;
 
 void setTask() {
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
 	switch(currentTask) {
+		case TASK_LF:
+			if(LFSensor.lineStatus == LF_INTSEC) {
+				currentTask = TASK_INTSEC;
+				cModule = &INTSECSys;
+			}
+		break;
 
-	case TASK_LF:
-		if(LFSensor.lineStatus == LF_INTSEC) {
-			currentTask = TASK_INTSEC;
-			cModule = &INTSECSys;
+		case TASK_INTSEC:
+			currentTask = TASK_LF;
+			cModule = &LFSys;
+		break;
 		}
-	break;
-
-	case TASK_INTSEC:
-		currentTask = TASK_LF;
-		cModule = &LFSys;
-	break;
 	}
 }
 
 int main() {
+
+	DDRC |= (1<< 3);
 
 	cModule = &LFSys;
 
