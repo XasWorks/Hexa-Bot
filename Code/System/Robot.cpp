@@ -31,11 +31,8 @@ void Robot::update() {
 	if(ISR1presc == F_ISR1 / F_CAL) {
 		//Re-Enable interrupts
 		sei();
-
-		PORTC |= (1<< 3);
 		ISR1presc = 0;
 		Motor.update();
-		PORTC &= ~(1<< 3);
 	}
 }
 

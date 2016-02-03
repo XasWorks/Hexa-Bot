@@ -6,7 +6,7 @@
  */
 
 #ifndef F_ISR1
-#define F_ISR1 1000
+#define F_ISR1 5000
 #endif
 
 #ifndef CODE_LINEFOLLOW_LF3SENS_H_
