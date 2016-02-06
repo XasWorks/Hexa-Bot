@@ -170,4 +170,14 @@ void Locomotor::update() {
 			accelDebounce--;
 	} else
 		accelDebounce = ACCEL_DEBOUNCE_CYCLES;
+
+	//Make sure the rotation values do not get too high
+	if (this->rPos > 360) {
+		this->rPos -= 360;
+		this->rTarget -= 360;
+	}
+	else if(this->rPos < -360) {
+		this->rPos += 360;
+		this->rTarget += 360;
+	}
 }
