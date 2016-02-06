@@ -30,7 +30,7 @@ module base() {
 module connectingBeam() {
 	beamWidth = 3 * 17.5 - 2;
 	beamHeight = (tan(30) * (17.5/2 -1)) * 2;
-	beamThickness = 0.5;
+	beamThickness = 1;
 	
 	translate([ -beamWidth /2, -beamHeight /2, 0])
 	cube([beamWidth, beamHeight, beamThickness]);
