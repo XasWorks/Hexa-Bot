@@ -18,7 +18,6 @@ void LF3Sens::setStatus(uint8_t sensors) {
 	break;
 
 	case 0b100:
-		this->lineStatus = LF_OK;
 		this->lineOffset = LF_LEFT;
 	break;
 
@@ -38,7 +37,6 @@ void LF3Sens::setStatus(uint8_t sensors) {
 	break;
 
 	case 0b001:
-		this->lineStatus = LF_OK;
 		this->lineOffset = LF_RIGHT;
 	break;
 

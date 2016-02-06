@@ -15,19 +15,21 @@ namespace Module {
 	}
 
 	void LFFollow::move() {
-		if(sys->Motor.atPosition() && sens->lineStatus == LF_OK)
-			sys->Motor.moveTowards(75);
+		if(sys->Motor.atPosition() && sens->lineStatus != LF_AMBIG)
+			sys->Motor.moveTowards(20);
 	}
 
 	void LFFollow::setSpeeds() {
 		if(sys->Motor.atRotation()) {
 			if(sens->lineStatus == LF_OK) {
-				sys->Motor.setRotationSpeed((sens->lineOffset * ROTATION_MAX_SPEED) / LF_RIGHT);
+				if(sens->lineOffset != 0)
+					sys->Motor.setRotationSpeed((sens->lineOffset * ROTATION_MAX_SPEED) / LF_RIGHT);
 				sys->Motor.setSpeed(MOVEMENT_SPEED);
 			}
 			else if(sens->lineStatus == LF_LOST) {
 				sys->Motor.setRotationSpeed(ROTATION_LOST_SPEED);
-				sys->Motor.setSpeed(MOVEMENT_LOST_SPEED);
+				if(sens->lineOffset != 0)
+					sys->Motor.setSpeed(MOVEMENT_LOST_SPEED);
 			}
 		}
 	}
@@ -35,17 +37,20 @@ namespace Module {
 	void LFFollow::rotate() {
 		if(sys->Motor.atRotation()) {
 			if(sens->lineOffset > 0)
-				sys->Motor.rotateBy(-1);
+				sys->Motor.rotateBy(-5);
 			if(sens->lineOffset < 0)
-				sys->Motor.rotateBy(1);
+				sys->Motor.rotateBy(5);
 		}
 	}
 
 	void LFFollow::execute() {
+		PORTC |= (1<< 3);
+
 		this->setSpeeds();
 
 		this->rotate();
 		this->move();
+		PORTC &= ~(1<< 3);
 	}
 
 }
