@@ -23,11 +23,9 @@ void I2CHandler::NACK() {
 void I2CHandler::start() {
 	//Set a start bit condition on the TWI Control
 	TWCR |= (1<< TWSTA | 1<< TWINT);
-	this->mode = 1;
 }
 void I2CHandler::stop() {
 	TWCR |= (1<< TWSTO);
-	this->mode = 0;
 }
 
 uint8_t I2CHandler::readSR() {
@@ -49,7 +47,7 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 }
 
 bool I2CHandler::isReady() {
-	return (this->mode == 0);
+	return (this->readSR() == I2C_S_IDLE);
 }
 void I2CHandler::flush() {
 	while(this->isReady() == false) {
@@ -57,14 +55,14 @@ void I2CHandler::flush() {
 }
 
 void I2CHandler::queueOut(uint8_t *msg, uint8_t length) {
-	if(this->mode == I2C_IDLE) {
+	if(this->readSR() == I2C_S_IDLE) {
 		for(uint8_t i=0; i< length; i++) {
 			this->output.queue(msg[i]);
 		}
 	}
 }
 void I2CHandler::queueOut(uint8_t msg) {
-	if(this->mode == I2C_IDLE) {
+	if(this->readSR() == I2C_S_IDLE) {
 		this->output.queue(msg);
 	}
 }
