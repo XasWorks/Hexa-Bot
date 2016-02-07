@@ -68,9 +68,8 @@ void I2CHandler::queueOut(uint8_t msg) {
 		this->output.queue(msg);
 	}
 }
-void I2CHandler::beginOperation(uint8_t mode) {
+void I2CHandler::beginOperation(I2CJob *job) {
 	if(this->output.isAvailable() != 0) {
-		this->mode = 1;
 		this->start();
 	}
 }

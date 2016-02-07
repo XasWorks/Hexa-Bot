@@ -5,6 +5,10 @@
  *      Author: xasin
  */
 
+#ifndef TIMSK1
+#define TIMSK1 TIMSK
+#endif
+
 #include "Robot.h"
 Robot::Robot() {
 	_delay_ms(500);
