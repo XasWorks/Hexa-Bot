@@ -44,13 +44,11 @@ namespace Module {
 	}
 
 	void LFFollow::execute() {
-		PORTC |= (1<< 3);
 
 		this->setSpeeds();
 
 		this->rotate();
 		this->move();
-		PORTC &= ~(1<< 3);
 	}
 
 }
