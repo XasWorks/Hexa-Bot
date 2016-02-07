@@ -49,8 +49,6 @@ void setTask() {
 
 int main() {
 
-	DDRC |= (1<< 3);
-
 	cModule = &LFSys;
 
 	while(true) {

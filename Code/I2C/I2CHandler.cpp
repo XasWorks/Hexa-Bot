@@ -76,9 +76,6 @@ void I2CHandler::beginOperation(uint8_t mode) {
 }
 
 void I2CHandler::update() {
-	if((TWCR & (1<< TWINT)) == 0)
-		PORTB |= (1<< PB4);
-
 	switch(this->readSR()) {
 	case I2C_S_START:
 		TWDR = this->output.read();
@@ -96,7 +93,6 @@ void I2CHandler::update() {
 	case I2C_S_SLAW_NACK:
 	case I2C_S_SLAR_NACK:
 	case I2C_S_DATA_NACK:
-		PORTB |= (1<< PB5);
 		this->stop();
 	break;
 	}

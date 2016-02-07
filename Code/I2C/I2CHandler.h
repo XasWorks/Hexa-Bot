@@ -42,8 +42,6 @@ protected:
 	Buffer input;
 	Buffer output;
 
-	uint8_t mode;
-
 	I2CJob *currentJob = 0;
 
 	void clearTWINT();
@@ -63,7 +61,7 @@ public:
 
 	void queueOut(uint8_t *msg, uint8_t length);
 	void queueOut(uint8_t msg);
-	void beginOperation(uint8_t mode);
+	void beginOperation(I2CJob *job);
 
 	void update();
 };
