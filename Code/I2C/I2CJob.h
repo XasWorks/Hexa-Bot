@@ -13,7 +13,8 @@ class I2CJob {
 public:
 	I2CJob();
 
-	virtual uint8_t I2CFinish();
+	virtual void I2CLoad();
+	virtual void I2CFinish();
 };
 
 #define CODE_I2C_I2CJOB_H_

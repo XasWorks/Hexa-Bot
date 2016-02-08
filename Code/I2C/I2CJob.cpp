@@ -11,6 +11,5 @@ I2CJob::I2CJob() {
 	// TODO Auto-generated constructor stub
 }
 
-uint8_t I2CJob::I2CFinish() {
-	return 0;
+void I2CJob::I2CFinish() {
 }

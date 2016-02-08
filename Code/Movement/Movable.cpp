@@ -6,6 +6,7 @@
  */
 
 #include "Movable.h"
+#define DEG_TO_RAD 0.017453293
 
 Movable::Movable() {
 	xPos = 0;
@@ -69,22 +70,18 @@ void Movable::moveBy(float x, float y) {
 
 bool Movable::atRotation() {
 	ATOMIC_BLOCK(ATOMIC_FORCEON) {
-		if(this->rTarget == this->rPos)
-			return true;
-		return false;
+		return (round(this->rPos - this->rTarget) == 0);
 	}
 }
 
 bool Movable::atPosition() {
 	ATOMIC_BLOCK(ATOMIC_FORCEON) {
-		if((this->xTarget == this->xPos) && (this->yTarget == this->yPos))
-			return true;
-		return false;
+		return (round(this->xPos - this->xTarget) == 0 && round(this->yPos - this->yTarget) == 0);
 	}
 }
 
 bool Movable::isReady() {
-	return (this->atPosition() && this->atRotation());
+	return (this->atPosition() & this->atRotation());
 }
 
 void Movable::flush() {

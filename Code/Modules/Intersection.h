@@ -10,6 +10,7 @@
 
 #include "ModuleBasic.h"
 #include "../System/Robot.h"
+#include "../LineFollow/LFBasic.h"
 
 #define INTSEC_DIST 75
 
@@ -18,9 +19,10 @@ namespace Module {
 	class Intersection : public Basic{
 	private:
 		Robot *sys;
+		LFBasic *sens;
 
 	public:
-		Intersection(Robot *system);
+		Intersection(Robot *system, LFBasic *sensor);
 
 		void execute();
 	};

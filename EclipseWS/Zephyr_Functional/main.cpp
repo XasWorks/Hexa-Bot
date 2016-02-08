@@ -14,7 +14,7 @@ LF3Sens LFSensor = LF3Sens();
 
 using namespace Module;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
-Intersection INTSECSys = Intersection(&System);
+Intersection INTSECSys = Intersection(&System, &LFSensor);
 
 Basic *cModule;
 
@@ -48,8 +48,6 @@ void setTask() {
 }
 
 int main() {
-
-	DDRC |= (1<< 3);
 
 	cModule = &LFSys;
 
