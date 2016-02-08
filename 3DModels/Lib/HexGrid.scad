@@ -20,7 +20,7 @@ function hexNode(hexagon, height = hexHeight + hexMiddleHeight, rotation = 0) =
 			//Rotation coordinates
 				[	0, 0, 60 * rotation] ];
 
-module hexSegment(b2, t2, b1, t1, h) {
+module hexSegment(b2, t2, b1 = 0.0001, t1 = 0.0001, h) {
 	fixDist = 0;
 
 	render(convexity = 3)
@@ -62,6 +62,10 @@ module lowerFill() {
 					0.0001,
 					0.0001,
 					hexHeight);
+}
+
+module hexFill() {
+	lowerFill();
 }
 
 module middleHex(aligned = true) {

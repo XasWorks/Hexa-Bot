@@ -17,10 +17,13 @@ module lowerHex(hexSize = defaultHexSize) {
 		rotate([90, 0, 0])
 		linear_extrude(height= tan(30) * (hexSize - beamSize*2))
 		polygon([[0,0], [beamSize - beamPlay, 0], [beamSize, beamHeight], [0, beamHeight]]);
+
+	echo("Please use the new HexGrid library!")
 }
 
 module hexFill(hexSize = defaultHexSize) {
 	for(i=[0:60:360]) rotate([0, 0, i]) translate([0, -tan(30)*(hexSize - beamSize*4)/2, 0]) cube([(hexSize - beamSize*4 - 0.01)/2, tan(30)*(hexSize - beamSize *4), beamHeight]);
+echo("Please use the new HexGrid library!")
 }
 
 module middleHex(hexSize = defaultHexSize, aligned= true) {
@@ -35,6 +38,7 @@ module middleHex(hexSize = defaultHexSize, aligned= true) {
 						[hexSize/2 - beamSize, 0],
 						[hexSize/2, beamShift + 0.01],
 						[hexSize/2 - beamSize, beamShift + 0.01]]);
+echo("Please use the new HexGrid library!")
 }
 
 module upperHex(hexSize = defaultHexSize, aligned= true) {
@@ -44,6 +48,7 @@ module upperHex(hexSize = defaultHexSize, aligned= true) {
 		translate([hexSize/2 - beamSize,
 			-tan(30) * (hexSize) * 0.5, 0])
 		cube([beamSize + 0.01, tan(30)* (hexSize), beamHeight]);
+echo("Please use the new HexGrid library!")
 }
 
 module hex(hexSize = defaultHexSize) {
