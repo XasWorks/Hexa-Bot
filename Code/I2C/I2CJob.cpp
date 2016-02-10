@@ -8,7 +8,6 @@
 #include "I2CJob.h"
 
 I2CJob::I2CJob() {
-	// TODO Auto-generated constructor stub
 }
 
 void I2CJob::I2CFinish() {

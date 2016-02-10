@@ -42,11 +42,6 @@ void Movable::rotateTo(float angle) {
 	}
 }
 
-void Movable::headTo(float angle) {
-	//First, calculate the current heading (by using Modulo of a full rotation). Then subtract to be left with the angle the robot has to rotate to get to the specific heading
-	//rTarget -= (r) - angle;  TODO Fix calculation
-}
-
 void Movable::rotateBy(float angle) {
 	ATOMIC_BLOCK(ATOMIC_FORCEON) {
 		rTarget += angle;

@@ -8,6 +8,7 @@
 
 #include "Code/Modules/LFFollow.h"
 #include "Code/Modules/Intersection.h"
+#include "Code/Modules/ObjectAvoid.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
@@ -15,6 +16,7 @@ LF3Sens LFSensor = LF3Sens();
 using namespace Module;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
 Intersection INTSECSys = Intersection(&System, &LFSensor);
+ObjectAvoid AVDSys = ObjectAvoid(&System);
 
 Basic *cModule;
 
@@ -51,10 +53,23 @@ int main() {
 
 	cModule = &LFSys;
 
-	while(true) {
-		setTask();
+//	while(true) {
+//		setTask();
+//
+//		cModule->execute();
+//	}
 
-		cModule->execute();
+	System.Motor.setSpeed(50);
+
+	while(true) {
+		System.Motor.moveBy(100, 0);
+		System.Motor.flush();
+
+		System.Motor.moveBy(0, 100);
+		System.Motor.flush();
+
+		System.Motor.moveTo(0, 0);
+		System.Motor.flush();
 	}
 
 	return 0;

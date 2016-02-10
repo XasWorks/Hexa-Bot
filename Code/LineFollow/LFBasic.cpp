@@ -8,7 +8,6 @@
 #include "LFBasic.h"
 
 LFBasic::LFBasic() {
-	// TODO Auto-generated constructor stub
 
 }
 

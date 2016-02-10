@@ -12,7 +12,7 @@
 //The difference between ISR Frequency and Calculation Frequency
 //The microstepping of the motor (assumed that it is a standard stepper motor with 200 steps per revolution)
 //The radius of the wheel used, the rotation of the wheel relative to the X-Axis of the robot, and the distance of the wheel to the center.
-TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, float ISRPerCal, uint8_t microstepping, float radius, float rotation, float distance) {
+TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, float ISRPerCal, uint8_t microstepping, float radius, float rotation, float distance, float yRComp) {
 	//Save these values
 	this->PORT = PORT;
 	this->pin = pins;
@@ -21,6 +21,8 @@ TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, flo
 	//Set the two pins to output (DDRx one below PORTx)
 	*(PORT - 1) |= (0b11 << this->pin);
 
+	//Rotation per Y-Movement compensation value.
+	this->yRCompensation = yRComp;
 
 	//Atomic block to ensure that calculation is finished.
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
@@ -29,21 +31,21 @@ TranslativeStepper::TranslativeStepper(volatile uint8_t *PORT, uint8_t pins, flo
 
 		//Calculate the "movement factors", i.e. the conversion factor for 1mm of X or Y movement, or one degree of rotation, into steps.
 		this->xFact = stepsPerMM * sin(rotation * DEG_TO_RAD);
-		this->yFact = stepsPerMM * cos(rotation * DEG_TO_RAD);
-		this->rFact = (M_PI * 0.0055555555555 * distance) * stepsPerMM;
+		this->yFact = -stepsPerMM * cos(rotation * DEG_TO_RAD);
+		this->rFact = -(DEG_TO_RAD * distance) * stepsPerMM;
 	}
 }
 
 void TranslativeStepper::stepBy(float x, float y, float r) {
 	//Calculate the nececary steps to go by multiplying the axis with their according conversion value (steps to mm)
-	stepsToGo += x *xFact + y *yFact + r *rFact;
+	stepsToGo += x *xFact + y *yFact + (r + y*yRCompensation) *rFact;
 	stepSpeed = fabs(stepsToGo / ISRPerCal);
 }
 
 void TranslativeStepper::stepBy(float x, float y) {
 	//Calculate the steps to go by multiplying X and Y movement (in mm)
 	//with the according factors (given in steps/MM)
-	stepsToGo += x * xFact + y * yFact;
+	stepsToGo += x * xFact + y * yFact + (y * yRCompensation) * rFact;
 	stepSpeed = fabs(stepsToGo / ISRPerCal);
 }
 
