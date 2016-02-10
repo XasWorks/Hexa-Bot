@@ -29,8 +29,6 @@ public:
 
 	//Rotate it towards a specific direction in degrees
 	void rotateTo(float angle);
-	//Make the robot face a specific direction in degrees, ranging from -180 to 180.
-	void headTo(float angle);
 	//Rotate the robot by the specified amount of degrees.
 	void rotateBy(float angle);
 

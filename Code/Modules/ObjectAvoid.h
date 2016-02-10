@@ -11,10 +11,11 @@
 #include "ModuleBasic.h"
 #include "../System/Robot.h"
 
-#define SEG_NUM 5
-#define SEG_RAD 100
-#define SEG_ANGLE 180 / SEG_NUM
-#define SEG_LEN sin(SEG_ANGLE / 2) * SEG_RAD * 2
+#define DEG_TO_RAD 0.017453293
+
+#define SEG_NUM 3
+#define SEG_ANGLE 90
+#define SEG_LEN 150
 
 namespace Module {
 

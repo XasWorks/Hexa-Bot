@@ -93,7 +93,7 @@ void Locomotor::moveTowards(float dist, float dir) {
 
 void Locomotor::flush() {
 	while (!this->isReady()) {
-		_delay_ms(100);
+		_delay_ms(10);
 	}
 }
 

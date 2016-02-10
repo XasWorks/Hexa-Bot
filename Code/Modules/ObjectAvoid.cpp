@@ -14,18 +14,20 @@ ObjectAvoid::ObjectAvoid(Robot *system) {
 }
 
 void ObjectAvoid::execute() {
-	float fDir = sys->Motor.getR();
 
 	sys->Motor.setSpeed(100);
 	sys->Motor.setRotationSpeed(90);
 
-	sys->Motor.moveTowards(30, fDir + 180);
+	sys->Motor.moveTowards(30, sys->Motor.getR() + 180);
 	sys->Motor.flush();
 
-	for(uint8_t i = 0; i < SEG_NUM; i++) {
-		sys->Motor.moveTowards(SEG_LEN, fDir);
-		fDir += SEG_ANGLE;
-	}
+	sys->Motor.moveTowards(100, sys->Motor.getR() + 90);
+	sys->Motor.flush();
+	sys->Motor.moveTowards(200);
+	sys->Motor.flush();
+	sys->Motor.moveTowards(100, sys->Motor.getR() - 90);
+	sys->Motor.flush();
+
 }
 
 } /* namespace Module */
