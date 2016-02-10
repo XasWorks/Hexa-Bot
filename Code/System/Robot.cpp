@@ -11,6 +11,7 @@
 
 #include "Robot.h"
 Robot::Robot() {
+	_delay_ms(1000);
 
 	//CTC Register 1A set up for F_ISR Speed
 	OCR1A = F_CPU/64/F_ISR1 -1;

@@ -59,9 +59,17 @@ int main() {
 //		cModule->execute();
 //	}
 
+	System.Motor.setSpeed(50);
+
 	while(true) {
-		_delay_ms(3000);
-		AVDSys.execute();
+		System.Motor.moveBy(100, 0);
+		System.Motor.flush();
+
+		System.Motor.moveBy(0, 100);
+		System.Motor.flush();
+
+		System.Motor.moveTo(0, 0);
+		System.Motor.flush();
 	}
 
 	return 0;
