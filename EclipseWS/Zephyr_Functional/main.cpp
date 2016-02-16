@@ -26,22 +26,41 @@ ISR(TIMER1_COMPA_vect) {
 	LFSensor.update();
 }
 
-#define TASK_LF 0
+#define TASK_LF 	0
 #define TASK_INTSEC 1
+#define TASK_OBJ 	2
 
 uint8_t currentTask = TASK_LF;
 
 void setTask() {
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
 	switch(currentTask) {
+		// -- STANDARD LF --
 		case TASK_LF:
-			if(LFSensor.lineStatus == LF_INTSEC) {
+
+			// Switch to object avoidance mode
+			if(PINC & (1<< 3) == 0) {
+				currentTask = TASK_OBJ;
+				cModule = &AVDSys;
+			}
+
+			// Else, switch to Intersection mode
+			else if (LFSensor.lineStatus == LF_INTSEC) {
 				currentTask = TASK_INTSEC;
 				cModule = &INTSECSys;
 			}
+
+
 		break;
 
+		// -- INTERSECTION HANDLING --
 		case TASK_INTSEC:
+			currentTask = TASK_LF;
+			cModule = &LFSys;
+		break;
+
+		// -- OBJECT HANDLING --
+		case TASK_OBJ:
 			currentTask = TASK_LF;
 			cModule = &LFSys;
 		break;
@@ -53,24 +72,12 @@ int main() {
 
 	cModule = &LFSys;
 
-//	while(true) {
-//		setTask();
-//
-//		cModule->execute();
-//	}
-
-	System.Motor.setSpeed(50);
-
 	while(true) {
-		System.Motor.moveBy(100, 0);
-		System.Motor.flush();
+		setTask();
 
-		System.Motor.moveBy(0, 100);
-		System.Motor.flush();
-
-		System.Motor.moveTo(0, 0);
-		System.Motor.flush();
+		cModule->execute();
 	}
+
 
 	return 0;
 }
