@@ -78,11 +78,6 @@ int main() {
 	System.Motor.setRotationSpeed(50);
 
 	while(true) {
-		if((PINC & (1<<3)) == 0)
-			AVDSys.execute();
-	}
-
-	while(true) {
 		setTask();
 
 		cModule->execute();
