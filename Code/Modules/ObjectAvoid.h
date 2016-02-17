@@ -13,9 +13,8 @@
 
 #define DEG_TO_RAD 0.017453293
 
-#define SEG_NUM 3
-#define SEG_ANGLE 90
-#define SEG_LEN 150
+#define SIDEWAYS_MOV 170
+#define FORWARDS_MOV 600
 
 namespace Module {
 
