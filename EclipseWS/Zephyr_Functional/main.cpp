@@ -39,7 +39,7 @@ void setTask() {
 		case TASK_LF:
 
 			// Switch to object avoidance mode
-			if(PINC & (1<< 3) == 0) {
+			if((PINC & (1<< 3)) == 0) {
 				currentTask = TASK_OBJ;
 				cModule = &AVDSys;
 			}
@@ -70,7 +70,13 @@ void setTask() {
 
 int main() {
 
+	// Init of the touch sensor
+	DDRC |= (1<< 3);
+
 	cModule = &LFSys;
+
+	System.Motor.setRotationSpeed(50);
+
 
 	while(true) {
 		setTask();
