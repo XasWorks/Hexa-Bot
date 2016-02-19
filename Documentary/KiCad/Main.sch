@@ -34,10 +34,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "ZEPHYR "
+Date "2016-02-20"
+Rev "v0.1"
+Comp "Xasin"
 Comment1 ""
 Comment2 ""
 Comment3 ""
