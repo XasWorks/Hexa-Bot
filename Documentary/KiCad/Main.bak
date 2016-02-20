@@ -34,10 +34,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "ZEPHYR "
+Date "2016-02-20"
+Rev "v0.1"
+Comp "Xasin"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -1130,4 +1130,9 @@ Wire Wire Line
 Wire Wire Line
 	1100 6750 1100 6550
 Connection ~ 1100 6750
+NoConn ~ 2725 4750
+NoConn ~ 2725 4650
+NoConn ~ 2725 2650
+NoConn ~ 2725 2550
+NoConn ~ 2725 2450
 $EndSCHEMATC
