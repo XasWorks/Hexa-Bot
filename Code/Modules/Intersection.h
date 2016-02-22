@@ -12,6 +12,7 @@
 #include "../System/Robot.h"
 #include "../LineFollow/LFBasic.h"
 
+#define FWD_CHECK_DIST 20
 #define INTSEC_DIST 75
 
 namespace Module {
