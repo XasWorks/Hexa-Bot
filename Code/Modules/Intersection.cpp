@@ -19,19 +19,19 @@ namespace Module {
 		this->sys->Motor.setRotationSpeed(90);
 
 		// Checking if there is a line infront of us!
-		this->sys->Motor.moveTowards(30);
+		this->sys->Motor.moveTowards(40);
 		this->sys->Motor.flush();
 		if(this->sens->lineStatus == LF_OK)
 			return;
 
 		//Returning to original position
-		this->sys->Motor.moveTowards(-30);
+		this->sys->Motor.moveTowards(-40);
 		this->sys->Motor.flush();
 
 		//Backing up ...
 		uint16_t passedSteps = 0;
 		while(this->sens->lineOffset != 0) {
-			if(passedSteps ++ > 30)
+			if(passedSteps ++ > 50)
 				return;
 			this->sys->Motor.moveTowards(-1);
 			this->sys->Motor.flush();
@@ -40,7 +40,10 @@ namespace Module {
 		this->sys->Motor.flush();
 
 		//Closing in again
+		passedSteps = 0;
 		while(this->sens->lineOffset == 0) {
+			if(passedSteps ++ > 70)
+				return;
 			this->sys->Motor.moveTowards(0.5);
 			this->sys->Motor.flush();
 		}
