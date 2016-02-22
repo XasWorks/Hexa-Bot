@@ -66,6 +66,7 @@ module lowerFill() {
 
 module hexFill() {
 	lowerFill();
+	lowerHex();
 }
 
 module middleHex(aligned = true) {
