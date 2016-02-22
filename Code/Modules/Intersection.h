@@ -22,8 +22,11 @@ namespace Module {
 		Robot *sys;
 		LFBasic *sens;
 
+		void moveFWD();
+
 	public:
 		Intersection(Robot *system, LFBasic *sensor);
+
 
 		void execute();
 	};
