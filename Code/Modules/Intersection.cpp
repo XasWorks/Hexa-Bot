@@ -37,13 +37,11 @@ namespace Module {
 		this->sys->Motor.flush();
 
 		//Closing in again
-		this->sys->Motor.setSpeed(10);
 		while(this->sens->lineOffset == 0) {
-			this->sys->Motor.moveTowards(0.1);
+			this->sys->Motor.moveTowards(0.3);
 			this->sys->Motor.flush();
 		}
 
-		this->sys->Motor.setSpeed(50);
 		this->sys->Motor.moveTowards(INTSEC_DIST);
 
 		this->sys->Motor.rotateBy( (this->sens->lineOffset > 0) ? -90 : 90);
