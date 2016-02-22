@@ -15,7 +15,7 @@ namespace Module {
 	}
 
 	void Intersection::execute() {
-		this->sys->Motor.setSpeed(100);
+		this->sys->Motor.setSpeed(50);
 		this->sys->Motor.setRotationSpeed(90);
 
 		this->sys->Motor.moveTowards(INTSEC_DIST);
