@@ -31,13 +31,9 @@ namespace Module {
 		uint8_t init_dir = this->sens->lineOffset;
 
 		// Move forwards until the intersection ends!
-		this->moveFWD();
+		// this->moveFWD();
 
-		// Break out of the function if there still is a normal line!
-		if(this->sens->lineStatus == LF_OK)
-			return;
-		else
-			this->sys->Motor.rotateBy(90);
+		this->sys->Motor.rotateBy(100);
 			this->sys->Motor.flush();
 	}
 
