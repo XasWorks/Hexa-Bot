@@ -18,16 +18,24 @@
 #define IN_PIN 	3
 #define IN_PORT	PINB
 
+uint8_t rVal = 0;
+uint8_t gVal = 0;
+uint8_t bVal = 0;
+
 uint16_t readInPulse() {
 	uint16_t len = 0;
 
 	uint8_t oStat = (IN_PORT & (1<< IN_PIN)) == 0;
 
-	while(((IN_PORT & (1<< IN_PIN) == 0) == oStat) {
+	while( ((IN_PORT & (1<< IN_PIN)) == 0) == oStat) {
 		_delay_ms(1);
 		len++;
 	}
+
+	return len;
 }
+
+
 
 int main() {
 
