@@ -16,11 +16,11 @@ namespace Module {
 
 	void Intersection::moveFWD() {
 		while(this->sens->lineStatus == LF_INTSEC) {
-			this->sys->Motor.moveTowards(1);
+			this->sys->Motor.moveTowards(2);
 			this->sys->Motor.flush();
 		}
 
-		this->sys->Motor.moveTowards(5);
+		this->sys->Motor.moveTowards(10);
 		this->sys->Motor.flush();
 	}
 
