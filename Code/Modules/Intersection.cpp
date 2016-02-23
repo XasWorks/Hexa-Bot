@@ -22,8 +22,8 @@ namespace Module {
 	}
 
 	void Intersection::execute() {
-		this->sys->Motor.setSpeed(150);
-		this->sys->Motor.setRotationSpeed(90);
+		this->sys->Motor.setSpeed(200);
+		this->sys->Motor.setRotationSpeed(80);
 
 		uint8_t init_dir = this->sens->lineOffset;
 
