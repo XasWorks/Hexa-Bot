@@ -10,7 +10,24 @@
 #include <util/atomic.h>
 #include <util/delay.h>
 
-#include "Code/I2C/I2CHandler.cpp"
+#define PIN_S1 1
+#define PIN_S2 1
+#define PIN_S3 1
+#define PIN_S4 1
+
+#define IN_PIN 	3
+#define IN_PORT	PINB
+
+uint16_t readInPulse() {
+	uint16_t len = 0;
+
+	uint8_t oStat = (IN_PORT & (1<< IN_PIN)) == 0;
+
+	while(((IN_PORT & (1<< IN_PIN) == 0) == oStat) {
+		_delay_ms(1);
+		len++;
+	}
+}
 
 int main() {
 
