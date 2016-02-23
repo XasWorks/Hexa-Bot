@@ -37,7 +37,7 @@ namespace Module {
 		if(this->sens->lineStatus == LF_OK)
 			return;
 		else
-			this->sys->Motor.rotateBy( (init_dir > 0) ? -90 : 90);
+			this->sys->Motor.rotateBy(90);
 			this->sys->Motor.flush();
 	}
 
