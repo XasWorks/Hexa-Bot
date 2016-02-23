@@ -10,28 +10,6 @@
 #include "I2CHandler.h"
 
 
-void I2CHandler::clearTWINT() {
-	TWCR |= (1<< TWINT);
-}
-
-void I2CHandler::ACK() {
-	TWCR |= (1<< TWEA);
-}
-void I2CHandler::NACK() {
-	TWCR &= ~(1<< TWEA);
-}
-void I2CHandler::start() {
-	//Set a start bit condition on the TWI Control
-	TWCR |= (1<< TWSTA | 1<< TWINT);
-}
-void I2CHandler::stop() {
-	TWCR |= (1<< TWSTO);
-}
-
-uint8_t I2CHandler::readSR() {
-	return (TWSR & 0xF8);
-}
-
 I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	//Activate Pull-UPs
 	PORTC |= (1<< PC5 | 1<< PC4);
@@ -46,9 +24,6 @@ I2CHandler::I2CHandler(uint8_t ID, uint8_t mode) {
 	TWCR |= (1<< TWIE | 1<< TWEN);
 }
 
-bool I2CHandler::isReady() {
-	return (this->readSR() == I2C_S_IDLE);
-}
 void I2CHandler::flush() {
 	while(this->isReady() == false) {
 	}
@@ -66,8 +41,11 @@ void I2CHandler::queueOut(uint8_t msg) {
 		this->output.queue(msg);
 	}
 }
+
 void I2CHandler::beginOperation(I2CJob *job) {
-	if(this->output.isAvailable() != 0) {
+	if(this->currentJob == NULL) {
+		this->currentJob->I2CLoad();
+
 		this->start();
 	}
 }
