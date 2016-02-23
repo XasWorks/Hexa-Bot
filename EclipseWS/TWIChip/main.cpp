@@ -10,12 +10,13 @@
 #include <util/atomic.h>
 #include <util/delay.h>
 
-#define PIN_S1 1
-#define PIN_S2 1
-#define PIN_S3 1
-#define PIN_S4 1
+#define PORT_S PORTA
+#define S1 0
+#define S2 1
+#define S3 2
+#define S4 3
 
-#define IN_PIN 	3
+#define IN_PIN 	0
 #define IN_PORT	PINB
 
 uint8_t rVal = 0;
@@ -36,10 +37,14 @@ uint16_t readInPulse() {
 	return len;
 }
 
+void updateColors() {
 
+}
 
 int main() {
 
+	DDRA |= (0b1111);
+	PORTB |= (0b1);
 
 	while(true) {
 	}
