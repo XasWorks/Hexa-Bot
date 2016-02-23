@@ -25,7 +25,8 @@ void ObjectAvoid::execute() {
 	sys->Motor.flush();
 	sys->Motor.moveTowards(FORWARDS_MOV);
 	sys->Motor.flush();
-	sys->Motor.moveTowards( 1.1 * SIDEWAYS_MOV, sys->Motor.getR() + 90);
+
+	sys->Motor.moveTowards( 1.05 * SIDEWAYS_MOV, sys->Motor.getR() + 90);
 	sys->Motor.flush();
 
 }
