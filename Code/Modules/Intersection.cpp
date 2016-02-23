@@ -19,6 +19,9 @@ namespace Module {
 			this->sys->Motor.moveTowards(1);
 			this->sys->Motor.flush();
 		}
+
+		this->sys->Motor.moveTowards(5);
+		this->sys->Motor.flush();
 	}
 
 	void Intersection::execute() {

@@ -15,7 +15,7 @@ ObjectAvoid::ObjectAvoid(Robot *system) {
 
 void ObjectAvoid::execute() {
 
-	sys->Motor.setSpeed(200);
+	sys->Motor.setSpeed(300);
 	sys->Motor.setRotationSpeed(90);
 
 	sys->Motor.moveTowards(30, sys->Motor.getR() + 180);
@@ -26,7 +26,7 @@ void ObjectAvoid::execute() {
 	sys->Motor.moveTowards(FORWARDS_MOV);
 	sys->Motor.flush();
 
-	sys->Motor.moveTowards( 1.05 * SIDEWAYS_MOV, sys->Motor.getR() + 90);
+	sys->Motor.moveTowards( 1.01 * SIDEWAYS_MOV, sys->Motor.getR() + 90);
 	sys->Motor.flush();
 
 }
