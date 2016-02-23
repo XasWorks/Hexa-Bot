@@ -78,7 +78,7 @@ void updateColors() {
 
 int main() {
 
-	DDRA 	|= (0b1111);
+	DDRA 	|= (0b1111111);
 	PORTB 	|= (0b100);
 
 	while(true) {

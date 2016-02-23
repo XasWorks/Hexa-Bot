@@ -33,6 +33,7 @@ namespace Module {
 		// Move forwards until the intersection ends!
 		// this->moveFWD();
 
+		this->sys->Motor.moveTowards(INTSEC_DIST);
 		this->sys->Motor.rotateBy(100);
 			this->sys->Motor.flush();
 	}

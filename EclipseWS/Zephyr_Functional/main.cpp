@@ -45,7 +45,7 @@ void setTask() {
 			}
 
 			// Else, switch to Intersection mode
-			else if (LFSensor.lineStatus == LF_INTSEC) {
+			else if ((LFSensor.lineStatus == LF_INTSEC) /*|| ((PINC & ( 1<< 4)) != 0)*/) {
 				currentTask = TASK_INTSEC;
 				cModule = &INTSECSys;
 			}
