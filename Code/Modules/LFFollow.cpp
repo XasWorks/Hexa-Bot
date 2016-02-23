@@ -16,7 +16,7 @@ namespace Module {
 
 	void LFFollow::move() {
 		if(sys->Motor.atPosition() && sens->lineStatus != LF_AMBIG)
-			sys->Motor.moveTowards(50);
+			sys->Motor.moveTowards(35);
 	}
 
 	void LFFollow::setSpeeds() {
