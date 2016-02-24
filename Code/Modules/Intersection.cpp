@@ -26,15 +26,15 @@ namespace Module {
 
 	void Intersection::execute() {
 		this->sys->Motor.setSpeed(200);
-		this->sys->Motor.setRotationSpeed(60);
+		this->sys->Motor.setRotationSpeed(90);
 
 		uint8_t init_dir = this->sens->lineOffset;
 
 		// Move forwards until the intersection ends!
-		this->moveFWD();
+		//this->moveFWD();
 
 		this->sys->Motor.moveTowards(INTSEC_DIST);
-		this->sys->Motor.rotateBy(100);
+		this->sys->Motor.rotateBy(110);
 			this->sys->Motor.flush();
 	}
 
