@@ -19,20 +19,22 @@
 #define IN_PIN 	2
 #define IN_PORT	PINB
 
-uint8_t rVal = 0;
-uint8_t gVal = 0;
-uint8_t bVal = 0;
+uint16_t rVal = 0;
+uint16_t gVal = 0;
+uint16_t bVal = 0;
 
 uint16_t readInPulse() {
-	uint8_t len = 0;
+	uint16_t len = 0;
 
 	while( (IN_PORT & (1<< IN_PIN)) == 0) {
 	}
-	while( (IN_PORT & (1<< IN_PIN)) != 0) {
-		len++;
-	}
-	while( (IN_PORT & (1<< IN_PIN)) == 0) {
-		len++;
+	for(uint8_t i = 5; i != 0; i--) {
+		while( (IN_PORT & (1<< IN_PIN)) != 0) {
+			len++;
+		}
+		while( (IN_PORT & (1<< IN_PIN)) == 0) {
+			len++;
+		}
 	}
 	return len;
 }
@@ -86,19 +88,19 @@ int main() {
 		updateColors();
 
 		uint8_t sColor = 0;
-		if(gVal < 50)
+		if(gVal < 250)
 			sColor |= (1<< 1);
-		if(bVal < 40)
+		if(bVal < 200)
 			sColor |= 1;
-		if(rVal < 42)
+		if(rVal < 200)
 			sColor |= (1<< 2);
 
 		if(sColor == 0b010) {
-			PORTA |= 1 << 6;
+			PORTA |= 1 << 0;
 			_delay_ms(600);
 		}
 		else
-			PORTA &= ~(1<< 6);
+			PORTA &= ~(1<< 0);
 	}
 
 
