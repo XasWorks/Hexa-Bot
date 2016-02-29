@@ -105,3 +105,23 @@ void TWI_Basic::update() {
 
 	}
 }
+
+
+void TWI_Basic::onIdle() {
+	if(this->buf.isAvailable())
+		this->start();
+}
+void TWI_Basic::onError() {
+	this->buf.clear();
+	this->stop();
+}
+
+void TWI_Basic::onMTFinish() {
+	this->stop();
+}
+void TWI_Basic::onMRFinish() {
+	this->buf.clear();
+	this->stop();
+}
+void TWI_Basic::onSRFinish() {}
+void TWI_Basic::onSTStart() {}

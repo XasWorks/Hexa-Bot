@@ -38,7 +38,7 @@ public:
 	bool queue(uint8_t c);
 
 	//Cleans out the buffer, resetting it.
-	void clean();
+	void clear();
 };
 
 #endif /* CODE_I2C_BUFFER_H_ */

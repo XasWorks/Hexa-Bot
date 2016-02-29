@@ -43,6 +43,8 @@ public:
 	// Virtual functions for handling the TWI
 		// Idling function
 	virtual void onIdle();
+		// error function
+	virtual void onError();
 
 		// Master-Transmit finished
 	virtual void onMTFinish();

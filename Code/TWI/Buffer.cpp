@@ -54,7 +54,7 @@ bool Buffer::queue(uint8_t c) {
 	}
 }
 
-void Buffer::clean() {
+void Buffer::clear() {
 	this->input[0] = 0;
 	this->inStore = 0;
 }
