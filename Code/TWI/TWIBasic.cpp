@@ -92,6 +92,7 @@ void TWI_Basic::update() {
 		this->clearTWINT();
 	break;
 
+	// Read in the final data byte
 	case TWI_MR_DATA_NACK:
 		this->buf.queue(TWDR);
 
@@ -103,9 +104,11 @@ void TWI_Basic::update() {
 	break;
 
 
+	default:
+		this->onError();
+	break;
 	}
 }
-
 
 void TWI_Basic::onIdle() {
 	if(this->buf.isAvailable())
