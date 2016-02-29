@@ -17,12 +17,12 @@ batteryLength =	73;
 
 module bHolder_middlePlate() {
 	translate([-batteryLength/2, -batteryWidth/2, 0])
-	cube([batteryLength, batteryWidth, 1]);
+	cube([batteryLength, batteryWidth, 1.1]);
 }
 
 module bHolder_hex() translate([hex_ShiftX, hex_ShiftY, 0])  {
 	hexPattern(hex_pattern)
-		hexSegment(17.5/2, 17.5/2, 17.5/2 - 1.5, 17.5/2 - 1.5, h=1);
+		hexSegment(17.5/2, 17.5/2, 17.5/2 - 1.5, 17.5/2 - 1.5, h=0.9);
 }
 
 module bHolder_everythingElse() {

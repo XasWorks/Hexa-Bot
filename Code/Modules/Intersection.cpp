@@ -26,18 +26,15 @@ namespace Module {
 
 	void Intersection::execute() {
 		this->sys->Motor.setSpeed(200);
-		this->sys->Motor.setRotationSpeed(80);
+		this->sys->Motor.setRotationSpeed(90);
 
 		uint8_t init_dir = this->sens->lineOffset;
 
 		// Move forwards until the intersection ends!
-		this->moveFWD();
+		//this->moveFWD();
 
-		// Break out of the function if there still is a normal line!
-		if(this->sens->lineStatus == LF_OK)
-			return;
-		else
-			this->sys->Motor.rotateBy(90);
+		this->sys->Motor.moveTowards(INTSEC_DIST);
+		this->sys->Motor.rotateBy(110);
 			this->sys->Motor.flush();
 	}
 

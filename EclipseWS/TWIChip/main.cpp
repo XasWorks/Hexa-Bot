@@ -10,12 +10,97 @@
 #include <util/atomic.h>
 #include <util/delay.h>
 
-#include "Code/I2C/I2CHandler.cpp"
+#define PORT_S PORTA
+#define S1 0
+#define S2 1
+#define S3 2
+#define S4 3
+
+#define IN_PIN 	2
+#define IN_PORT	PINB
+
+uint16_t rVal = 0;
+uint16_t gVal = 0;
+uint16_t bVal = 0;
+
+uint16_t readInPulse() {
+	uint16_t len = 0;
+
+	while( (IN_PORT & (1<< IN_PIN)) == 0) {
+	}
+	for(uint8_t i = 5; i != 0; i--) {
+		while( (IN_PORT & (1<< IN_PIN)) != 0) {
+			len++;
+		}
+		while( (IN_PORT & (1<< IN_PIN)) == 0) {
+			len++;
+		}
+	}
+	return len;
+}
+
+void sOut(uint8_t bit) {
+	_delay_ms(2000);
+
+	PORTA |= 1;
+	_delay_ms(500);
+	PORTA &= ~1;
+	_delay_ms(500);
+
+	if(bit) {
+		PORTA |= 1;
+		_delay_ms(500);
+		PORTA &= ~1;
+		_delay_ms(500);
+	}
+}
+
+
+void oPut(uint8_t input) {
+	for(uint8_t i=0; i<3; i++) {
+		sOut((input & (1<< i)) != 0);
+	}
+	PORTA &= ~(1);
+	_delay_ms(8000);
+}
+
+void setSPins(uint8_t in) {
+	PORTA &= ~(0b110);
+	PORTA |= (in << 1);
+}
+
+void updateColors() {
+	setSPins(0b00);
+	rVal = readInPulse();
+	setSPins(0b10);
+	bVal = readInPulse();
+	setSPins(0b11);
+	gVal = readInPulse();
+}
 
 int main() {
 
+	DDRA 	|= (0b1111 | 1 << 6);
+	PORTB 	|= (0b100);
 
 	while(true) {
+
+		updateColors();
+
+		uint8_t sColor = 0;
+		if(gVal < 250)
+			sColor |= (1<< 1);
+		if(bVal < 200)
+			sColor |= 1;
+		if(rVal < 200)
+			sColor |= (1<< 2);
+
+		if(sColor == 0b010) {
+			PORTA |= 1 << 0;
+			_delay_ms(600);
+		}
+		else
+			PORTA &= ~(1<< 0);
 	}
 
 
