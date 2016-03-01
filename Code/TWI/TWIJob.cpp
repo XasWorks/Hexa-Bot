@@ -16,4 +16,13 @@ TWI_Job::TWI_Job() {
 
 void TWI_Job::beginOperation() {}
 void TWI_Job::endOperation() {}
+
 void TWI_Job::error() {}
+
+TWI_Job * TWI_Job::getHeadNode() {
+	return TWI_Job::nodeEnd;
+}
+
+TWI_Job * TWI_Job::getNextNode() {
+	return this->nextNode;
+}

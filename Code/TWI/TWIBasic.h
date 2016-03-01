@@ -29,6 +29,22 @@ protected:
 	void noStart();	// Clear TWSTA Flag
 	void stop();	// Send a TWI stop signal
 
+	// Virtual functions for handling the TWI
+			// Idling function
+		virtual void onIdle();
+			// error function
+		virtual void onError();
+
+			// Master-Transmit finished
+		virtual void onMTFinish();
+			// Master-Read finished
+		virtual void onMRFinish();
+
+			// Slave-Transmit starting
+		virtual void onSTStart();
+			// Slave-Read finished
+		virtual void onSRFinish();
+
 public:
 
 	uint8_t readLength = 0; 	// How many bytes should be read in?
@@ -40,21 +56,6 @@ public:
 
 	void update(); 	// Update the TWI interface. Called within ISR
 
-	// Virtual functions for handling the TWI
-		// Idling function
-	virtual void onIdle();
-		// error function
-	virtual void onError();
-
-		// Master-Transmit finished
-	virtual void onMTFinish();
-		// Master-Read finished
-	virtual void onMRFinish();
-
-		// Slave-Transmit starting
-	virtual void onSTStart();
-		// Slave-Read finished
-	virtual void onSRFinish();
 };
 
 #endif /* CODE_TWI_TWIBASIC_H_ */
