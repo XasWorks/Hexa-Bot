@@ -17,12 +17,16 @@ class TWI_Handler : TWI_Basic {
 private:
 	TWI_Job *curentJob = 0;
 
+	// Start a new job
+	void beginJob(TWI_Job * jobPointer);
+	// End a new job or send a repstart.
+	void endJob();
 
 
 public:
 	TWI_Handler();
 
-void onIdle();
+	void searchJob();
 
 
 };
