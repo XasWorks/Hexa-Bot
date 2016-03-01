@@ -29,8 +29,12 @@ public:
 	// END operation.
 	virtual void error();
 
+	// Return important nodes for the TWI Job search
 	static TWI_Job * getHeadNode();
 	TWI_Job * getNextNode();
+
+	// Return the current Job's status
+	uint8_t getStatus();
 };
 
 #endif /* CODE_TWI_TWIJOB_H_ */

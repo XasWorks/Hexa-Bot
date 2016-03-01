@@ -22,7 +22,10 @@ void TWI_Job::error() {}
 TWI_Job * TWI_Job::getHeadNode() {
 	return TWI_Job::nodeEnd;
 }
-
 TWI_Job * TWI_Job::getNextNode() {
 	return this->nextNode;
+}
+
+uint8_t TWI_Job::getStatus() {
+	return this->jobStatus;
 }
