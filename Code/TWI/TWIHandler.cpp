@@ -8,8 +8,7 @@
 #include "TWIHandler.h"
 
 TWI_Handler::TWI_Handler() {
-	// TODO Auto-generated constructor stub
-
+	TWI_Basic::TWISys = this;
 }
 
 void TWI_Handler::beginJob(TWI_Job *jobPointer) {

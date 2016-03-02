@@ -9,6 +9,7 @@
 #define CODE_TWI_TWIBASIC_H_
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 
 #include "Buffer.h"
 
@@ -46,6 +47,8 @@ protected:
 		virtual void onSRFinish();
 
 public:
+
+	static TWI_Basic *TWISys;
 
 	uint8_t readLength = 0; 	// How many bytes should be read in?
 	Buffer buf = Buffer();		// I/O Buffer

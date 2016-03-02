@@ -8,7 +8,11 @@
 #include "TWIBasic.h"
 
 TWI_Basic::TWI_Basic() {
-	// TODO Auto-generated constructor stub
+	// TODO Add actual TWI initialization!
+
+	// Activate TWI
+	TWCR |= (1<< TWEN);
+	this->ACK();
 
 }
 
