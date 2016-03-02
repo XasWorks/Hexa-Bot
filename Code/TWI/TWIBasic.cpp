@@ -116,6 +116,7 @@ void TWI_Basic::onIdle() {
 }
 void TWI_Basic::onError() {
 	this->buf.clear();
+	this->ACK();
 	this->stop();
 }
 
