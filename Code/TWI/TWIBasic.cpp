@@ -8,12 +8,13 @@
 #include "TWIBasic.h"
 
 TWI_Basic::TWI_Basic() {
-	// TODO Add actual TWI initialization!
-
-	// Activate TWI
-	TWCR |= (1<< TWEN);
+	// Activate TWI and Interrupt
+	TWCR |= (1<< TWEN | 1<< TWIE);
 	this->ACK();
 
+	// TODO add proper speed system.
+	// Fixed speed to ~100kHz
+	TWBR = 72;
 }
 
 void TWI_Basic::clearTWINT() {
