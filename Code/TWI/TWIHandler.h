@@ -25,6 +25,12 @@ private:
 	// End a new job or send a repstart.
 	void endJob();
 
+	// TWI_Basic overrider functions.
+	void onMTFinish();
+	void onMRFinish();
+
+	void onSTStart();
+	void onSRFinish();
 
 public:
 	TWI_Handler();
@@ -32,12 +38,6 @@ public:
 	void searchJobs();
 
 	void setSlaveJob(TWI_Job *slave);
-
-	void onMTFinish();
-	void onMRFinish();
-
-	void onSTStart();
-	void onSRFinish();
 };
 
 #endif /* CODE_TWI_TWIHANDLER_H_ */
