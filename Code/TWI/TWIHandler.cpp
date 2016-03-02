@@ -25,7 +25,7 @@ void TWI_Handler::endJob() {
 	// Let the TWI_Job end it's operation
 	this->currentJob->endOperation();
 
-	// Check if the current job still wants to keep com'ing
+	// Check if the current job still wants to keep talking
 	if(this->currentJob->getStatus() != 0) {
 		this->start(); 			// Send a RepStart
 	}
@@ -60,9 +60,20 @@ void TWI_Handler::searchJobs() {
 	}
 }
 
+void TWI_Handler::setSlaveJob(TWI_Job *slave) {
+	this->slaveJob = slave;
+}
+
 void TWI_Handler::onMRFinish() {
 	this->endJob();
 }
 void TWI_Handler::onMTFinish() {
 	this->endJob();
+}
+
+void TWI_Handler::onSTStart() {
+	this->slaveJob->beginOperation();
+}
+void TWI_Handler::onSRFinish() {
+	this->slaveJob->beginOperation();
 }
