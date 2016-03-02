@@ -13,9 +13,51 @@ TWI_Handler::TWI_Handler() {
 }
 
 void TWI_Handler::beginJob(TWI_Job *jobPointer) {
-	jobPointer->beginOperation();
-	this->start();
-	this->clearTWINT();
+	if(this->currentJob != 0) {
+		this->currentJob = jobPointer;
+		this->currentJob->beginOperation();
+
+		this->start();
+		this->clearTWINT();
+	}
+}
+void TWI_Handler::endJob() {
+	// Let the TWI_Job end it's operation
+	this->currentJob->endOperation();
+
+	// Check if the current job still wants to keep com'ing
+	if(this->currentJob->getStatus() != 0) {
+		this->start(); 			// Send a RepStart
+	}
+	// Otherwise, check if there is another Job available!
+	else {
+		this->currentJob = 0;
+		this->searchJobs();
+
+		// If there IS another job requiring TWI, do a RepStart
+		if(this->currentJob != 0) {
+			this->currentJob->beginOperation();
+			this->start();
+		}
+		// Otherwise, end transmission
+		else
+			this->stop();
+	}
+}
+
+void TWI_Handler::searchJobs() {
+	if(this->currentJob == 0) {
+		// Initialise the node chain
+		this->currentJob = TWI_Job::getHeadNode();
+
+		// Go through the node chain until either a waiting job or the end of the chain is hit!
+		while(this->currentJob != 0) {
+			if(this->currentJob->getStatus() != 0)
+				break;
+			else
+				this->currentJob = this->currentJob->getNextNode();
+		}
+	}
 }
 
 void TWI_Handler::onMRFinish() {
@@ -23,27 +65,4 @@ void TWI_Handler::onMRFinish() {
 }
 void TWI_Handler::onMTFinish() {
 	this->endJob();
-}
-void TWI_Handler::endJob() {
-	// Let the TWI_Job end it's operation
-	this->curentJob->endOperation();
-
-	// Check if the current job still wants to keep com'ing
-	if(this->curentJob->getStatus() != 0) {
-		this->start(); 			// Send a RepStart
-	}
-	// Otherwise, check if there is another Job available!
-	else {
-		this->curentJob = 0;
-		this->searchJob();
-
-		// If there IS another job requiring TWI, do a RepStart
-		if(this->curentJob != 0) {
-			this->curentJob->beginOperation();
-			this->start();
-		}
-		// Otherwise, end transmission
-		else
-			this->stop();
-	}
 }

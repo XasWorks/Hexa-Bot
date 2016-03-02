@@ -15,7 +15,7 @@
 class TWI_Handler : TWI_Basic {
 
 private:
-	TWI_Job *curentJob = 0;
+	TWI_Job *currentJob = 0;
 
 	// Start a new job
 	void beginJob(TWI_Job * jobPointer);
@@ -26,9 +26,10 @@ private:
 public:
 	TWI_Handler();
 
-	void searchJob();
+	void searchJobs();
 
-
+	void onMTFinish();
+	void onMRFinish();
 };
 
 #endif /* CODE_TWI_TWIHANDLER_H_ */
