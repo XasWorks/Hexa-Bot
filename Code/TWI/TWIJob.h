@@ -13,7 +13,7 @@
 // TWI_Job interface class to offer function handling for TWI coms.
 class TWI_Job {
 private:
-	TWI_Job *nextNode;
+	TWI_Job *nextNode = 0;
 	static TWI_Job *nodeEnd;
 
 	uint8_t jobStatus = 0;
