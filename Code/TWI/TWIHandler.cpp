@@ -35,13 +35,8 @@ void TWI_Handler::endJob() {
 		this->currentJob = 0;
 		this->searchJobs();
 
-		// If there IS another job requiring TWI, do a RepStart
-		if(this->currentJob != 0) {
-			this->currentJob->beginOperation();
-			this->start();
-		}
-		// Otherwise, end transmission
-		else
+		// If there is no job requiring a further send
+		if(this->currentJob != 0)
 			this->stop();
 	}
 }
@@ -58,6 +53,13 @@ void TWI_Handler::searchJobs() {
 			else
 				this->currentJob = this->currentJob->getNextNode();
 		}
+
+		if(this->currentJob != 0) {
+			this->currentJob->beginOperation();
+			this->start();
+			this->clearTWINT();
+		}
+
 	}
 }
 
