@@ -12,8 +12,7 @@
 #include "TWIJob.h"
 #include "TWI_StatCodes.h"
 
-class TWI_Handler : TWI_Basic {
-
+class TWI_Handler : public TWI_Basic {
 private:
 	TWI_Job *currentJob = 0;
 
@@ -33,6 +32,8 @@ private:
 	void onSRFinish();
 
 public:
+	static TWI_Handler IO;
+
 	TWI_Handler();
 
 	void searchJobs();

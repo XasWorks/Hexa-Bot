@@ -58,7 +58,6 @@ public:
 	void load(uint8_t data); 	// Load a data-byte into buffer.
 
 	void update(); 	// Update the TWI interface. Called within ISR
-
 };
 
 #endif /* CODE_TWI_TWIBASIC_H_ */

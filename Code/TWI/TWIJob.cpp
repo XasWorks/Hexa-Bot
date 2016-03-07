@@ -15,7 +15,11 @@ TWI_Job::TWI_Job() {
 }
 
 void TWI_Job::beginOperation() {}
-void TWI_Job::endOperation() {}
+void TWI_Job::endOperation() {
+	if(this->jobStatus != 0) {
+		this->jobStatus--;
+	}
+}
 
 void TWI_Job::error() {}
 

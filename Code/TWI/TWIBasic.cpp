@@ -7,6 +7,8 @@
 
 #include "TWIBasic.h"
 
+TWI_Basic *TWI_Basic::TWISys = 0;
+
 TWI_Basic::TWI_Basic() {
 	// Activate TWI and Interrupt
 	TWCR |= (1<< TWEN | 1<< TWIE);
@@ -15,6 +17,10 @@ TWI_Basic::TWI_Basic() {
 	// TODO add proper speed system.
 	// Fixed speed to ~100kHz
 	TWBR = 72;
+
+	PORTC |= (0b11);
+
+	sei();
 }
 
 void TWI_Basic::clearTWINT() {

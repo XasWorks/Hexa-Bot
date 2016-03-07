@@ -7,6 +7,8 @@
 
 #include "TWIHandler.h"
 
+TWI_Handler TWI_Handler::IO = TWI_Handler();
+
 TWI_Handler::TWI_Handler() {
 	TWI_Basic::TWISys = this;
 }

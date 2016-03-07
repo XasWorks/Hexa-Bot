@@ -16,6 +16,7 @@ private:
 	TWI_Job *nextNode = 0;
 	static TWI_Job *nodeEnd;
 
+protected:
 	uint8_t jobStatus = 0;
 
 public:
