@@ -54,12 +54,9 @@ void TWI_Handler::searchJobs() {
 				this->currentJob = this->currentJob->getNextNode();
 		}
 
-		if(this->currentJob != 0) {
-			this->currentJob->beginOperation();
-			this->start();
-			this->clearTWINT();
-		}
 
+		//If a new job was selected (old job == 0 and a new job present), excecute that one.
+		this->beginJob(currentJob);
 	}
 }
 
