@@ -10,99 +10,84 @@
 #include <util/atomic.h>
 #include <util/delay.h>
 
-#define PORT_S PORTA
-#define S1 0
-#define S2 1
-#define S3 2
-#define S4 3
+#include "Code/TWI/TWIHandler.h"
+#include "Code/TWI/TWIJob.h"
 
-#define IN_PIN 	2
-#define IN_PORT	PINB
-
-uint16_t rVal = 0;
-uint16_t gVal = 0;
-uint16_t bVal = 0;
-
-uint16_t readInPulse() {
-	uint16_t len = 0;
-
-	while( (IN_PORT & (1<< IN_PIN)) == 0) {
+class IOExp : TWI_Job {
+private:
+	void setOutputs() {
+		TWI_Handler::IO.buf.queue(0b01001110);
+		TWI_Handler::IO.buf.queue(0x00);
+		TWI_Handler::IO.buf.queue(0x00);
 	}
-	for(uint8_t i = 5; i != 0; i--) {
-		while( (IN_PORT & (1<< IN_PIN)) != 0) {
-			len++;
+
+	void enableLED() {
+		TWI_Handler::IO.buf.queue(0b01001110);
+		TWI_Handler::IO.buf.queue(0x14);
+		TWI_Handler::IO.buf.queue(0b1);
+	}
+
+	void disableLED() {
+		TWI_Handler::IO.buf.queue(0b01001110);
+		TWI_Handler::IO.buf.queue(0x14);
+		TWI_Handler::IO.buf.queue(0);
+	}
+public:
+
+	void ledON() {
+		this->jobStatus = 1;
+		TWI_Handler::IO.searchJobs();
+	}
+
+	void ledOff() {
+		this->jobStatus = 2;
+		TWI_Handler::IO.searchJobs();
+	}
+
+	void beginOperation() {
+		switch(this->jobStatus) {
+		case 100:
+			setOutputs();
+			jobStatus = 0;
+		break;
+
+		case 2:
+			disableLED();
+		break;
+
+		case 1:
+			enableLED();
+		break;
 		}
-		while( (IN_PORT & (1<< IN_PIN)) == 0) {
-			len++;
-		}
 	}
-	return len;
-}
 
-void sOut(uint8_t bit) {
-	_delay_ms(2000);
-
-	PORTA |= 1;
-	_delay_ms(500);
-	PORTA &= ~1;
-	_delay_ms(500);
-
-	if(bit) {
-		PORTA |= 1;
-		_delay_ms(500);
-		PORTA &= ~1;
-		_delay_ms(500);
+	void endOperation() {
+		this->jobStatus = 0;
 	}
-}
-
-
-void oPut(uint8_t input) {
-	for(uint8_t i=0; i<3; i++) {
-		sOut((input & (1<< i)) != 0);
+	IOExp() {
+		this->jobStatus = 100;
 	}
-	PORTA &= ~(1);
-	_delay_ms(8000);
-}
+};
 
-void setSPins(uint8_t in) {
-	PORTA &= ~(0b110);
-	PORTA |= (in << 1);
-}
+IOExp ioJob = IOExp();
 
-void updateColors() {
-	setSPins(0b00);
-	rVal = readInPulse();
-	setSPins(0b10);
-	bVal = readInPulse();
-	setSPins(0b11);
-	gVal = readInPulse();
+ISR(TWI_vect) {
+	TWI_Handler::IO.update();
 }
 
 int main() {
+	DDRD |= 1;
 
-	DDRA 	|= (0b1111 | 1 << 6);
-	PORTB 	|= (0b100);
+	_delay_ms(1000);
+
+	TWI_Handler::IO.searchJobs();
 
 	while(true) {
+		ioJob.ledON();
+		_delay_ms(1000);
+		ioJob.ledOff();
+		_delay_ms(1000);
 
-		updateColors();
-
-		uint8_t sColor = 0;
-		if(gVal < 250)
-			sColor |= (1<< 1);
-		if(bVal < 200)
-			sColor |= 1;
-		if(rVal < 200)
-			sColor |= (1<< 2);
-
-		if(sColor == 0b010) {
-			PORTA |= 1 << 0;
-			_delay_ms(600);
-		}
-		else
-			PORTA &= ~(1<< 0);
 	}
-
-
 	return 0;
 }

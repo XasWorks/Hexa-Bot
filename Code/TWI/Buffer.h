@@ -11,7 +11,7 @@
 #include <avr/io.h>
 
 //How many bytes should the buffer contain?
-#define BUF_SIZE 8
+#define BUF_SIZE 16
 
 class Buffer {
 private:
@@ -38,7 +38,7 @@ public:
 	bool queue(uint8_t c);
 
 	//Cleans out the buffer, resetting it.
-	void clean();
+	void clear();
 };
 
 #endif /* CODE_I2C_BUFFER_H_ */
