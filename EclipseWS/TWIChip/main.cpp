@@ -16,20 +16,20 @@
 class IOExp : TWI_Job {
 private:
 	void setOutputs() {
-		TWI_Handler::IO.buf.queue(0b01000000);
+		TWI_Handler::IO.buf.queue(0b01001110);
 		TWI_Handler::IO.buf.queue(0x00);
-		TWI_Handler::IO.buf.queue(0xff);
+		TWI_Handler::IO.buf.queue(0x00);
 	}
 
 	void enableLED() {
-		TWI_Handler::IO.buf.queue(0b01000000);
-		TWI_Handler::IO.buf.queue(0x12);
+		TWI_Handler::IO.buf.queue(0b01001110);
+		TWI_Handler::IO.buf.queue(0x09);
 		TWI_Handler::IO.buf.queue(0b1);
 	}
 
 	void disableLED() {
-		TWI_Handler::IO.buf.queue(0b01000000);
-		TWI_Handler::IO.buf.queue(0x12);
+		TWI_Handler::IO.buf.queue(0b01001110);
+		TWI_Handler::IO.buf.queue(0x09);
 		TWI_Handler::IO.buf.queue(0);
 	}
 public:
@@ -61,6 +61,9 @@ public:
 		}
 	}
 
+	void endOperation() {
+		this->jobStatus = 0;
+	}
 	IOExp() {
 		this->jobStatus = 100;
 	}
@@ -73,6 +76,9 @@ ISR(TWI_vect) {
 }
 
 int main() {
+	DDRD |= 1;
+
+	_delay_ms(1000);
 
 	TWI_Handler::IO.searchJobs();
 

@@ -36,7 +36,7 @@ void TWI_Handler::endJob() {
 		this->searchJobs();
 
 		// If there is no job requiring a further send
-		if(this->currentJob != 0)
+		if(this->currentJob == 0)
 			this->stop();
 	}
 }
