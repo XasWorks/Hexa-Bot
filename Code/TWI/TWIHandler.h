@@ -31,6 +31,8 @@ private:
 	void onSTStart();
 	void onSRFinish();
 
+	void onError();
+
 public:
 	static TWI_Handler IO;
 

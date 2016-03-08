@@ -77,3 +77,10 @@ void TWI_Handler::onSTStart() {
 void TWI_Handler::onSRFinish() {
 	this->slaveJob->beginOperation();
 }
+
+void TWI_Handler::onError() {
+	this->buf.clear();
+	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA | 1<< TWSTO);
+
+	this->currentJob = 0;
+}

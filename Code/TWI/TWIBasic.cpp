@@ -11,8 +11,7 @@ TWI_Basic *TWI_Basic::TWISys = 0;
 
 TWI_Basic::TWI_Basic() {
 	// Activate TWI and Interrupt
-	TWCR |= (1<< TWEN | 1<< TWIE);
-	this->ACK();
+	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA);
 
 	// TODO add proper speed system.
 	// Fixed speed to ~100kHz
@@ -117,6 +116,8 @@ void TWI_Basic::update() {
 
 	default:
 		this->onError();
+
+		this->clearTWINT();
 	break;
 	}
 }
@@ -127,8 +128,7 @@ void TWI_Basic::onIdle() {
 }
 void TWI_Basic::onError() {
 	this->buf.clear();
-	this->ACK();
-	this->stop();
+	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA | 1<< TWSTO);
 }
 
 void TWI_Basic::onMTFinish() {
