@@ -48,21 +48,25 @@ public:
 		switch(this->jobStatus) {
 		case 100:
 			setOutputs();
-			jobStatus = 0;
-		break;
-
-		case 2:
-			disableLED();
 		break;
 
 		case 1:
+			disableLED();
+		break;
+
+		case 2:
 			enableLED();
 		break;
 		}
 	}
 
 	void endOperation() {
-		this->jobStatus = 0;
+		if(this->jobStatus == 2) {
+			this->jobStatus = 1;
+			this->disableLED();
+		}
+		else
+			this->jobStatus = 0;
 	}
 	IOExp() {
 		this->jobStatus = 100;

@@ -77,12 +77,11 @@ void TWI_Basic::update() {
 	case TWI_MT_DATA_ACK:
 		if(this->buf.isAvailable() != 0) {
 			this->load(this->buf.read());
+			this->clearTWINT();
 		}
 		else {
 			this->onMTFinish();
 		}
-
-		this->clearTWINT();
 	break;
 
 	// Wait for the slave to send first byte
@@ -133,6 +132,7 @@ void TWI_Basic::onError() {
 
 void TWI_Basic::onMTFinish() {
 	this->stop();
+	this->clearTWINT();
 }
 void TWI_Basic::onMRFinish() {
 	this->buf.clear();

@@ -29,6 +29,7 @@ void TWI_Handler::endJob() {
 	// Check if the current job still wants to keep talking
 	if(this->currentJob->getStatus() != 0) {
 		this->start(); 			// Send a RepStart
+		this->clearTWINT();
 	}
 	// Otherwise, check if there is another Job available!
 	else {
@@ -36,8 +37,10 @@ void TWI_Handler::endJob() {
 		this->searchJobs();
 
 		// If there is no job requiring a further send
-		if(this->currentJob == 0)
+		if(this->currentJob == 0) {
 			this->stop();
+			this->clearTWINT();
+		}
 	}
 }
 
