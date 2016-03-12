@@ -553,8 +553,6 @@ Wire Wire Line
 Wire Wire Line
 	3450 1900 3600 1900
 Wire Wire Line
-	1200 1500 1000 1500
-Wire Wire Line
 	1000 1500 1000 750 
 Wire Wire Line
 	1000 750  3700 750 
@@ -562,7 +560,6 @@ Wire Wire Line
 	3700 750  3700 1000
 Wire Wire Line
 	3700 1000 4250 1000
-Connection ~ 1200 1500
 Wire Wire Line
 	6400 3650 6400 3850
 Wire Wire Line
@@ -910,4 +907,8 @@ Text Label 6850 1600 1    60   ~ 0
 PB1
 Text Label 7300 1600 1    60   ~ 0
 PB2
+Wire Wire Line
+	1000 1500 1550 1500
+Wire Wire Line
+	1550 1500 1550 1400
 $EndSCHEMATC
