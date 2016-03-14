@@ -51,21 +51,16 @@ public:
 		break;
 
 		case 1:
-			disableLED();
+			enableLED();
 		break;
 
 		case 2:
-			enableLED();
+			disableLED();
 		break;
 		}
 	}
 
 	void endOperation() {
-		if(this->jobStatus == 2) {
-			this->jobStatus = 1;
-			this->disableLED();
-		}
-		else
 			this->jobStatus = 0;
 	}
 	IOExp() {
@@ -88,9 +83,10 @@ int main() {
 
 	while(true) {
 		ioJob.ledON();
-		_delay_ms(1000);
+		_delay_us(500);
 		ioJob.ledOff();
-		_delay_ms(1000);
+
+		_delay_ms(100);
 
 	}
 	return 0;
