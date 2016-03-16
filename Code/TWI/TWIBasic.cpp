@@ -56,6 +56,23 @@ void TWI_Basic::load(uint8_t data) {
 	TWDR = data;
 }
 
+void TWI_Basic::handleIdle() {
+	switch(this->readSR()) {
+	// Do pretty much nothing while the TWI is idle
+	case TWI_IDLE:
+		this->onIdle();
+	break;
+
+	// Load the address (fist buffer value) into TWDR after having sent the START (or repeated start)
+	case TWI_M_REPSTART:
+	case TWI_M_START:
+		this->load(this->buf.read());
+		this->noStart();
+
+		this->clearTWINT();
+	break;
+	}
+}
 void TWI_Basic::handleMT() {
 	switch(this->readSR()) {
 	// Load and send further data bytes
@@ -102,29 +119,52 @@ void TWI_Basic::handleMR() {
 		break;
 	}
 }
+void TWI_Basic::handleST() {
+	switch(this->readSR()) {
+	case TWI_ST_SLA_ACK:
+		this->onSTStart();
 
-void TWI_Basic::update() {
-	switch (this->readSR()) {
-	// Do pretty much nothing while the TWI is idle
-	case TWI_IDLE:
-		this->onIdle();
-	break;
-
-	// Load the address (fist buffer value) into TWDR after having sent the START (or repeated start)
-	case TWI_M_REPSTART:
-	case TWI_M_START:
-		this->load(this->buf.read());
-		this->noStart();
-
+		this->load(buf.read());
 		this->clearTWINT();
 	break;
 
-	default:
-		this->onError();
+	case TWI_ST_DATA_ACK:
+		this->load(buf.read());
+		this->clearTWINT();
+	break;
 
+	case TWI_ST_DATA_LAST:
+	case TWI_ST_DATA_NACK:
 		this->clearTWINT();
 	break;
 	}
+}
+void TWI_Basic::handleSR() {
+	switch(this->readSR()) {
+	case TWI_SR_SLA_ACK:
+	case TWI_SR_GC_ACK:
+		this->clearTWINT();
+	break;
+
+	case TWI_SR_DATA_ACK:
+	case TWI_SR_DATA_NACK:
+	case TWI_SR_GC_DATA_ACK:
+	case TWI_SR_GC_DATA_NACK:
+		this->buf.queue(TWDR);
+	break;
+
+	case TWI_SR_STOP:
+		this->onSRFinish();
+	break;
+	}
+}
+
+void TWI_Basic::update() {
+	this->handleIdle();
+	this->handleMT();
+	this->handleMR();
+	this->handleST();
+	this->handleSR();
 }
 
 void TWI_Basic::onIdle() {

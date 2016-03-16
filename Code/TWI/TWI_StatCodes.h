@@ -32,11 +32,12 @@
 #define TWI_SR_SLA_ACK		0x60
 #define TWI_SR_DATA_ACK		0x80
 #define TWI_SR_DATA_NACK	0x88
-#define TWI_SR_DATA_STOP	0xA0
 
 #define TWI_SR_GC_ACK		0x70
 #define TWI_SR_GC_DATA_ACK	0x90
 #define TWI_SR_GC_DATA_NACK	0x98
+
+#define TWI_SR_STOP			0xA0
 
 // Slave-Transmit related status codes
 #define TWI_ST_SLA_ACK		0xA8

@@ -17,8 +17,11 @@
 
 class TWI_Basic {
 private:
+	void handleIdle();
 	void handleMT();
 	void handleMR();
+	void handleST();
+	void handleSR();
 
 protected:
 
