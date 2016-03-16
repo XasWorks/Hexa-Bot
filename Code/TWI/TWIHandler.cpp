@@ -22,27 +22,6 @@ void TWI_Handler::beginJob(TWI_Job *jobPointer) {
 		this->clearTWINT();
 	}
 }
-void TWI_Handler::endJob() {
-	// Let the TWI_Job end it's operation
-	this->currentJob->endOperation();
-
-	// Check if the current job still wants to keep talking
-	if(this->currentJob->getStatus() != 0) {
-		this->start(); 			// Send a RepStart
-		this->clearTWINT();
-	}
-	// Otherwise, check if there is another Job available!
-	else {
-		this->currentJob = 0;
-		this->searchJobs();
-
-		// If there is no job requiring a further send
-		if(this->currentJob == 0) {
-			this->stop();
-			this->clearTWINT();
-		}
-	}
-}
 
 TWI_Job * TWI_Handler::searchJobs() {
 		// Initialise the node chain
@@ -56,6 +35,26 @@ TWI_Job * TWI_Handler::searchJobs() {
 				sJob = sJob->getNextNode();
 		}
 		return 0;
+}
+
+void TWI_Handler::endJob() {
+	// Let the TWI_Job end it's operation
+	this->currentJob->endOperation();
+
+	// Check if the current job still wants to keep talking
+	if(this->currentJob->getStatus() != 0) {
+		this->start(); 			// Send a RepStart
+	}
+	// Otherwise, check if there is another Job available!
+	else {
+		if((this->currentJob = this->searchJobs()) == 0) {
+			// If there is no job requiring a further send
+			this->stop();
+		}
+		else {
+			this->currentJob->beginOperation();
+			this->start();
+		}
 	}
 }
 
