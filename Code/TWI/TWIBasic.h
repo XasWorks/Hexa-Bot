@@ -16,6 +16,10 @@
 #include "TWI_StatCodes.h"
 
 class TWI_Basic {
+private:
+	void handleMT();
+	void handleMR();
+
 protected:
 
 	// TWI Module interfacing functions
@@ -32,19 +36,19 @@ protected:
 
 	// Virtual functions for handling the TWI
 			// Idling function
-		virtual void onIdle();
-			// error function
-		virtual void onError();
+	virtual void onIdle();
+		// error function
+	virtual void onError();
 
-			// Master-Transmit finished
-		virtual void onMTFinish();
-			// Master-Read finished
-		virtual void onMRFinish();
+		// Master-Transmit finished
+	virtual void onMTFinish();
+		// Master-Read finished
+	virtual void onMRFinish();
 
-			// Slave-Transmit starting
-		virtual void onSTStart();
-			// Slave-Read finished
-		virtual void onSRFinish();
+		// Slave-Transmit starting
+	virtual void onSTStart();
+		// Slave-Read finished
+	virtual void onSRFinish();
 
 public:
 

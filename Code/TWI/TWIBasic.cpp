@@ -56,6 +56,53 @@ void TWI_Basic::load(uint8_t data) {
 	TWDR = data;
 }
 
+void TWI_Basic::handleMT() {
+	switch(this->readSR()) {
+	// Load and send further data bytes
+	case TWI_MT_SLA_ACK:
+	case TWI_MT_DATA_ACK:
+		if(this->buf.isAvailable() != 0) {
+			this->load(this->buf.read());
+			this->clearTWINT();
+		}
+		else {
+			this->onMTFinish();
+		}
+	break;
+	}
+}
+void TWI_Basic::handleMR() {
+	switch(this->readSR()) {
+	// Wait for the slave to send first byte
+		case TWI_MR_SLA_ACK:
+			if(--this->readLength == 0)	// Send a NACK if enough data has been received
+				this->NACK();
+			this->clearTWINT();
+
+		break;
+
+		// Read in a Byte.
+		case TWI_MR_DATA_ACK:
+			this->buf.queue(TWDR);
+
+			if(--this->readLength == 0)	// Send a NACK if enough data has been received
+				this->NACK();
+
+			this->clearTWINT();
+		break;
+
+		// Read in the final data byte
+		case TWI_MR_DATA_NACK:
+			this->buf.queue(TWDR);
+
+			this->ACK(); 				// Set ACK again.
+			this->onMRFinish();
+
+			this->clearTWINT();
+		break;
+	}
+}
+
 void TWI_Basic::update() {
 	switch (this->readSR()) {
 	// Do pretty much nothing while the TWI is idle
@@ -71,47 +118,6 @@ void TWI_Basic::update() {
 
 		this->clearTWINT();
 	break;
-
-	// Load and send further data bytes
-	case TWI_MT_SLA_ACK:
-	case TWI_MT_DATA_ACK:
-		if(this->buf.isAvailable() != 0) {
-			this->load(this->buf.read());
-			this->clearTWINT();
-		}
-		else {
-			this->onMTFinish();
-		}
-	break;
-
-	// Wait for the slave to send first byte
-	case TWI_MR_SLA_ACK:
-		if(--this->readLength == 0)	// Send a NACK if enough data has been received
-			this->NACK();
-
-		this->clearTWINT();
-	break;
-
-	// Read in a Byte.
-	case TWI_MR_DATA_ACK:
-		this->buf.queue(TWDR);
-		if(--this->readLength == 0)	// Send a NACK if enough data has been received
-			this->NACK();
-
-		this->clearTWINT();
-	break;
-
-	// Read in the final data byte
-	case TWI_MR_DATA_NACK:
-		this->buf.queue(TWDR);
-
-		this->ACK(); 				// Set ACK again.
-
-		this->onMRFinish();
-
-		this->clearTWINT();
-	break;
-
 
 	default:
 		this->onError();
