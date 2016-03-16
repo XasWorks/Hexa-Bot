@@ -14,9 +14,9 @@ TWI_Handler::TWI_Handler() {
 }
 
 void TWI_Handler::beginJob(TWI_Job *jobPointer) {
-	if(this->currentJob != 0) {
-		this->currentJob = jobPointer;
-		this->currentJob->beginOperation();
+	if(this->currentMasterJob != 0) {
+		this->currentMasterJob = jobPointer;
+		this->currentMasterJob->beginOperation();
 
 		this->start();
 		this->clearTWINT();
@@ -37,48 +37,46 @@ TWI_Job * TWI_Handler::searchJobs() {
 		return 0;
 }
 
-void TWI_Handler::endJob() {
+void TWI_Handler::endMasterJob() {
 	// Let the TWI_Job end it's operation
-	this->currentJob->endOperation();
+	this->currentMasterJob->endOperation();
 
 	// Check if the current job still wants to keep talking
-	if(this->currentJob->getStatus() != 0) {
+	if(this->currentMasterJob->getStatus() != 0) {
 		this->start(); 			// Send a RepStart
 	}
 	// Otherwise, check if there is another Job available!
 	else {
-		if((this->currentJob = this->searchJobs()) == 0) {
+		if((this->currentMasterJob = this->searchJobs()) == 0) {
 			// If there is no job requiring a further send
 			this->stop();
 		}
 		else {
-			this->currentJob->beginOperation();
+			this->currentMasterJob->beginOperation();
 			this->start();
 		}
 	}
 }
 
 void TWI_Handler::setSlaveJob(TWI_Job *slave) {
-	this->slaveJob = slave;
+	this->currentSlaveJob = slave;
 }
 
 void TWI_Handler::onMRFinish() {
-	this->endJob();
+	this->endMasterJob();
 }
 void TWI_Handler::onMTFinish() {
-	this->endJob();
+	this->endMasterJob();
 }
 
 void TWI_Handler::onSTStart() {
-	this->slaveJob->beginOperation();
+	this->currentSlaveJob->beginOperation();
 }
 void TWI_Handler::onSRFinish() {
-	this->slaveJob->beginOperation();
+	this->currentSlaveJob->beginOperation();
 }
 
 void TWI_Handler::onError() {
 	this->buf.clear();
 	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA | 1<< TWSTO);
-
-	this->currentJob = 0;
 }
