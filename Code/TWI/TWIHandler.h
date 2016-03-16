@@ -33,12 +33,12 @@ private:
 
 	void onError();
 
+	TWI_Job * searchJobs();
+
 public:
 	static TWI_Handler IO;
 
 	TWI_Handler();
-
-	void searchJobs();
 
 	void setSlaveJob(TWI_Job *slave);
 };

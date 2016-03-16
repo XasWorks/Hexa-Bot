@@ -44,22 +44,18 @@ void TWI_Handler::endJob() {
 	}
 }
 
-void TWI_Handler::searchJobs() {
-	if(this->currentJob == 0) {
+TWI_Job * TWI_Handler::searchJobs() {
 		// Initialise the node chain
-		this->currentJob = TWI_Job::getHeadNode();
+		TWI_Job *sJob = TWI_Job::getHeadNode();
 
 		// Go through the node chain until either a waiting job or the end of the chain is hit!
-		while(this->currentJob != 0) {
-			if(this->currentJob->getStatus() != 0)
-				break;
+		while(sJob != 0) {
+			if(sJob->getStatus() != 0)
+				return sJob;
 			else
-				this->currentJob = this->currentJob->getNextNode();
+				sJob = sJob->getNextNode();
 		}
-
-
-		//If a new job was selected (old job == 0 and a new job present), excecute that one.
-		this->beginJob(currentJob);
+		return 0;
 	}
 }
 
