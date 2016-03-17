@@ -36,11 +36,11 @@ TWI_M_Job * TWI_Handler::searchMasterJobs() {
 		}
 		return 0;
 }
-TWI_S_Job * TWI_Handler::searchSlaveJobs(uint8_t mode) {
+TWI_S_Job * TWI_Handler::searchSlaveJobs() {
 	TWI_S_Job *node = TWI_S_Job::getHeadNode();
 
 	while(node != 0) {
-		if((node->getStatus() & (1 << 7)) == (mode ? 1 : 0))
+		if(node->getStatus() != 0)
 			return node;
 		else
 			node = node->getNextNode();
