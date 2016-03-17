@@ -14,13 +14,13 @@
 
 class TWI_Handler : public TWI_Basic {
 private:
-	TWI_Job *currentJob = 0;
+	TWI_M_Job *currentJob = 0;
 
 	// TWI Job to handle slave-line communication
-	TWI_Job *slaveJob = 0;
+	TWI_M_Job *slaveJob = 0;
 
 	// Start a new job
-	void beginJob(TWI_Job * jobPointer);
+	void beginJob(TWI_M_Job * jobPointer);
 	// End a new job or send a repstart.
 	void endJob();
 
@@ -40,7 +40,7 @@ public:
 
 	void searchJobs();
 
-	void setSlaveJob(TWI_Job *slave);
+	void setSlaveJob(TWI_M_Job *slave);
 };
 
 #endif /* CODE_TWI_TWIHANDLER_H_ */

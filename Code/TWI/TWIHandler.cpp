@@ -13,7 +13,7 @@ TWI_Handler::TWI_Handler() {
 	TWI_Basic::TWISys = this;
 }
 
-void TWI_Handler::beginJob(TWI_Job *jobPointer) {
+void TWI_Handler::beginJob(TWI_M_Job *jobPointer) {
 	if(this->currentJob != 0) {
 		this->currentJob = jobPointer;
 		this->currentJob->beginOperation();
@@ -23,7 +23,7 @@ void TWI_Handler::beginJob(TWI_Job *jobPointer) {
 	}
 }
 void TWI_Handler::endJob() {
-	// Let the TWI_Job end it's operation
+	// Let the TWI_M_Job end it's operation
 	this->currentJob->endOperation();
 
 	// Check if the current job still wants to keep talking
@@ -47,7 +47,7 @@ void TWI_Handler::endJob() {
 void TWI_Handler::searchJobs() {
 	if(this->currentJob == 0) {
 		// Initialise the node chain
-		this->currentJob = TWI_Job::getHeadNode();
+		this->currentJob = TWI_M_Job::getHeadNode();
 
 		// Go through the node chain until either a waiting job or the end of the chain is hit!
 		while(this->currentJob != 0) {
@@ -63,7 +63,7 @@ void TWI_Handler::searchJobs() {
 	}
 }
 
-void TWI_Handler::setSlaveJob(TWI_Job *slave) {
+void TWI_Handler::setSlaveJob(TWI_M_Job *slave) {
 	this->slaveJob = slave;
 }
 

@@ -10,18 +10,18 @@
 
 #include <avr/io.h>
 
-// TWI_Job interface class to offer function handling for TWI coms.
-class TWI_Job {
+// TWI_M_Job interface class to offer function handling for TWI coms.
+class TWI_M_Job {
 private:
-	TWI_Job *nextNode = 0;
-	static TWI_Job *nodeEnd;
+	TWI_M_Job *nextNode = 0;
+	static TWI_M_Job *nodeEnd;
 
 protected:
 	uint8_t jobStatus = 0;
 
 public:
 
-	TWI_Job();
+	TWI_M_Job();
 
 	// BEGIN and END operations for TWI coms
 	virtual void beginOperation();
@@ -31,8 +31,8 @@ public:
 	virtual void error();
 
 	// Return important nodes for the TWI Job search
-	static TWI_Job * getHeadNode();
-	TWI_Job * getNextNode();
+	static TWI_M_Job * getHeadNode();
+	TWI_M_Job * getNextNode();
 
 	// Return the current Job's status
 	uint8_t getStatus();

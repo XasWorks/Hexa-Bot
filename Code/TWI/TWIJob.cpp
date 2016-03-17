@@ -7,29 +7,29 @@
 
 #include "TWIJob.h"
 
-TWI_Job *TWI_Job::nodeEnd = 0;
+TWI_M_Job *TWI_M_Job::nodeEnd = 0;
 
-TWI_Job::TWI_Job() {
-	this->nextNode = TWI_Job::nodeEnd;
-	TWI_Job::nodeEnd = this;
+TWI_M_Job::TWI_M_Job() {
+	this->nextNode = TWI_M_Job::nodeEnd;
+	TWI_M_Job::nodeEnd = this;
 }
 
-void TWI_Job::beginOperation() {}
-void TWI_Job::endOperation() {
+void TWI_M_Job::beginOperation() {}
+void TWI_M_Job::endOperation() {
 	if(this->jobStatus != 0) {
 		this->jobStatus--;
 	}
 }
 
-void TWI_Job::error() {}
+void TWI_M_Job::error() {}
 
-TWI_Job * TWI_Job::getHeadNode() {
-	return TWI_Job::nodeEnd;
+TWI_M_Job * TWI_M_Job::getHeadNode() {
+	return TWI_M_Job::nodeEnd;
 }
-TWI_Job * TWI_Job::getNextNode() {
+TWI_M_Job * TWI_M_Job::getNextNode() {
 	return this->nextNode;
 }
 
-uint8_t TWI_Job::getStatus() {
+uint8_t TWI_M_Job::getStatus() {
 	return this->jobStatus;
 }
