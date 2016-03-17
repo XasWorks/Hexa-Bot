@@ -23,7 +23,7 @@ void TWI_Handler::beginJob(TWI_M_Job *jobPointer) {
 	}
 }
 
-TWI_M_Job * TWI_Handler::searchJobs() {
+TWI_M_Job * TWI_Handler::searchMasterJobs() {
 		// Initialise the node chain
 		TWI_M_Job *sJob = TWI_M_Job::getHeadNode();
 
@@ -46,7 +46,7 @@ void TWI_Handler::endMasterJob() {
 	}
 	// Otherwise, check if there is another Job available!
 	else {
-		if((this->currentMasterJob = this->searchJobs()) == 0) {
+		if((this->currentMasterJob = this->searchMasterJobs()) == 0) {
 			// If there is no job requiring a further send
 			this->stop();
 		}
