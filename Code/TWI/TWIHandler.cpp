@@ -84,10 +84,11 @@ void TWI_Handler::onMTFinish() {
 }
 
 void TWI_Handler::onSTStart() {
-	this->currentSlaveJob->beginOperation();
+	this->searchSlaveJobs()->beginTransmission();
 }
 void TWI_Handler::onSRFinish() {
-	this->currentSlaveJob->beginOperation();
+	this->fireSlaveJobs();
+	this->buf.clear();
 }
 
 void TWI_Handler::onError() {

@@ -16,9 +16,6 @@ class TWI_Handler : public TWI_Basic {
 private:
 	TWI_M_Job *currentMasterJob = 0;
 
-	// TWI Job to handle slave-line communication
-	TWI_M_Job *currentSlaveJob = 0;
-
 	// Start a new job
 	void beginJob(TWI_M_Job * jobPointer);
 	// End a new job or send a repstart.
