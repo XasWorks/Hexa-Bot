@@ -38,7 +38,7 @@ public:
 
 	TWI_Handler();
 
-	void searchJobs();
+	void searchMasterJobs();
 
 	void setSlaveJob(TWI_M_Job *slave);
 };

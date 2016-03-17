@@ -34,7 +34,7 @@ void TWI_Handler::endJob() {
 	// Otherwise, check if there is another Job available!
 	else {
 		this->currentJob = 0;
-		this->searchJobs();
+		this->searchMasterJobs();
 
 		// If there is no job requiring a further send
 		if(this->currentJob == 0) {
@@ -44,7 +44,7 @@ void TWI_Handler::endJob() {
 	}
 }
 
-void TWI_Handler::searchJobs() {
+void TWI_Handler::searchMasterJobs() {
 	if(this->currentJob == 0) {
 		// Initialise the node chain
 		this->currentJob = TWI_M_Job::getHeadNode();
@@ -61,10 +61,6 @@ void TWI_Handler::searchJobs() {
 		//If a new job was selected (old job == 0 and a new job present), excecute that one.
 		this->beginJob(currentJob);
 	}
-}
-
-void TWI_Handler::setSlaveJob(TWI_M_Job *slave) {
-	this->slaveJob = slave;
 }
 
 void TWI_Handler::onMRFinish() {
