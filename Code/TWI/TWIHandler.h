@@ -35,6 +35,7 @@ private:
 
 	TWI_M_Job * searchMasterJobs();
 	TWI_S_Job * searchSlaveJobs();
+	void fireSlaveJobs();
 
 public:
 	static TWI_Handler IO;
