@@ -14,15 +14,15 @@
 
 class TWI_Handler : public TWI_Basic {
 private:
-	TWI_M_Job *currentJob = 0;
+	TWI_M_Job *currentMasterJob = 0;
 
 	// TWI Job to handle slave-line communication
-	TWI_M_Job *slaveJob = 0;
+	TWI_M_Job *currentSlaveJob = 0;
 
 	// Start a new job
 	void beginJob(TWI_M_Job * jobPointer);
 	// End a new job or send a repstart.
-	void endJob();
+	void endMasterJob();
 
 	// TWI_Basic overrider functions.
 	void onMTFinish();
@@ -33,12 +33,12 @@ private:
 
 	void onError();
 
+	TWI_M_Job * searchJobs();
+
 public:
 	static TWI_Handler IO;
 
 	TWI_Handler();
-
-	void searchMasterJobs();
 
 	void setSlaveJob(TWI_M_Job *slave);
 };

@@ -14,72 +14,64 @@ TWI_Handler::TWI_Handler() {
 }
 
 void TWI_Handler::beginJob(TWI_M_Job *jobPointer) {
-	if(this->currentJob != 0) {
-		this->currentJob = jobPointer;
-		this->currentJob->beginOperation();
+	if(this->currentMasterJob != 0) {
+		this->currentMasterJob = jobPointer;
+		this->currentMasterJob->beginOperation();
 
 		this->start();
 		this->clearTWINT();
 	}
 }
-void TWI_Handler::endJob() {
-	// Let the TWI_M_Job end it's operation
-	this->currentJob->endOperation();
+
+TWI_M_Job * TWI_Handler::searchJobs() {
+		// Initialise the node chain
+		TWI_M_Job *sJob = TWI_M_Job::getHeadNode();
+
+		// Go through the node chain until either a waiting job or the end of the chain is hit!
+		while(sJob != 0) {
+			if(sJob->getStatus() != 0)
+				return sJob;
+			else
+				sJob = sJob->getNextNode();
+		}
+		return 0;
+}
+
+void TWI_Handler::endMasterJob() {
+	this->currentMasterJob->endOperation();
 
 	// Check if the current job still wants to keep talking
-	if(this->currentJob->getStatus() != 0) {
+	if(this->currentMasterJob->getStatus() != 0) {
 		this->start(); 			// Send a RepStart
-		this->clearTWINT();
 	}
 	// Otherwise, check if there is another Job available!
 	else {
-		this->currentJob = 0;
-		this->searchMasterJobs();
-
-		// If there is no job requiring a further send
-		if(this->currentJob == 0) {
+		if((this->currentMasterJob = this->searchJobs()) == 0) {
+			// If there is no job requiring a further send
 			this->stop();
-			this->clearTWINT();
 		}
-	}
-}
-
-void TWI_Handler::searchMasterJobs() {
-	if(this->currentJob == 0) {
-		// Initialise the node chain
-		this->currentJob = TWI_M_Job::getHeadNode();
-
-		// Go through the node chain until either a waiting job or the end of the chain is hit!
-		while(this->currentJob != 0) {
-			if(this->currentJob->getStatus() != 0)
-				break;
-			else
-				this->currentJob = this->currentJob->getNextNode();
+		else {
+			this->currentMasterJob->beginOperation();
+			this->start();
 		}
-
-
-		//If a new job was selected (old job == 0 and a new job present), excecute that one.
-		this->beginJob(currentJob);
 	}
 }
 
 void TWI_Handler::onMRFinish() {
-	this->endJob();
+	this->endMasterJob();
 }
 void TWI_Handler::onMTFinish() {
-	this->endJob();
+	this->endMasterJob();
 }
 
 void TWI_Handler::onSTStart() {
-	this->slaveJob->beginOperation();
+	this->currentSlaveJob->beginOperation();
 }
 void TWI_Handler::onSRFinish() {
-	this->slaveJob->beginOperation();
+	this->currentSlaveJob->beginOperation();
 }
 
 void TWI_Handler::onError() {
 	this->buf.clear();
 	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA | 1<< TWSTO);
-
-	this->currentJob = 0;
 }
