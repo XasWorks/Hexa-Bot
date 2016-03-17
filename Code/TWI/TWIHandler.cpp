@@ -36,6 +36,17 @@ TWI_M_Job * TWI_Handler::searchMasterJobs() {
 		}
 		return 0;
 }
+TWI_S_Job * TWI_Handler::searchSlaveJobs() {
+	TWI_S_Job *node = TWI_S_Job::getHeadNode();
+
+	while(node != 0) {
+		if(node->getStatus() != 0)
+			return node;
+		else
+			node = node->getNextNode();
+	}
+	return 0;
+}
 
 void TWI_Handler::endMasterJob() {
 	this->currentMasterJob->endOperation();

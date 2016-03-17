@@ -34,6 +34,7 @@ private:
 	void onError();
 
 	TWI_M_Job * searchMasterJobs();
+	TWI_S_Job * searchSlaveJobs();
 
 public:
 	static TWI_Handler IO;

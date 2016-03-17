@@ -38,4 +38,26 @@ public:
 	uint8_t getStatus();
 };
 
+
+class TWI_S_Job {
+private:
+	TWI_S_Job *nextNode = 0;
+	static TWI_S_Job *nodeEnd;
+
+protected:
+	uint8_t jobStatus = 0;
+
+public:
+	TWI_S_Job();
+
+	virtual void beginTransmission();
+	virtual void endTransmission();
+
+	virtual void error();
+
+	static TWI_S_Job * getHeadNode();
+	TWI_S_Job * getNextNode();
+
+	uint8_t getStatus();
+};
 #endif /* CODE_TWI_TWIJOB_H_ */
