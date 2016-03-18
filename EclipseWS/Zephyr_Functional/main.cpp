@@ -6,9 +6,14 @@
 #include "Code/System/Robot.h"
 #include "Code/LineFollow/LF3Sens.h"
 
+#include "Code/TWI/TWIHandler.h"
+#include "Code/TWI/TWIJob.h"
+
 #include "Code/Modules/LFFollow.h"
 #include "Code/Modules/Intersection.h"
 #include "Code/Modules/ObjectAvoid.h"
+
+#include "ServoController.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
@@ -18,7 +23,13 @@ LFFollow LFSys = LFFollow(&System, &LFSensor);
 Intersection INTSECSys = Intersection(&System, &LFSensor);
 ObjectAvoid AVDSys = ObjectAvoid(&System);
 
+ServoController servo = ServoController();
+
 Basic *cModule;
+
+ISR(TWI_vect) {
+	TWI_Handler::IO.update();
+}
 
 ISR(TIMER1_COMPA_vect) {
 	System.update();
@@ -76,6 +87,13 @@ int main() {
 	cModule = &LFSys;
 
 	System.Motor.setRotationSpeed(50);
+
+	while(true) {
+		_delay_ms(1000);
+		servo.setServo(255);
+		_delay_ms(1000);
+		servo.setServo(0);
+	}
 
 	while(true) {
 		setTask();

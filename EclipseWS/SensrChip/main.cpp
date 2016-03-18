@@ -9,8 +9,17 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
+#include "Code/TWI/TWIHandler.h"
+#include "ServController.h"
+
 #define SERV_MIN 50
 #define SERV_MAX 150
+
+ServController sController = ServController();
+
+ISR(TWI_vect) {
+	TWI_Handler::IO.update();
+}
 
 void setServo(uint8_t p) {
 	OCR2A = SERV_MIN + (p * (SERV_MAX - SERV_MIN) / 255);
@@ -28,11 +37,9 @@ int main() {
 
 	OCR2A = 63;
 
-	uint8_t c = 0;
+	TWI_Handler::IO.setAddress(0x0A);
+
 	while(true) {
-		setServo(c++);
-		PORTD ^= (1<< 7);
-		_delay_ms(50);
 	}
 
 	return 0;
