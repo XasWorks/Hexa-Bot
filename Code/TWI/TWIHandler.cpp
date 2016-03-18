@@ -107,5 +107,5 @@ void TWI_Handler::updateJobs() {
 }
 
 void TWI_Handler::setAddress(uint8_t address) {
-	TWAR = address;
+	TWAR = address << 1;
 }
