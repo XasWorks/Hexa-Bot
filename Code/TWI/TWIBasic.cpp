@@ -56,7 +56,7 @@ void TWI_Basic::load(uint8_t data) {
 	TWDR = data;
 }
 
-void TWI_Basic::handleIdle() {
+bool TWI_Basic::handleIdle() {
 	switch(this->readSR()) {
 	// Do pretty much nothing while the TWI is idle
 	case TWI_IDLE:
@@ -71,9 +71,14 @@ void TWI_Basic::handleIdle() {
 
 		this->clearTWINT();
 	break;
+
+	default:
+		return false;
+	break;
 	}
+	return true;
 }
-void TWI_Basic::handleMT() {
+bool TWI_Basic::handleMT() {
 	switch(this->readSR()) {
 	// Load and send further data bytes
 	case TWI_MT_SLA_ACK:
@@ -86,9 +91,14 @@ void TWI_Basic::handleMT() {
 			this->onMTFinish();
 		}
 	break;
+
+	default:
+		return false;
+	break;
 	}
+	return true;
 }
-void TWI_Basic::handleMR() {
+bool TWI_Basic::handleMR() {
 	switch(this->readSR()) {
 	// Wait for the slave to send first byte
 		case TWI_MR_SLA_ACK:
@@ -117,9 +127,14 @@ void TWI_Basic::handleMR() {
 
 			this->clearTWINT();
 		break;
-	}
+
+		default:
+			return false;
+		break;
+		}
+	return true;
 }
-void TWI_Basic::handleST() {
+bool TWI_Basic::handleST() {
 	switch(this->readSR()) {
 	case TWI_ST_SLA_ACK:
 		this->onSTStart();
@@ -137,9 +152,14 @@ void TWI_Basic::handleST() {
 	case TWI_ST_DATA_NACK:
 		this->clearTWINT();
 	break;
+
+	default:
+		return false;
+	break;
 	}
+	return true;
 }
-void TWI_Basic::handleSR() {
+bool TWI_Basic::handleSR() {
 	switch(this->readSR()) {
 	case TWI_SR_SLA_ACK:
 	case TWI_SR_GC_ACK:
@@ -156,15 +176,21 @@ void TWI_Basic::handleSR() {
 	case TWI_SR_STOP:
 		this->onSRFinish();
 	break;
+
+	default:
+		return false;
+	break;
 	}
+	return true;
 }
 
 void TWI_Basic::update() {
-	this->handleIdle();
-	this->handleMT();
-	this->handleMR();
-	this->handleST();
-	this->handleSR();
+	if(	!this->handleIdle() 	&&
+		!this->handleMT() 		&&
+		!this->handleMR()		&&
+		!this->handleST()		&&
+		!this->handleSR() )
+		this->onError();
 }
 
 void TWI_Basic::onIdle() {
