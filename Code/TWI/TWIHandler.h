@@ -39,7 +39,7 @@ public:
 
 	TWI_Handler();
 
-	void setSlaveJob(TWI_M_Job *slave);
+	void setAddress(uint8_t address);
 };
 
 #endif /* CODE_TWI_TWIHANDLER_H_ */

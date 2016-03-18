@@ -9,8 +9,14 @@
 
 TWI_Handler TWI_Handler::IO = TWI_Handler();
 
+
 TWI_Handler::TWI_Handler() {
 	TWI_Basic::TWISys = this;
+	TWAR = 0;
+}
+
+void TWI_Handler::setAddress(uint8_t address) {
+	TWAR = address;
 }
 
 void TWI_Handler::beginJob(TWI_M_Job *jobPointer) {
