@@ -39,6 +39,8 @@ public:
 
 	TWI_Handler();
 
+	void updateJobs();
+
 	void setAddress(uint8_t address);
 };
 
