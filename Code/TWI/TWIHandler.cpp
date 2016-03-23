@@ -101,8 +101,10 @@ void TWI_Handler::updateJobs() {
 	if(this->currentMasterJob == 0)
 		if( (this->currentMasterJob = this->searchMasterJobs()) != 0) {
 			this->currentMasterJob->beginOperation();
+
 			this->start();
 			this->clearTWINT();
+
 		}
 }
 

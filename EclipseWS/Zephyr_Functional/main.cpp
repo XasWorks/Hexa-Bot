@@ -28,6 +28,7 @@ ServoController servo = ServoController();
 Basic *cModule;
 
 ISR(TWI_vect) {
+	PORTC |= (1);
 	TWI_Handler::IO.update();
 }
 
@@ -87,6 +88,9 @@ int main() {
 	cModule = &LFSys;
 
 	System.Motor.setRotationSpeed(50);
+
+	DDRC &= ~(1 << 0);
+	PORTC &= ~(1 << 0);
 
 	while(true) {
 		_delay_ms(1000);

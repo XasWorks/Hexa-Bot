@@ -21,6 +21,8 @@ ISR(TWI_vect) {
 
 int main() {
 
+	TWI_Handler::IO.setAddress(0b1111);
+
 	DDRD |= (1 << 7);
 
 	// Initialisation of PWM
@@ -30,8 +32,6 @@ int main() {
 	TCCR2B = (1 << CS22 | 1 << CS21);
 
 	OCR2A = 63;
-
-	TWI_Handler::IO.setAddress(0b1111);
 
 	while(true) {
 	}
