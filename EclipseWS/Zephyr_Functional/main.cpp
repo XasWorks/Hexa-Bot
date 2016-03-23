@@ -28,7 +28,6 @@ ServoController servo = ServoController();
 Basic *cModule;
 
 ISR(TWI_vect) {
-	PORTC |= (1);
 	TWI_Handler::IO.update();
 }
 

@@ -23,6 +23,4 @@ ServController::ServController() {
 void ServController::endTransmission() {
 	if(TWI_Handler::IO.buf.peek() == COMS_SERVO)
 		setServo(TWI_Handler::IO.buf.peek(1));
-
-	PORTD |= (1 << 7);
 }
