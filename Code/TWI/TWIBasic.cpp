@@ -61,6 +61,7 @@ bool TWI_Basic::handleIdle() {
 	// Do pretty much nothing while the TWI is idle
 	case TWI_IDLE:
 		this->onIdle();
+		this->clearTWINT();
 	break;
 
 	// Load the address (fist buffer value) into TWDR after having sent the START (or repeated start)
@@ -89,6 +90,8 @@ bool TWI_Basic::handleMT() {
 		}
 		else {
 			this->onMTFinish();
+
+			this->clearTWINT();
 		}
 	break;
 
@@ -171,10 +174,13 @@ bool TWI_Basic::handleSR() {
 	case TWI_SR_GC_DATA_ACK:
 	case TWI_SR_GC_DATA_NACK:
 		this->buf.queue(TWDR);
+		this->clearTWINT();
 	break;
 
 	case TWI_SR_STOP:
 		this->onSRFinish();
+
+		this->clearTWINT();
 	break;
 
 	default:
@@ -204,7 +210,6 @@ void TWI_Basic::onError() {
 
 void TWI_Basic::onMTFinish() {
 	this->stop();
-	this->clearTWINT();
 }
 void TWI_Basic::onMRFinish() {
 	this->buf.clear();

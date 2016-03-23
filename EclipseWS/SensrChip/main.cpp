@@ -31,8 +31,6 @@ int main() {
 	TCCR2A = (1 << COM2A1 | 1 << WGM21 | 1 << WGM20);
 	TCCR2B = (1 << CS22 | 1 << CS21);
 
-	OCR2A = 63;
-
 	while(true) {
 	}
 
