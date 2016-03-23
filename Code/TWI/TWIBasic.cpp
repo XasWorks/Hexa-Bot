@@ -61,7 +61,6 @@ bool TWI_Basic::handleIdle() {
 	// Do pretty much nothing while the TWI is idle
 	case TWI_IDLE:
 		this->onIdle();
-		this->clearTWINT();
 	break;
 
 	// Load the address (fist buffer value) into TWDR after having sent the START (or repeated start)
@@ -69,8 +68,6 @@ bool TWI_Basic::handleIdle() {
 	case TWI_M_START:
 		this->load(this->buf.read());
 		this->noStart();
-
-		this->clearTWINT();
 	break;
 
 	default:
@@ -86,12 +83,9 @@ bool TWI_Basic::handleMT() {
 	case TWI_MT_DATA_ACK:
 		if(this->buf.isAvailable() != 0) {
 			this->load(this->buf.read());
-			this->clearTWINT();
 		}
 		else {
 			this->onMTFinish();
-
-			this->clearTWINT();
 		}
 	break;
 
@@ -107,7 +101,6 @@ bool TWI_Basic::handleMR() {
 		case TWI_MR_SLA_ACK:
 			if(--this->readLength == 0)	// Send a NACK if enough data has been received
 				this->NACK();
-			this->clearTWINT();
 
 		break;
 
@@ -118,7 +111,6 @@ bool TWI_Basic::handleMR() {
 			if(--this->readLength == 0)	// Send a NACK if enough data has been received
 				this->NACK();
 
-			this->clearTWINT();
 		break;
 
 		// Read in the final data byte
@@ -127,8 +119,6 @@ bool TWI_Basic::handleMR() {
 
 			this->ACK(); 				// Set ACK again.
 			this->onMRFinish();
-
-			this->clearTWINT();
 		break;
 
 		default:
@@ -143,17 +133,14 @@ bool TWI_Basic::handleST() {
 		this->onSTStart();
 
 		this->load(buf.read());
-		this->clearTWINT();
 	break;
 
 	case TWI_ST_DATA_ACK:
 		this->load(buf.read());
-		this->clearTWINT();
 	break;
 
 	case TWI_ST_DATA_LAST:
 	case TWI_ST_DATA_NACK:
-		this->clearTWINT();
 	break;
 
 	default:
@@ -166,7 +153,6 @@ bool TWI_Basic::handleSR() {
 	switch(this->readSR()) {
 	case TWI_SR_SLA_ACK:
 	case TWI_SR_GC_ACK:
-		this->clearTWINT();
 	break;
 
 	case TWI_SR_DATA_ACK:
@@ -174,13 +160,10 @@ bool TWI_Basic::handleSR() {
 	case TWI_SR_GC_DATA_ACK:
 	case TWI_SR_GC_DATA_NACK:
 		this->buf.queue(TWDR);
-		this->clearTWINT();
 	break;
 
 	case TWI_SR_STOP:
 		this->onSRFinish();
-
-		this->clearTWINT();
 	break;
 
 	default:
@@ -197,6 +180,8 @@ void TWI_Basic::update() {
 		!this->handleST()		&&
 		!this->handleSR() )
 		this->onError();
+
+	this->clearTWINT();
 }
 
 void TWI_Basic::onIdle() {

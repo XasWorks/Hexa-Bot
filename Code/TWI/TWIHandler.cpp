@@ -56,6 +56,7 @@ void TWI_Handler::onSRFinish() {
 void TWI_Handler::onError() {
 	this->currentMasterJob = 0;
 	this->buf.clear();
+
 	TWCR = (1<< TWEN | 1<< TWIE | 1<< TWEA | 1<< TWSTO);
 }
 
