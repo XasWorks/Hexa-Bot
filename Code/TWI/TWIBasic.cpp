@@ -15,9 +15,9 @@ TWI_Basic::TWI_Basic() {
 
 	// TODO add proper speed system.
 	// Fixed speed to ~100kHz
-	TWBR = 72;
+	TWBR = 100;
 
-	PORTC |= (0b11);
+	PORTC |= (0b11 << 4);
 
 	sei();
 }
