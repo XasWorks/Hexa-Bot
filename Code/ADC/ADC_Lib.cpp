@@ -10,7 +10,7 @@
 namespace ADC_Lib {
 
 	volatile uint16_t 	lastResult = 0;
-	volatile uint8_t 	measuredPort = 0;
+	volatile uint8_t 	measuredPin = 0;
 
 	void init(uint8_t prescaler) {
 		ADCSRA = (1<< ADEN | 1<< ADIE | (prescaler << ADPS0));
@@ -20,7 +20,7 @@ namespace ADC_Lib {
 
 	void update() {
 		lastResult = ADC;
-		measuredPort = ADMUX & 0b11111;
+		measuredPin = ADMUX & 0b11111;
 	}
 
 	void start_measurement(uint8_t pin) {
@@ -30,4 +30,11 @@ namespace ADC_Lib {
 		ADCSRA |= (1<< ADSC);
 	}
 
+	uint16_t measure(uint8_t pin) {
+		measuredPin = 255;
+		start_measurement(pin);
+		while(measuredPin == 255) {}
+
+		return lastResult;
+	}
 }

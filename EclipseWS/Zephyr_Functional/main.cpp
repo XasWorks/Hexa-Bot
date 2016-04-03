@@ -3,6 +3,8 @@
 #include <util/atomic.h>
 #include <util/delay.h>
 
+#include "Code/ADC/ADC_Lib.h"
+
 #include "Code/System/Robot.h"
 #include "Code/LineFollow/LF3Sens.h"
 

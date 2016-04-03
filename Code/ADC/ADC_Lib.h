@@ -10,6 +10,8 @@
 
 #include <avr/io.h>
 
+#define ADC_MAX 1023
+
 #define ADC_PRSC_2 	 0b001
 #define ADC_PRSC_4 	 0b010
 #define ADC_PRSC_8 	 0b011
@@ -20,13 +22,15 @@
 
 namespace ADC_Lib {
 	volatile extern uint16_t 	lastResult;
-	volatile extern uint8_t 	measuredPort;
+	volatile extern uint8_t 	measuredPin;
 
 	void init(uint8_t prescaler);
 
 	void update();
 
 	void start_measurement(uint8_t pin);
+
+	uint16_t measure(uint8_t pin);
 }
 
 
