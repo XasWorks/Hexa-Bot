@@ -9,7 +9,7 @@
 #define CODE_COMSCODES_H_
 
 #define COMS_SERVO 1
-
+#define COMS_IRDIST 2
 
 
 #endif /* CODE_COMSCODES_H_ */

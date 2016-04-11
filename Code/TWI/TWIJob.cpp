@@ -48,8 +48,6 @@ void TWI_S_Job::endTransmission() {
 	}
 }
 
-void TWI_S_Job::error() {}
-
 TWI_S_Job * TWI_S_Job::getHeadNode() {
 	return TWI_S_Job::nodeEnd;
 }

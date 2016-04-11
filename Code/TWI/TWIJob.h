@@ -27,7 +27,7 @@ public:
 	virtual void beginOperation();
 	virtual void endOperation();
 
-	// END operation.
+	// ERROR operation, executed if something goes wrong during transmission.
 	virtual void error();
 
 	// Return important nodes for the TWI Job search
@@ -50,10 +50,9 @@ protected:
 public:
 	TWI_S_Job();
 
+	// Functions to begin and end transmissions. They are called before (if job status != 0) and after receiving a message (always).
 	virtual void beginTransmission();
 	virtual void endTransmission();
-
-	virtual void error();
 
 	static TWI_S_Job * getHeadNode();
 	TWI_S_Job * getNextNode();
