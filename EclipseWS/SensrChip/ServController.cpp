@@ -16,8 +16,11 @@ void setServo(uint8_t p) {
 }
 
 ServController::ServController() {
-	// TODO Auto-generated constructor stub
+	// Initialisation of PWM Pin for the Servo
+	DDRB |= (1 << PB3);
 
+	TCCR2A = (1 << COM2A1 | 1 << WGM21 | 1 << WGM20);
+	TCCR2B = (1 << CS22 | 1 << CS21);
 }
 
 void ServController::endTransmission() {
