@@ -9,9 +9,13 @@
 #include <avr/interrupt.h>
 
 #include "Code/TWI/TWIHandler.h"
+#include "Code/ADC/ADC_Lib.h"
+
 #include "ServController.h"
+#include "IRDistSensor.h"
 
 ServController sController = ServController();
+IRDistSensor IRSensor = IRDistSensor();
 
 ISR(TWI_vect) {
 	TWI_Handler::IO.update();
