@@ -9,11 +9,11 @@ boardPins = [ 	[0, 10], [0, 23.3], [0, 46],
 
 // Mounting pin variables
 liftHeight = 2;
-wallSize = 1;
+wallSize = 2;
 
 module board_base() {
 	baseThickness = 1;
-	baseWallSize = 2;
+	baseWallSize = 4;
 	
 	boardSize = boardSize + [wallSize*2, wallSize*2];
 	
@@ -26,7 +26,7 @@ module board_base() {
 module board_mountPin(width = 1) {
 	translate([width, 0, 0]) rotate([0, 0, 90]) {
 		cube([wallSize*2, width, liftHeight]);
-		cube([wallSize, width, liftHeight + wallSize]);
+		cube([wallSize, width, liftHeight + 1]);
 	}
 }
 
@@ -50,10 +50,9 @@ module board_mounts() {
 module hex_base() {
 	render()
 		translate([-2, 0, 0]) hexPattern([[0,0], [1,0], [2,0], [3,0], 
-				[0,1], [1,1], [2,1], 
 				[0,2], [1,2], [2,2], [3,2]]) hexBase();
 }
 
-linear_extrude(1) board_base();
+linear_extrude(1.3) board_base();
 hex_base();
 board_mounts();
