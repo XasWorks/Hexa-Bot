@@ -22,6 +22,7 @@
 namespace Timer1 {
 	void set_prescaler(uint8_t prescValue);
 	void set_mode(uint8_t mode);
+	void set_OCR1A(uint16_t value);
 }
 
 #endif /* CODE_TIMER_TIMER1_H_ */
