@@ -69,10 +69,11 @@ module hexFill() {
 	lowerHex();
 }
 
-module hexBase() {
-		translate([0, 0, -3.2]) lowerHex();
-		translate([0, 0, -1]) hexSegment(17.5/2 - 1, 17.5/2, 17.5/2 - 2, 17.5/2 - 1.5, h = 1);
+module hexBase(filled = true) {
+		translate([0, 0, -3.2]) if(filled) hexFill(); else lowerHex();
+		translate([0, 0, -1]) hexSegment(17.5/2 - 1, 17.5/2, filled ? 0.0001 : 17.5/2 - 2, filled ? 0.0001 : 17.5/2 - 1.5, h = 1);
 }
+
 module middleHex(aligned = true) {
 	if(aligned)
 		translate([0, 0, hexHeight]) middleHex(false);
