@@ -71,7 +71,7 @@ module hexFill() {
 
 module hexBase(filled = true) {
 		translate([0, 0, -3.2]) if(filled) hexFill(); else lowerHex();
-		translate([0, 0, -1]) hexSegment(17.5/2 - 1, 17.5/2, filled ? 0.0001 : 17.5/2 - 2, filled ? 0.0001 : 17.5/2 - 1.5, h = 1);
+		translate([0, 0, -1]) hexSegment(17.5/2 - 1, 17.5/2 + 0.01, filled ? 0.01 : 17.5/2 - 2, filled ? 0.01 : 17.5/2 - 1.5, h = 1);
 }
 
 module middleHex(aligned = true) {
