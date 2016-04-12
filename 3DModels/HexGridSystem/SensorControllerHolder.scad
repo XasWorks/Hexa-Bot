@@ -8,7 +8,7 @@ boardPins = [ 	[0, 10], [0, 23.3], [0, 46],
 				[3, 1], [3, 11], [3, 23]];
 
 // Mounting pin variables
-liftHeight = 2;
+liftHeight = 4;
 wallSize = 2;
 
 module board_base() {
