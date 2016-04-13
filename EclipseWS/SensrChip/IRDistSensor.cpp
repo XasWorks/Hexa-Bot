@@ -11,8 +11,13 @@ IRDistSensor::IRDistSensor() {
 
 }
 
+void IRDistSensor::adc_update() {
+	if(ADC_Lib::measuredPin == IR_PIN)
+		this->irDistance = (uint8_t) ((IR_MIN_DIST * IR_MAX_VALUE) / ADC_Lib::lastResult);
+}
+
 void IRDistSensor::update() {
-	this->irDistance = (uint8_t) ((IR_MIN_DIST * IR_MAX_VALUE) / ADC_Lib::measure(IR_PIN));
+	ADC_Lib::start_measurement(IR_PIN);
 }
 
 void IRDistSensor::endTransmission() {

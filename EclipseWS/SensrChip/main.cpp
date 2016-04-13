@@ -23,19 +23,32 @@ ISR(TWI_vect) {
 	TWI_Handler::IO.update();
 }
 
+ISR(ADC_vect) {
+	ADC_Lib::update();
+
+	IRSensor.adc_update();
+}
+
 ISR(TIMER1_COMPA_vect) {
 	IRSensor.update();
+	if(IRSensor.irDistance > 4)
+		PORTD &= ~(1<<0);
+	else
+		PORTD |= (1<<0);
 }
 
 int main() {
 
 	TWI_Handler::IO.setAddress(0b1111);
+	ADC_Lib::init(ADC_PRSC_64);
 
-	DDRD |= (1 << 7);
+	DDRD |= (1 << 0);
 
 	Timer1::set_mode(TIMER1_MODE_CTC);
 	Timer1::set_prescaler(TIMER1_PRESC_8);
 	Timer1::set_OCR1A(F_CPU / 8 / 50);
+
+	sei();
 
 	while(true) {
 	}

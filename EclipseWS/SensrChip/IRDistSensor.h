@@ -21,14 +21,13 @@
 #define IR_PIN 0
 
 class IRDistSensor : TWI_S_Job {
-private:
+public:
 	uint8_t irDistance = 0;
 
-
-public:
 	IRDistSensor();
 
 	void update();
+	void adc_update();
 
 	void endTransmission();
 	void beginTransmission();
