@@ -20,10 +20,16 @@ void IRDistanceSensor::beginOperation() {
 }
 
 void IRDistanceSensor::endOperation() {
-	if(this->jobStatus-- == 1) {
-		this->distance_value = TWI_Handler::IO.buf.read();
-		this->mesCount++;
-	}
+		switch(this->jobStatus--) {
+			case 2:
+				TWI_Handler::IO.buf.queue(0b11111);
+			break;
+
+			case 1:
+				this->distance_value = TWI_Handler::IO.buf.read();
+				this->mesCount++;
+			break;
+		}
 }
 
 void IRDistanceSensor::update() {
