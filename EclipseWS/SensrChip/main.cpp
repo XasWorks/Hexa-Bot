@@ -31,10 +31,6 @@ ISR(ADC_vect) {
 
 ISR(TIMER1_COMPA_vect) {
 	IRSensor.update();
-	if(IRSensor.irDistance > 4)
-		PORTD &= ~(1<<0);
-	else
-		PORTD |= (1<<0);
 }
 
 int main() {
