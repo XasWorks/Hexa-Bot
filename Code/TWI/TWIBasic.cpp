@@ -141,6 +141,7 @@ bool TWI_Basic::handleST() {
 
 	case TWI_ST_DATA_LAST:
 	case TWI_ST_DATA_NACK:
+		buf.clear();
 	break;
 
 	default:

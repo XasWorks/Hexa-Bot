@@ -40,6 +40,7 @@ void TWI_Handler::endMasterJob() {
 
 void TWI_Handler::onMRFinish() {
 	this->endMasterJob();
+	this->buf.clear();
 }
 void TWI_Handler::onMTFinish() {
 	this->endMasterJob();
