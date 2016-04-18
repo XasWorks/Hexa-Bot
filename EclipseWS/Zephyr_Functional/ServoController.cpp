@@ -15,7 +15,6 @@ ServoController::ServoController() {
 void ServoController::setServo(uint8_t level) {
 	this->servo = level;
 	this->jobStatus = 1;
-	TWI_Handler::IO.updateJobs();
 }
 
 void ServoController::beginOperation() {

@@ -34,7 +34,6 @@ void IRDistanceSensor::endOperation() {
 
 void IRDistanceSensor::update() {
 	this->jobStatus = 2;
-	TWI_Handler::IO.updateJobs();
 }
 
 uint8_t IRDistanceSensor::get_distance() {

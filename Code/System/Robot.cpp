@@ -10,6 +10,7 @@
 #endif
 
 #include "Robot.h"
+
 Robot::Robot() {
 	_delay_ms(1000);
 
@@ -35,8 +36,10 @@ void Robot::update() {
 	if(ISR1presc == F_ISR1 / F_CAL) {
 		//Re-Enable interrupts
 		sei();
+
 		ISR1presc = 0;
 		Motor.update();
+
+		TWI_Handler::IO.updateJobs();
 	}
 }
-
