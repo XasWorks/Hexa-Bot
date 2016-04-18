@@ -19,7 +19,7 @@
 #define F_CAL  150
 
 #define STEPPING 16
-#define YROT_COMP -0.2
+#define YROT_COMP 0
 
 class Robot {
 private:
