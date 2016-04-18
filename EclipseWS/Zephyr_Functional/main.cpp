@@ -94,10 +94,9 @@ int main() {
 
 	while(true) {
 		irdist.update();
-		_delay_ms(50);
 		servo.setServo( (irdist.get_distance() < 6 ? 255 : 0));
 
-		_delay_ms(1000);
+		_delay_ms(100);
 	}
 
 	while(true) {
