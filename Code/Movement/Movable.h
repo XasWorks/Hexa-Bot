@@ -46,18 +46,18 @@ public:
 	virtual void flush();
 
 	//Returns true if the robot is finished with everything important and can move again.
-	bool isReady();
+	virtual bool isReady();
 	//Returns true if the robot is at its wanted position
-	bool atPosition();
+	virtual bool atPosition();
 	//Returns true if the robot is at its wanted rotation
-	bool atRotation();
+	virtual bool atRotation();
 
 	//Return the current X positon in mm.
-	float getX();
+	virtual float getX();
 	//Return the current Y position in mm.
-	float getY();
+	virtual float getY();
 	//Return the current rotation in degrees.
-	float getR();
+	virtual float getR();
 };
 
 
