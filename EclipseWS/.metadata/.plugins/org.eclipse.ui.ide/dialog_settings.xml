@@ -7,10 +7,6 @@
 	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
 		<item value="/home/xasin/RoboAG/EclipseWS/I2CTest" key="OUTSIDE_LOCATION"/>
 	</section>
-	<section name="WORKBENCH_SETTINGS">
-		<list key="ENABLED_TRANSFERS">
-		</list>
-	</section>
 	<section name="ExternalProjectImportWizard">
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
@@ -24,13 +20,17 @@
 			<item value=""/>
 		</list>
 	</section>
-	<section name="CleanDialogSettings">
-		<item value="409" key="DIALOG_WIDTH"/>
-		<item value="157" key="DIALOG_Y_ORIGIN"/>
-		<item value="367" key="DIALOG_HEIGHT"/>
-		<item value="482" key="DIALOG_X_ORIGIN"/>
-		<item value="false" key="TOGGLE_SELECTED"/>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
 	</section>
 	<section name="NewWizardAction">
+	</section>
+	<section name="CleanDialogSettings">
+		<item value="490" key="DIALOG_WIDTH"/>
+		<item value="165" key="DIALOG_Y_ORIGIN"/>
+		<item value="482" key="DIALOG_X_ORIGIN"/>
+		<item value="367" key="DIALOG_HEIGHT"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
 	</section>
 </section>
