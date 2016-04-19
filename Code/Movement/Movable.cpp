@@ -6,7 +6,6 @@
  */
 
 #include "Movable.h"
-#define DEG_TO_RAD 0.017453293
 
 Movable::Movable() {
 	xPos = 0;

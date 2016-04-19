@@ -11,6 +11,9 @@
 #include <math.h>
 #include <util/atomic.h>
 
+#define DEG_TO_RAD 0.017453293
+
+
 //Interface class for everything that can move. Robot wheels, Drone coordinates, etc.
 class Movable {
 protected:
@@ -28,9 +31,9 @@ public:
 	virtual void setSpeed(float speed);
 
 	//Rotate it towards a specific direction in degrees
-	void rotateTo(float angle);
+	virtual void rotateTo(float angle);
 	//Rotate the robot by the specified amount of degrees.
-	void rotateBy(float angle);
+	virtual void rotateBy(float angle);
 
 	//Move the robot to a specific position in mm
 	virtual void moveTo(float x, float y);
