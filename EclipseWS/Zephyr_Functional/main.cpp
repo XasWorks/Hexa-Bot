@@ -15,19 +15,23 @@
 #include "Code/Modules/Intersection.h"
 #include "Code/Modules/ObjectAvoid.h"
 
+#include "Module/BallFineGrab.h"
+
 #include "ServoController.h"
 #include "IRDistanceSensor.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
 
+ServoController servo = ServoController();
+IRDistanceSensor irdist = IRDistanceSensor();
+
 using namespace Module;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
 Intersection INTSECSys = Intersection(&System, &LFSensor);
 ObjectAvoid AVDSys = ObjectAvoid(&System);
 
-ServoController servo = ServoController();
-IRDistanceSensor irdist = IRDistanceSensor();
+BallFineGrab GRABSys = BallFineGrab(&System, &irdist);
 
 Basic *cModule;
 
@@ -92,7 +96,11 @@ int main() {
 
 	System.Motor.setRotationSpeed(50);
 
-	_delay_ms(3000);
+	while(true) {
+		_delay_ms(1000);
+
+		GRABSys.execute();
+	}
 
 	while(true) {
 		setTask();

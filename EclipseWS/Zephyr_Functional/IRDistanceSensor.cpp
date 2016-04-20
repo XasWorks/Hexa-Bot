@@ -36,6 +36,12 @@ void IRDistanceSensor::update() {
 	this->jobStatus = 2;
 }
 
+void IRDistanceSensor::updateWaiting() {
+	uint8_t oldVal = this->mesCount;
+	this->update();
+	while(this->mesCount == oldVal) {}
+}
+
 uint8_t IRDistanceSensor::get_distance() {
 	return this->distance_value;
 }

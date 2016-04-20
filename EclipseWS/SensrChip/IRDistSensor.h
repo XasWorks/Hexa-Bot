@@ -16,7 +16,7 @@
 #include "Code/ComsCodes.h"
 
 #define IR_MAX_VALUE 600
-#define IR_MIN_DIST  4
+#define IR_MIN_DIST  40
 
 #define IR_PIN 0
 

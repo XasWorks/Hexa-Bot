@@ -13,10 +13,10 @@
 #include "../System/Robot.h"
 #include "../LineFollow/LFBasic.h"
 
-#define ROTATION_MAX_SPEED 200
-#define ROTATION_LOST_SPEED 230
+#define ROTATION_MAX_SPEED 130
+#define ROTATION_LOST_SPEED 180
 
-#define MOVEMENT_SPEED 400
+#define MOVEMENT_SPEED 250
 #define MOVEMENT_LOST_SPEED 50
 
 

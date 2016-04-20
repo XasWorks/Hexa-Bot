@@ -96,6 +96,9 @@ bool Subspace::atPosition() {
 bool Subspace::atRotation() {
 	return destination->atRotation();
 }
+void Subspace::flush() {
+	this->destination->flush();
+}
 
 float Subspace::getX() {
 	this->updateXYR();

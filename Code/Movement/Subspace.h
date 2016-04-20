@@ -8,7 +8,7 @@ struct Coordinates {
 	float yCoord;
 };
 
-class Subspace : Movable {
+class Subspace : public Movable {
 private:
 	float xOrig = 0, yOrig = 0;
 	float rOrig = 0;
@@ -38,6 +38,7 @@ public:
 
 	bool atPosition();
 	bool atRotation();
+	void flush();
 
 	float getX();
 	float getY();

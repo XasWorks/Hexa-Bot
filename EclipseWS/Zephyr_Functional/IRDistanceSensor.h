@@ -15,8 +15,8 @@
 
 class IRDistanceSensor : TWI_M_Job {
 private:
-	uint8_t mesCount = 0;
-	uint8_t distance_value = 0;
+	volatile uint8_t mesCount = 0;
+	volatile uint8_t distance_value = 0;
 
 public:
 
@@ -26,6 +26,8 @@ public:
 	IRDistanceSensor();
 
 	void update();
+
+	void updateWaiting();
 
 	uint8_t get_distance();
 
