@@ -26,4 +26,5 @@ void IRDistSensor::endTransmission() {
 }
 void IRDistSensor::beginTransmission() {
 	TWI_Handler::IO.buf.queue(irDistance);
+	this->jobStatus = 0;
 }

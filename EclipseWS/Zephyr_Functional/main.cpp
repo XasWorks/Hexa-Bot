@@ -92,12 +92,7 @@ int main() {
 
 	System.Motor.setRotationSpeed(50);
 
-	while(true) {
-		irdist.update();
-		servo.setServo( (irdist.get_distance() < 6 ? 255 : 0));
-
-		_delay_ms(100);
-	}
+	_delay_ms(3000);
 
 	while(true) {
 		setTask();
