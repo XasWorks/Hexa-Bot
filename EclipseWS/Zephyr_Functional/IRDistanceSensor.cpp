@@ -23,6 +23,7 @@ void IRDistanceSensor::endOperation() {
 		switch(this->jobStatus--) {
 			case 2:
 				TWI_Handler::IO.buf.queue(0b11111);
+				TWI_Handler::IO.readLength = 1;
 			break;
 
 			case 1:
