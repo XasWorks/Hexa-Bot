@@ -12,9 +12,10 @@ uint8_t BallFineGrab::getIRDist() {
 	return this->sensor->get_distance();
 }
 
-BallFineGrab::BallFineGrab(Robot *sys, IRDistanceSensor *sens) {
+BallFineGrab::BallFineGrab(Robot *sys, IRDistanceSensor *sens, ServoController *serv) {
 	this->system = sys;
 	this->sensor = sens;
+	this->servo = serv;
 }
 
 void BallFineGrab::execute() {
@@ -23,13 +24,49 @@ void BallFineGrab::execute() {
 	mSpace.setSpeed(100);
 	mSpace.setRotationSpeed(100);
 
-	mSpace.moveBy(-50,0);
+	// Raise the arm
+	this->servo->setServo(255);
+
+	// Move the robot backwards until the ball isn't in focus any more
+	while(this->getIRDist() < GROUND_DISTANCE) {
+		mSpace.moveBy(-1, 0);
+		mSpace.flush();
+	}
+
+	// Move the robot to the middle of the ball
+	mSpace.moveBy(25, 0);
 	mSpace.flush();
 
-	if(this->getIRDist() < 100) {
-		while(this->getIRDist() < 100) {
-			mSpace.moveBy(-1, 0);
-			mSpace.flush();
-		}
-	}
+	// Break if there isn't any ball there
+	if(this->getIRDist() >= GROUND_DISTANCE)
+		return;
+
+	// Get close to the ball, but not too close
+
+	uint8_t distVal = this->getIRDist();
+	mSpace.rotateBy(-30);
+	mSpace.flush();
+	mSpace.moveBy(0, distVal - BALL_CLOSE_DISTANCE);
+	mSpace.flush();
+
+
+	mSpace.rotateBy(10);
+	mSpace.flush();
+
+	// Lower the servo
+	this->servo->setServo(0);
+
+	// Aaaannndd kick the ball because we are too lazy to do it properly :P
+	mSpace.rotateBy(-10);
+	this->servo->setServo(100);
+	mSpace.flush();
+	this->servo->setServo(255);
+
+	// Return to original coordinates
+	mSpace.moveBy(0, -this->getY());
+	mSpace.flush();
+	mSpace.rotateTo(0);
+	mSpace.flush();
+	mSpace.moveTo(0, 0);
+	mSpace.flush();
 }

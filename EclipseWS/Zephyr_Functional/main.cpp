@@ -31,7 +31,7 @@ LFFollow LFSys = LFFollow(&System, &LFSensor);
 Intersection INTSECSys = Intersection(&System, &LFSensor);
 ObjectAvoid AVDSys = ObjectAvoid(&System);
 
-BallFineGrab GRABSys = BallFineGrab(&System, &irdist);
+BallFineGrab GRABSys = BallFineGrab(&System, &irdist, &servo);
 
 Basic *cModule;
 

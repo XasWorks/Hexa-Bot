@@ -16,16 +16,21 @@
 #include "../Code/System/Robot.h"
 
 #include "../IRDistanceSensor.h"
+#include "../ServoController.h"
+
+#define GROUND_DISTANCE 200
+#define BALL_CLOSE_DISTANCE 50
 
 class BallFineGrab : Module::Basic {
 private:
 	Robot *system;
 	IRDistanceSensor *sensor;
+	ServoController  *servo;
 
 	uint8_t getIRDist();
 
 public:
-	BallFineGrab(Robot *system, IRDistanceSensor *sensor);
+	BallFineGrab(Robot *system, IRDistanceSensor *sensor, ServoController *servo);
 
 	void execute();
 };
