@@ -37,7 +37,7 @@ module bHolder_everythingElse() {
 module bHolder_IntsecScheme() render() {
 	intersection() {
 		bHolder_middlePlate();
-		bHolder_hex();
+		//bHolder_hex();
 	}
 
 	bHolder_everythingElse();
