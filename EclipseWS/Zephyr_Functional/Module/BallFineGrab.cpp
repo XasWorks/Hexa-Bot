@@ -55,12 +55,17 @@ void BallFineGrab::execute() {
 
 	// Lower the servo
 	this->servo->setServo(0);
+	_delay_ms(300);
 
 	// Aaaannndd kick the ball because we are too lazy to do it properly :P
 	mSpace.setRotationSpeed(30);
 	mSpace.rotateBy(-60);
 	mSpace.flush();
-	_delay_ms(1000);
+
+	// Grab the ball up and lift it somewhat carefully
+	_delay_ms(500);
+	this->servo->setServo(100);
+	_delay_ms(500);
 	this->servo->setServo(255);
 
 	// Return to original coordinates

@@ -21,7 +21,7 @@
 #include "../ServoController.h"
 
 #define GROUND_DISTANCE 200
-#define BALL_CLOSE_DISTANCE 50
+#define BALL_CLOSE_DISTANCE 60
 
 class BallFineGrab : Module::Basic {
 private:
