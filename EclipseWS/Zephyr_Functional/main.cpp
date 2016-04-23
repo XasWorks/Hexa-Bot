@@ -92,6 +92,9 @@ int main() {
 	// Init of the touch sensor
 	DDRC |= (1<< 3);
 
+	// Pull-Ups for the TWI system
+	PORTC |= (0b11 << 4);
+
 	cModule = &LFSys;
 
 	System.Motor.setRotationSpeed(50);
