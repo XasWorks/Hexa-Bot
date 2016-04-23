@@ -8,6 +8,8 @@
 #ifndef MODULE_BALLFINEGRAB_H_
 #define MODULE_BALLFINEGRAB_H_
 
+#include <util/delay.h>
+
 #include "../Code/Modules/ModuleBasic.h"
 
 #include "../Code/Movement/Locomotor.h"

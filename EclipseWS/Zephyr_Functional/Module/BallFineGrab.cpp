@@ -21,7 +21,7 @@ BallFineGrab::BallFineGrab(Robot *sys, IRDistanceSensor *sens, ServoController *
 void BallFineGrab::execute() {
 	Subspace mSpace = Subspace(&this->system->Motor);
 
-	mSpace.setSpeed(100);
+	mSpace.setSpeed(30);
 	mSpace.setRotationSpeed(100);
 
 	// Raise the arm
@@ -44,26 +44,27 @@ void BallFineGrab::execute() {
 	// Get close to the ball, but not too close
 
 	uint8_t distVal = this->getIRDist();
-	mSpace.rotateBy(-30);
+	mSpace.rotateBy(-60);
 	mSpace.flush();
 	mSpace.moveBy(0, distVal - BALL_CLOSE_DISTANCE);
 	mSpace.flush();
 
 
-	mSpace.rotateBy(10);
+	mSpace.rotateBy(60);
 	mSpace.flush();
 
 	// Lower the servo
 	this->servo->setServo(0);
 
 	// Aaaannndd kick the ball because we are too lazy to do it properly :P
-	mSpace.rotateBy(-10);
-	this->servo->setServo(100);
+	mSpace.setRotationSpeed(30);
+	mSpace.rotateBy(-60);
 	mSpace.flush();
+	_delay_ms(1000);
 	this->servo->setServo(255);
 
 	// Return to original coordinates
-	mSpace.moveBy(0, -this->getY());
+	mSpace.moveBy(0, -mSpace.getY());
 	mSpace.flush();
 	mSpace.rotateTo(0);
 	mSpace.flush();
