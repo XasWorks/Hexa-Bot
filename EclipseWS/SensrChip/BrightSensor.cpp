@@ -13,7 +13,7 @@ BrightSensor::BrightSensor() {
 
 void BrightSensor::adc_update() {
 	if(ADC_Lib::measuredPin == B_PIN)
-		this->bLevel = ADC_Lib::lastResult >> 1;
+		this->bLevel = ADC_Lib::lastResult >> 2;	// Down-Shift to convert from 10-bit to 8-bit
 }
 
 void BrightSensor::update() {
