@@ -17,8 +17,6 @@ TWI_Basic::TWI_Basic() {
 	// Fixed speed to ~100kHz
 	TWBR = 100;
 
-	PORTC |= (0b11 << 4);
-
 	sei();
 }
 
