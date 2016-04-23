@@ -27,4 +27,5 @@ void BrightSensor::endTransmission() {
 
 void BrightSensor::beginTransmission() {
 	TWI_Handler::IO.buf.queue(this->bLevel);
+	this->jobStatus = 0;
 }

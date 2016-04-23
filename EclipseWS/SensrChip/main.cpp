@@ -15,9 +15,11 @@
 
 #include "ServController.h"
 #include "IRDistSensor.h"
+#include "BrightSensor.h"
 
 ServController sController = ServController();
 IRDistSensor IRSensor = IRDistSensor();
+BrightSensor BRSensor = BrightSensor();
 
 ISR(TWI_vect) {
 	TWI_Handler::IO.update();
@@ -27,10 +29,12 @@ ISR(ADC_vect) {
 	ADC_Lib::update();
 
 	IRSensor.adc_update();
+	BrightSensor.adc_update();
 }
 
 ISR(TIMER1_COMPA_vect) {
 	IRSensor.update();
+	BrightSensor.update();
 }
 
 int main() {
