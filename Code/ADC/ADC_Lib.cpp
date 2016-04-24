@@ -22,7 +22,7 @@ namespace ADC_Lib {
 
 	uint8_t selectNexPin() {
 		for(uint8_t i=7; i >= 0; i--) {
-			if((toMeasurePins & (1<<i)) {
+			if(toMeasurePins & (1<<i)) {
 				toMeasurePins &= ~(1<<i);
 				return i;
 			}
@@ -42,13 +42,13 @@ namespace ADC_Lib {
 	}
 
 	void start_measurement(uint8_t pin) {
-		if(status = ADC_IDLE) {
+		if(status == ADC_IDLE) {
 			ADMUX &= ~(0b11111);
 			ADMUX |= (pin & 0b11111);
 
 			ADCSRA |= (1<< ADSC);
 		}
-		else if(status = ADC_RUNNING) {
+		else if(status == ADC_RUNNING) {
 			toMeasurePins |= (1<<pin);
 		}
 	}

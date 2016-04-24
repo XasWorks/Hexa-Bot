@@ -29,12 +29,12 @@ ISR(ADC_vect) {
 	ADC_Lib::update();
 
 	IRSensor.adc_update();
-	BrightSensor.adc_update();
+	BRSensor.adc_update();
 }
 
 ISR(TIMER1_COMPA_vect) {
 	IRSensor.update();
-	BrightSensor.update();
+	BRSensor.update();
 }
 
 int main() {

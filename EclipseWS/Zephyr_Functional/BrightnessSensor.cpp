@@ -1,16 +1,18 @@
 
-BrightSensor::BrightSensor() {
+#include "BrightnessSensor.h"
+
+BrightnessSensor::BrightnessSensor() {
 }
 
-BrightnessSensor::update() {
+void BrightnessSensor::update() {
   this->jobStatus = 2;
 }
 
-BrightnessSensor::beginOperation() {
+void BrightnessSensor::beginOperation() {
   TWI_Handler::IO.buf.queue(0b11110);
   TWI_Handler::IO.buf.queue(COMS_BRIGHT);
 }
-BrightnessSensor::endOperation() {
+void BrightnessSensor::endOperation() {
   this->jobStatus--;
   switch(this->jobStatus) {
     case 1:
@@ -22,4 +24,8 @@ BrightnessSensor::endOperation() {
       this->brightness = TWI_Handler::IO.buf.read();
     break;
   }
+}
+
+uint8_t BrightnessSensor::getBrightness() {
+	return this->brightness;
 }

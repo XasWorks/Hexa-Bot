@@ -17,6 +17,6 @@ public:
 
   void beginOperation();
   void endOperation();
-}
+};
 
 #endif
