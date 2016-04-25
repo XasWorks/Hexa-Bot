@@ -6,14 +6,14 @@
 
 class BrightnessSensor : public TWI_M_Job {
 private:
-  uint8_t brightness = 0;
+  uint16_t brightness = 0;
 
 public:
   BrightnessSensor();
 
   void update();
 
-  uint8_t getBrightness();
+  uint16_t getBrightness();
 
   void beginOperation();
   void endOperation();
