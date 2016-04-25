@@ -13,7 +13,7 @@ BrightSensor::BrightSensor() {
 
 void BrightSensor::adc_update() {
 	if(ADC_Lib::measuredPin == B_PIN)
-		this->bLevel = ADC_Lib::lastResult >> 2;	// Down-Shift to convert from 10-bit to 8-bit
+		this->bLevel = ADC_Lib::lastResult;
 }
 
 void BrightSensor::update() {
@@ -26,6 +26,7 @@ void BrightSensor::endTransmission() {
 }
 
 void BrightSensor::beginTransmission() {
-	TWI_Handler::IO.buf.queue(this->bLevel);
+	TWI_Handler::IO.buf.queue((this->bLevel & 0xff00) >> 2);
+	TWI_Handler::IO.buf.queue((this->bLevel & 0x00ff));
 	this->jobStatus = 0;
 }

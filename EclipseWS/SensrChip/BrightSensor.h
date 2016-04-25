@@ -16,7 +16,7 @@
 
 class BrightSensor : TWI_S_Job {
 private:
-	uint8_t bLevel = 0;
+	uint16_t bLevel = 0;
 
 public:
 	BrightSensor();
