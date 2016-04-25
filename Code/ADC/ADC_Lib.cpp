@@ -22,7 +22,7 @@ namespace ADC_Lib {
 
 	uint8_t selectNexPin() {
 		for(uint8_t i=7; i >= 0; i--) {
-			if(toMeasurePins & (1<<i)) {
+			if((toMeasurePins & (1<<i)) != 0) {
 				toMeasurePins &= ~(1<<i);
 				return i;
 			}
