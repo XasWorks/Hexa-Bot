@@ -19,12 +19,14 @@
 
 #include "ServoController.h"
 #include "IRDistanceSensor.h"
+#include "BrightnessSensor.h"
 
 Robot System = Robot();
 LF3Sens LFSensor = LF3Sens();
 
 ServoController servo = ServoController();
 IRDistanceSensor irdist = IRDistanceSensor();
+BrightnessSensor brsens = BrightnessSensor();
 
 using namespace Module;
 LFFollow LFSys = LFFollow(&System, &LFSensor);
@@ -101,8 +103,13 @@ int main() {
 
 	while(true) {
 		_delay_ms(1000);
+		brsens.update();
+		_delay_ms(200);
+		if(brsens.getBrightness() > 90)
+			servo.setServo(0);
+		else
+			servo.setServo(255);
 
-		GRABSys.execute();
 	}
 
 	while(true) {
