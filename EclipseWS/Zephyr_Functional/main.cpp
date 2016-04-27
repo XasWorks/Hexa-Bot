@@ -98,11 +98,15 @@ int main() {
 
 	System.Motor.setRotationSpeed(50);
 
+	servo.setServo(255);
+
+	_delay_ms(500);
+
 	while(true) {
 		_delay_ms(1000);
 		brsens.update();
 		_delay_ms(200);
-		if(brsens.getBrightness() > 90)
+		if(brsens.getBrightness() > 40)
 			servo.setServo(0);
 		else
 			servo.setServo(255);
