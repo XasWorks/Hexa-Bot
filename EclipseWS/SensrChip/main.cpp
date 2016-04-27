@@ -30,6 +30,7 @@ ISR(ADC_vect) {
 
 	IRSensor.adc_update();
 	BRSensor.adc_update();
+
 }
 
 ISR(TIMER1_COMPA_vect) {
@@ -42,7 +43,7 @@ int main() {
 	TWI_Handler::IO.setAddress(0b1111);
 	ADC_Lib::init(ADC_PRSC_64);
 
-	DDRD |= (1 << 0);
+	DDRD |= (1 << 7);
 
 	Timer1::set_mode(TIMER1_MODE_CTC);
 	Timer1::set_prescaler(TIMER1_PRESC_8);

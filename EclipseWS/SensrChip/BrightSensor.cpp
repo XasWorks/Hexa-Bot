@@ -24,7 +24,6 @@ void BrightSensor::endTransmission() {
 	if(TWI_Handler::IO.buf.peek() == COMS_BRIGHT)
 		this->jobStatus = 1;
 }
-
 void BrightSensor::beginTransmission() {
 	TWI_Handler::IO.buf.queue((this->bLevel & 0xff00) >> 2);
 	TWI_Handler::IO.buf.queue((this->bLevel & 0x00ff));
