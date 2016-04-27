@@ -1,6 +1,9 @@
+sHeight = 10;
+
+
 module sInput(type) {
 	linear_extrude(height = 0.01) {
-		wall = 0.6;
+		wall = 1;
 	
 		sSpaceX = 22 - wall * 2;
 		sSpaceY = 7;
@@ -26,8 +29,6 @@ module sOutput(type) {
 }
 
 module shell() {
-	sHeight = 10;
-	
 	difference() {
 		hull() {
 			sInput("OUTER");
@@ -35,8 +36,8 @@ module shell() {
 		}
 		
 		hull() {
-			sInput("INNER");
-			translate([0, 0, sHeight]) sOutput("INNER");
+			translate([0, 0, -0.1]) sInput("INNER");
+			translate([0, 0, sHeight + 0.1]) sOutput("INNER");
 		}
 	}
 }
@@ -45,7 +46,7 @@ module cPlate() {
 	shiftUp = 4.1;
 	
 	sizeX = 22;
-	sizeY = 13;
+	sizeY = 12.3;
 	
 	$fn = 9;
 	
@@ -61,5 +62,22 @@ module cPlate() {
 	}
 }
 
+module lightBlockade() {
+	wall = 1;
+	ySize = 50;
+
+	height = sHeight;
+	
+	intersection() {
+		hull() {
+			sInput("OUTER");
+			translate([0, 0, sHeight]) sOutput("OUTER");
+		}
+		
+		translate([-wall/2, -ySize/2, 0]) cube([wall, ySize, height]);
+	}
+}
+
 cPlate();
 shell();
+lightBlockade();
