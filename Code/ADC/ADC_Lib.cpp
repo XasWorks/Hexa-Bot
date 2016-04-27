@@ -23,7 +23,6 @@ namespace ADC_Lib {
 	uint8_t selectNexPin() {
 		for(uint8_t i=7; i >= 0; i--) {
 			if((toMeasurePins & (1<<i)) != 0) {
-				toMeasurePins &= ~(1<<i);
 				return i;
 			}
 		}
@@ -33,11 +32,11 @@ namespace ADC_Lib {
 		lastResult = ADC;
 		measuredPin = ADMUX & 0b11111;
 
-		status = ADC_IDLE;
+		toMeasurePins &= ~(1<< measuredPin);
 
+		status = ADC_IDLE;
 		if(toMeasurePins != 0) {
 			start_measurement(selectNexPin());
-			status = ADC_RUNNING;
 		}
 	}
 
@@ -47,6 +46,8 @@ namespace ADC_Lib {
 			ADMUX |= (pin & 0b11111);
 
 			ADCSRA |= (1<< ADSC);
+
+			status = ADC_RUNNING;
 		}
 		else if(status == ADC_RUNNING) {
 			toMeasurePins |= (1<<pin);
