@@ -1,4 +1,4 @@
-sHeight = 10;
+sHeight = 6;
 
 
 module sInput(type) {
@@ -19,7 +19,7 @@ module sOutput(type) {
 		linear_extrude(height = 0.01) {
 		wall = 0.6;
 		
-		radius = 8; 
+		radius = 7; 
 		
 		if(type == "INNER")
 			circle(r = radius);

@@ -1,6 +1,6 @@
 use <../Lib/HexGrid.scad>
 
-holder_distance = 10;
+holder_distance = 15;
 
 
 lowerFill();
