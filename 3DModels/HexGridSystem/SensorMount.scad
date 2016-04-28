@@ -5,7 +5,7 @@ mountYPos = 17.5/2 - 3;
 
 //cylinderHeight = 13;
 //cylinderHeight = 10;
-cylinderHeight = 5;
+cylinderHeight = 8;
 		
 module base() render() {
 	difference() {
@@ -14,18 +14,18 @@ module base() render() {
 				hexFill();
 				lowerHex();
 				translate([0, 0, 2.2]) 
-				hexSegment(b2 = 17.5/2 - 1, t2 = 17.5/2 -1, h = 1);
+				hexSegment(b2 = 17.5/2 - 1, t2 = 17.5/2 -1, h = 2);
 	
 				
 				translate([0, mountYPos, 0]) 
-				cylinder(d = 3.1 + 1.6, h= cylinderHeight, $fn= 20);
+				cylinder(d = 3.1 + 1.8, h= cylinderHeight, $fn= 20);
 			}
 			
 			translate([0, 0, 3.2]) children();
 		}
 		
 		hexPattern([[0,0], [1, 0], [-1, 0]]) translate([0, mountYPos, -0.1]) 
- 		cylinder(d = 3.05, h= 30, $fn= 20);
+ 		cylinder(d = 3, h= 30, $fn= 20);
 	}
 }
 	
