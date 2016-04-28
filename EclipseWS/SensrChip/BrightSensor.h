@@ -15,10 +15,9 @@
 #define B_PIN 1
 
 class BrightSensor : TWI_S_Job {
-private:
+public:
 	uint16_t bLevel = 0;
 
-public:
 	BrightSensor();
 
 	void adc_update();

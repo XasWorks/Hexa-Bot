@@ -52,6 +52,11 @@ int main() {
 	sei();
 
 	while(true) {
+		PORTD &= ~(1<< 7);
+		if(BRSensor.bLevel < 45) {
+			PORTD |= (1<< 7);
+			_delay_ms(100);
+		}
 	}
 
 	return 0;
