@@ -26,7 +26,7 @@ namespace Module {
 
 		uint8_t iCount = 0;
 		const uint8_t iCLen = 5;
-		const int8_t iDir[5] = {0, 100, -100, 0};
+		const int8_t iDir[5] = {0, 110, -110, 0};
 
 		void moveFWD();
 

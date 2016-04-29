@@ -28,10 +28,11 @@ void ObjectAvoid::execute() {
 	sys->Motor.moveTowards(FORWARDS_MOV);
 	sys->Motor.flush();
 
-	sys->Motor.moveTowards(SIDEWAYS_MOV, initDir - 90);
+	sys->Motor.moveTowards(1.05 * SIDEWAYS_MOV, initDir - 90);
 	sys->Motor.flush();
 
-
+	sys->Motor.rotateBy(-50);
+	sys->Motor.flush();
 }
 
 } /* namespace Module */
