@@ -89,8 +89,6 @@ void setTask() {
 	}
 }
 
-// TEST!
-
 int main() {
 
 	// Pull-Ups for the TWI system
