@@ -15,12 +15,18 @@
 #define FWD_CHECK_DIST 20
 #define INTSEC_DIST 75
 
+#define DEFAULT_DIR 90
+
 namespace Module {
 
 	class Intersection : public Basic{
 	private:
 		Robot *sys;
 		LFBasic *sens;
+
+		uint8_t iCount = 0;
+		const uint8_t iCLen = 5;
+		const uint8_t iDir[5] = {0, -90, 0, 0, 90};
 
 		void moveFWD();
 
