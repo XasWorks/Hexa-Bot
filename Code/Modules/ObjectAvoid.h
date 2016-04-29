@@ -14,7 +14,7 @@
 #define DEG_TO_RAD 0.017453293
 
 #define SIDEWAYS_MOV 170
-#define FORWARDS_MOV 500
+#define FORWARDS_MOV 550
 
 namespace Module {
 

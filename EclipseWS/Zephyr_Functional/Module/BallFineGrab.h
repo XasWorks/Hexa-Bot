@@ -20,7 +20,7 @@
 #include "../IRDistanceSensor.h"
 #include "../ServoController.h"
 
-#define GROUND_DISTANCE 200
+#define GROUND_DISTANCE 100
 #define BALL_CLOSE_DISTANCE 60
 
 class BallFineGrab : Module::Basic {

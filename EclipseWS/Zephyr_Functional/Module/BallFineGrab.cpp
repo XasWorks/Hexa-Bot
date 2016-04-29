@@ -21,7 +21,7 @@ BallFineGrab::BallFineGrab(Robot *sys, IRDistanceSensor *sens, ServoController *
 void BallFineGrab::execute() {
 	Subspace mSpace = Subspace(&this->system->Motor);
 
-	mSpace.setSpeed(30);
+	mSpace.setSpeed(100);
 	mSpace.setRotationSpeed(100);
 
 	// Raise the arm
@@ -64,7 +64,7 @@ void BallFineGrab::execute() {
 
 	// Grab the ball up and lift it somewhat carefully
 	_delay_ms(500);
-	this->servo->setServo(100);
+	this->servo->setServo(50);
 	_delay_ms(500);
 	this->servo->setServo(255);
 
