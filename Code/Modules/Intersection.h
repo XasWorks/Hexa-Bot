@@ -13,7 +13,7 @@
 #include "../LineFollow/LFBasic.h"
 
 #define FWD_CHECK_DIST 20
-#define INTSEC_DIST 75
+#define INTSEC_DIST 90
 
 #define DEFAULT_DIR 90
 

@@ -20,24 +20,17 @@ void ObjectAvoid::execute() {
 
 	float initDir = sys->Motor.getR();
 
-	sys->Motor.moveTowards(50, initDir + 180);
+	sys->Motor.moveTowards(60, initDir + 180);
 	sys->Motor.flush();
 
-	sys->Motor.rotateBy(-60);
-	sys->Motor.flush();
 	sys->Motor.moveTowards(SIDEWAYS_MOV, initDir + 90);
-	sys->Motor.flush();
-	sys->Motor.rotateBy(60);
 	sys->Motor.flush();
 	sys->Motor.moveTowards(FORWARDS_MOV);
 	sys->Motor.flush();
 
-	sys->Motor.rotateBy(60);
-	sys->Motor.flush();
 	sys->Motor.moveTowards(SIDEWAYS_MOV, initDir - 90);
 	sys->Motor.flush();
-	sys->Motor.rotateBy(-60);
-	sys->Motor.flush();
+
 
 }
 
