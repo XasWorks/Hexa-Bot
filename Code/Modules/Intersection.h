@@ -13,7 +13,7 @@
 #include "../LineFollow/LFBasic.h"
 
 #define FWD_CHECK_DIST 20
-#define INTSEC_DIST 90
+#define INTSEC_DIST 85
 
 #define DEFAULT_DIR 90
 
@@ -26,7 +26,7 @@ namespace Module {
 
 		uint8_t iCount = 0;
 		const uint8_t iCLen = 5;
-		const int8_t iDir[5] = {0, -100, 0, 0, 100};
+		const int8_t iDir[5] = {0, 100, -100, 0};
 
 		void moveFWD();
 
