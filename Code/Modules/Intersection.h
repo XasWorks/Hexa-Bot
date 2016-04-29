@@ -15,7 +15,7 @@
 #define FWD_CHECK_DIST 20
 #define INTSEC_DIST 85
 
-#define DEFAULT_DIR 90
+#define DEFAULT_DIR -110
 
 namespace Module {
 
