@@ -18,12 +18,15 @@ void LF3Sens::setStatus(uint8_t sensors) {
 	break;
 
 	case 0b100:
+		if(this->lineStatus == LF_INTSEC)
+			this->lineStatus = LF_LOST;
 		this->lineOffset = LF_LEFT;
 	break;
 
 	case 0b110:
-		this->lineStatus = LF_OK;
-		this->lineOffset = LF_LEFT / 2;
+		if(this->lineStatus == LF_INTSEC)
+			this->lineStatus = LF_LOST;
+		this->lineOffset = LF_LEFT * 2 / 3;
 	break;
 
 	case 0b010:
@@ -32,11 +35,14 @@ void LF3Sens::setStatus(uint8_t sensors) {
 	break;
 
 	case 0b011:
-		this->lineStatus = LF_OK;
-		this->lineOffset = LF_RIGHT / 2;
+		if(this->lineStatus == LF_INTSEC)
+			this->lineStatus = LF_LOST;
+		this->lineOffset = LF_RIGHT * 2 / 3;
 	break;
 
 	case 0b001:
+		if(this->lineStatus == LF_INTSEC)
+			this->lineStatus = LF_LOST;
 		this->lineOffset = LF_RIGHT;
 	break;
 
