@@ -23,7 +23,7 @@ void ObjectAvoid::execute() {
 	sys->Motor.moveTowards(60, initDir + 180);
 	sys->Motor.flush();
 
-	int8_t dirmod = (distance < 100) ? 1 : -1;
+	int8_t dirmod = (distance < 200) ? 1 : -1;
 //	if(oCount == oLen)
 //		dirmod = oDirs[oCount];
 //	else
