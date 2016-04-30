@@ -15,7 +15,7 @@
 #define FWD_CHECK_DIST 20
 #define INTSEC_DIST 85
 
-#define DEFAULT_DIR -110
+#define DEFAULT_DIR 0
 
 namespace Module {
 
@@ -25,8 +25,8 @@ namespace Module {
 		LFBasic *sens;
 
 		uint8_t iCount = 0;
-		const uint8_t iCLen = 5;
-		const int8_t iDir[5] = {0, 110, -110, 0};
+		const uint8_t iCLen = 3;
+		const int8_t iDir[3] = {0, 110, 110};
 
 		void moveFWD();
 

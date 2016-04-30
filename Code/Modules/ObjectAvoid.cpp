@@ -23,12 +23,12 @@ void ObjectAvoid::execute() {
 	sys->Motor.moveTowards(60, initDir + 180);
 	sys->Motor.flush();
 
-	sys->Motor.moveTowards(SIDEWAYS_MOV, initDir + 90);
+	sys->Motor.moveTowards(SIDEWAYS_MOV, initDir - 90);
 	sys->Motor.flush();
 	sys->Motor.moveTowards(FORWARDS_MOV);
 	sys->Motor.flush();
 
-	sys->Motor.moveTowards(1.05 * SIDEWAYS_MOV, initDir - 90);
+	sys->Motor.moveTowards(1.05 * SIDEWAYS_MOV, initDir + 90);
 	sys->Motor.flush();
 
 	sys->Motor.rotateBy(-50);
