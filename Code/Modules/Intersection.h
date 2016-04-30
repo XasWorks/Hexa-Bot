@@ -25,7 +25,7 @@ namespace Module {
 		LFBasic *sens;
 
 		uint8_t iCount = 0;
-		const uint8_t iCLen = 3;
+		const uint8_t iCLen = 1;
 		const int8_t iDir[3] = {0, 110, 110};
 
 		void moveFWD();
