@@ -22,6 +22,10 @@ class ObjectAvoid : public Basic{
 private:
 	Robot *sys;
 
+	uint8_t oCount = 0;
+	const uint8_t oLen = 1;
+	const int8_t oDirs[2] = {1, -1};
+
 public:
 	ObjectAvoid(Robot *system);
 
