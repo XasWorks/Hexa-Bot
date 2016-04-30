@@ -15,7 +15,7 @@
 #define FWD_CHECK_DIST 20
 #define INTSEC_DIST 85
 
-#define DEFAULT_DIR 0
+#define DEFAULT_DIR 110
 
 namespace Module {
 
@@ -26,7 +26,7 @@ namespace Module {
 
 		uint8_t iCount = 0;
 		const uint8_t iCLen = 1;
-		const int8_t iDir[3] = {0, 110, 110};
+		const int8_t iDir[3] = {-110};
 
 		void moveFWD();
 
