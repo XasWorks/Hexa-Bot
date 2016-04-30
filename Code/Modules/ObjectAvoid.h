@@ -29,6 +29,8 @@ private:
 public:
 	ObjectAvoid(Robot *system);
 
+	uint8_t distance;
+
 	void execute();
 };
 

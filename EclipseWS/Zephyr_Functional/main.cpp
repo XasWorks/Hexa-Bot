@@ -54,15 +54,15 @@ ISR(TIMER1_COMPA_vect) {
 uint8_t currentTask = TASK_LF;
 
 void setTask() {
-	ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
 	switch(currentTask) {
 		// -- STANDARD LF --
 		case TASK_LF:
 
 			// Switch to object avoidance mode
 			if((PINC & (1<< 3)) == 0) {
-				currentTask = TASK_OBJ;
-				cModule = &AVDSys;
+				irdist.updateWaiting();
+				AVDSys.distance = irdist.get_distance();
+				AVDSys.execute();
 			}
 
 			// Else, switch to Intersection mode
@@ -86,7 +86,6 @@ void setTask() {
 			cModule = &LFSys;
 		break;
 		}
-	}
 }
 
 int main() {
